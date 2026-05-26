@@ -42,8 +42,8 @@ const Container: NextPage<ContainerType> = ({ className = "" }) => {
             <div className={styles.quickLinks}>Countdown</div>
           </div>
           <div className={styles.frameParent}>
-            <div className={styles.wrapper}>
-              <h2 className={styles.h2}>22</h2>
+            <div className={styles.frame}>
+              <h2 className={styles.partialContainer}>22</h2>
             </div>
             <div className={styles.frame}>
               <h2 className={styles.partialContainer}>18</h2>
@@ -55,8 +55,8 @@ const Container: NextPage<ContainerType> = ({ className = "" }) => {
             <div className={styles.frame}>
               <h2 className={styles.partialContainer}>31</h2>
             </div>
-            <div className={styles.wrapper}>
-              <h2 className={styles.innerContainer}>48</h2>
+            <div className={styles.frame}>
+              <h2 className={styles.partialContainer}>48</h2>
             </div>
           </div>
           <div className={styles.daysParent}>

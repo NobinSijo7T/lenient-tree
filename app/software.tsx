@@ -69,7 +69,7 @@ const Software: NextPage = () => {
             <section id="about" className={styles.aboutSection}>
               <GroupComponent className={styles.aboutUs} />
             </section>
-            <div id="guidelines">
+            <div id="guidelines" className={styles.guidelinesSection}>
               <Guidelines />
             </div>
             <div id="timeline" style={{ paddingTop: '60px', paddingBottom: '40px' }}>
