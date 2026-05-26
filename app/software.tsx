@@ -3,6 +3,7 @@ import Image from "next/image";
 import Moving from "../components/moving";
 import TT from "../components/t-t";
 import GroupComponent from "../components/about-us/components/group-component";
+import Cta from "../components/cta/cta";
 import Grid from "../components/grid";
 import Container from "../components/container";
 import styles from "./software.module.css";
@@ -93,11 +94,11 @@ const Software: NextPage = () => {
                 <h2 className={styles.lenientTree}>lenient tree</h2>
                 <h2 className={styles.presents}>presents</h2>
               </div>
-              <Moving property1="up" />
               <section className={styles.rectangleParent}>
                 <div className={styles.frameInner} />
                 <div className={styles.hoursParent}>
                   <h1 className={styles.hours}>24 hours</h1>
+                  <Moving className={styles.movingInline} property1="up" />
                   <h2 className={styles.june08}>June 08 - 09, 2026</h2>
                 </div>
               </section>
@@ -106,6 +107,7 @@ const Software: NextPage = () => {
             <section className={styles.aboutSection}>
               <GroupComponent className={styles.aboutUs} />
             </section>
+            <Cta />
           </div>
         </div>
       </main>

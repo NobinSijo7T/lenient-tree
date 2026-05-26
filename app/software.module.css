@@ -754,6 +754,9 @@
 }
 .frameSection {
   flex-shrink: 0;
+  position: relative;
+  z-index: 5;
+  margin-top: clamp(-16px, 2vw, 60px);
   text-align: left;
   font-size: 14px;
   color: var(--color-black);
@@ -1459,6 +1462,9 @@
 .frameSection {
   align-self: center;
   width: 100%;
+  position: relative;
+  z-index: 5;
+  margin-top: clamp(-16px, 2vw, 60px);
 }
 
 .frameParent4 {
@@ -1874,7 +1880,10 @@
 }
 
 .hoursParent {
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  column-gap: clamp(12px, 3vw, 36px);
   padding: 0 clamp(34px, 8vw, 120px);
 }
 
@@ -1885,6 +1894,26 @@
   font-family: var(--font-orbitron);
   letter-spacing: 0;
   text-shadow: 0 8px 28px rgba(0, 0, 0, 0.52);
+}
+
+.hours {
+  justify-self: start;
+}
+
+.june08 {
+  justify-self: end;
+  text-align: right;
+}
+
+.movingInline {
+  position: static;
+  bottom: auto;
+  left: auto;
+  transform: none;
+  width: clamp(160px, 18vw, 232px);
+  height: auto;
+  padding: 0;
+  margin: 0;
 }
 
 @media screen and (max-width: 640px) {
@@ -1966,15 +1995,20 @@
   }
 
   .hoursParent {
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 16px;
+    grid-template-columns: 1fr;
+    row-gap: 12px;
     padding: 0;
+    justify-items: center;
   }
 
   .hours,
   .june08 {
     font-size: 24px;
+    text-align: center;
+  }
+
+  .movingInline {
+    width: min(200px, 70vw);
   }
 }
 
@@ -2063,7 +2097,7 @@
   position: relative;
   isolation: isolate;
   overflow: visible;
-  margin: -220px auto 0;
+  margin: -240px auto 0;
   padding: 0;
   background: transparent;
   color: var(--color-gray-200);
