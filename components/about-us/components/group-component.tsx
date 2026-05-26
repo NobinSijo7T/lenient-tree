@@ -1,13 +1,64 @@
+"use client";
+
 import type { NextPage } from "next";
 import Image from "next/image";
 import FrameComponent from "./frame-component";
 import styles from "./group-component.module.css";
+import { useEffect, useRef, useState } from "react";
 
 export type GroupComponentType = {
   className?: string;
 };
 
 const GroupComponent: NextPage<GroupComponentType> = ({ className = "" }) => {
+  const fullText = "Residency Internship is a 3-week immersive program by lenienttree.com for developers, founders, and creators to build, collaborate, and innovate in a startup-driven environment.";
+  
+  const [mounted, setMounted] = useState(false);
+  const [displayedText, setDisplayedText] = useState(fullText);
+  const [isTypingComplete, setIsTypingComplete] = useState(true);
+  const containerRef = useRef<HTMLHeadingElement>(null);
+
+  useEffect(() => {
+    setMounted(true);
+    setDisplayedText("");
+    setIsTypingComplete(false);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          let index = 0;
+          setDisplayedText("");
+          setIsTypingComplete(false);
+          
+          const interval = setInterval(() => {
+            if (index < fullText.length) {
+              setDisplayedText((prev) => prev + fullText.charAt(index));
+              index++;
+            } else {
+              clearInterval(interval);
+              setIsTypingComplete(true);
+            }
+          }, 18); // 18ms per character typing speed
+          
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [mounted]);
+
   return (
     <main className={[styles.bgParent, className].join(" ")}>
       <Image
@@ -36,10 +87,11 @@ const GroupComponent: NextPage<GroupComponentType> = ({ className = "" }) => {
         src="/Group-151@2x.png"
       />
       <div className={styles.dot} />
-      <h1 className={styles.stacksprintIsAContainer}>
+      <h1 ref={containerRef} className={styles.stacksprintIsAContainer}>
         <span className={styles.stacksprintIsAContainer2}>
           <span className={styles.stacksprintIsA}>
-            Residency Internship is a 3-week immersive program by lenienttree.com for developers, founders, and creators to build, collaborate, and innovate in a startup-driven environment.
+            {displayedText}
+            {!isTypingComplete && mounted && <span className={styles.cursor}>|</span>}
             <br />
           </span>
         </span>

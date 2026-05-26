@@ -1,4 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=DONKEY:ital,wght@0,400&display=swap");
+@font-face {
+  font-family: "DONKEY";
+  src: url("/fonts/donkey.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
 @import url("https://fonts.googleapis.com/css2?family=Lufga:ital,wght@0,400&display=swap");
 
 body {

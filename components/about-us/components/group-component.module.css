@@ -173,6 +173,12 @@
   width: 982px;
   height: 982px;
   object-fit: cover;
+  transform-origin: 38% 62%;
+  transition:
+    transform 900ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 900ms cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 900ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, filter;
 }
 .dot,
 .frameChild,
@@ -185,9 +191,15 @@
   width: 1462.5px;
   height: 1462.5px;
   object-fit: cover;
+  transform-origin: 35% 68%;
+  transition:
+    transform 1100ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 1100ms cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 1100ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, filter;
 }
 .dot {
-  top: 276px;
+  top: 248px;
   left: 982px;
   background-color: var(--color-dodgerblue);
   width: 362px;
@@ -198,7 +210,7 @@
   position: absolute;
   top: 278px;
   left: 666px;
-  font-size: inherit;
+  font-size: 72px;
   letter-spacing: 0.02em;
   line-height: 145%;
   font-weight: 400;
@@ -207,7 +219,8 @@
   align-items: center;
   width: 1000px;
   filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.25));
-  min-height: 930px;
+  min-height: 0;
+  height: auto;
 }
 .stacksprintIsAContainer2 {
   width: 100%;
@@ -215,6 +228,18 @@
 .stacksprintIsA {
   line-height: 145%;
   white-space: pre-wrap;
+}
+.cursor {
+  display: inline-block;
+  margin-left: 4px;
+  color: var(--color-dodgerblue);
+  animation: blink 0.8s step-end infinite;
+  font-weight: bold;
+  vertical-align: middle;
+}
+@keyframes blink {
+  from, to { opacity: 1 }
+  50% { opacity: 0 }
 }
 .teamsMustDesign {
   color: var(--color-lightslategray);
@@ -234,6 +259,11 @@
   width: 583px;
   height: 903.5px;
   object-fit: cover;
+  transform-origin: 48% 74%;
+  transition:
+    transform 850ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 850ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, filter;
 }
 .about,
 .box,
@@ -256,10 +286,26 @@
   min-width: 0;
 }
 .box {
-  top: 1325px;
+  top: 1110px;
   left: 1151px;
   width: 667px;
   height: 364px;
+}
+.bgParent:has(.robotIcon:hover) .robotIcon {
+  transform: translate3d(16px, -22px, 0) scale(1.025);
+  filter:
+    drop-shadow(0 20px 34px rgba(23, 21, 207, 0.28))
+    drop-shadow(0 0 18px rgba(16, 145, 250, 0.36))
+    saturate(1.08)
+    contrast(1.03);
+}
+.bgParent:has(.robotIcon:hover) .frameChild {
+  transform: translate3d(9px, -10px, 0) scale(1.015);
+  filter: drop-shadow(0 16px 28px rgba(23, 21, 207, 0.2));
+}
+.bgParent:has(.robotIcon:hover) .frameItem {
+  transform: translate3d(-10px, 8px, 0) scale(1.01);
+  filter: drop-shadow(0 18px 34px rgba(23, 21, 207, 0.16));
 }
 @media screen and (max-width: 750px) {
   .stacksprintIsAContainer {

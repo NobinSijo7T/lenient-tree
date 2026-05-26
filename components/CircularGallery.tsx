@@ -487,7 +487,8 @@ class App {
     const defaultItems = [
       { image: '/carousal/1.png', text: '' },
       { image: '/carousal/2.png', text: '' },
-      { image: '/carousal/3.png', text: '' }
+      { image: '/carousal/3.png', text: '' },
+      { image: '/carousal/4.jpeg', text: '' }
     ];
 
     const galleryItems = items && items.length ? items : defaultItems;

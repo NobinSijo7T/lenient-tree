@@ -7,7 +7,7 @@
 }
 .hoursOfInnovationWrapper {
   cursor: pointer;
-  border: var(--border-1);
+  border: 2px solid var(--color-lightslategray-100);
   padding: 18px 24px;
   background-color: var(--color-ghostwhite);
   position: absolute;
@@ -23,12 +23,70 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  isolation: isolate;
+  transform: translate3d(0, 0, 0);
+  transition:
+    transform 620ms cubic-bezier(0.16, 1, 0.3, 1),
+    background 620ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 620ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 620ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 620ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, filter;
+}
+.hoursOfInnovationWrapper::before,
+.workshopsMentorshipWrapper::before {
+  position: absolute;
+  inset: -35%;
+  z-index: -1;
+  content: "";
+  background:
+    radial-gradient(circle at 30% 20%, rgba(16, 145, 250, 0.22), transparent 32%),
+    linear-gradient(
+      115deg,
+      transparent 0%,
+      transparent 34%,
+      rgba(255, 255, 255, 0.82) 45%,
+      rgba(82, 82, 237, 0.24) 52%,
+      transparent 66%,
+      transparent 100%
+    );
+  opacity: 0;
+  transform: translate3d(-38%, 18%, 0) rotate(8deg);
+  transition:
+    transform 900ms cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 620ms cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
 }
 .hoursOfInnovationWrapper:hover,
-.workshopsMentorshipWrapper:hover {
-  background-color: var(--color-gainsboro);
-  border: var(--border-2);
-  box-sizing: border-box;
+.workshopsMentorshipWrapper:hover,
+.hoursOfInnovationWrapper:focus-visible,
+.workshopsMentorshipWrapper:focus-visible {
+  background:
+    linear-gradient(145deg, #ffffff 0%, #eef1ff 46%, #f9fbff 100%);
+  border-color: var(--color-mediumblue);
+  box-shadow:
+    0 18px 34px rgba(13, 11, 58, 0.16),
+    0 0 0 4px rgba(16, 145, 250, 0.12),
+    0 0 26px rgba(23, 21, 207, 0.18);
+  filter: saturate(1.08);
+  transform: translate3d(0, -12px, 0) scale(1.025);
+}
+.hoursOfInnovationWrapper:hover::before,
+.workshopsMentorshipWrapper:hover::before,
+.hoursOfInnovationWrapper:focus-visible::before,
+.workshopsMentorshipWrapper:focus-visible::before {
+  opacity: 1;
+  transform: translate3d(24%, -10%, 0) rotate(8deg);
+}
+.hoursOfInnovationWrapper:active,
+.workshopsMentorshipWrapper:active {
+  transform: translate3d(0, -6px, 0) scale(1.012);
+  transition-duration: 180ms;
+}
+.hoursOfInnovationWrapper:focus-visible,
+.workshopsMentorshipWrapper:focus-visible {
+  outline: 3px solid rgba(16, 145, 250, 0.4);
+  outline-offset: 5px;
 }
 .hoursOfInnovation {
   position: static;
@@ -44,10 +102,15 @@
   width: 100%;
   text-shadow: var(--text-shadow-1);
   white-space: pre-line;
+  transform: translate3d(0, 0, 0);
+  transition:
+    transform 620ms cubic-bezier(0.16, 1, 0.3, 1),
+    color 620ms cubic-bezier(0.16, 1, 0.3, 1),
+    text-shadow 620ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 .workshopsMentorshipWrapper {
   cursor: pointer;
-  border: var(--border-1);
+  border: 2px solid var(--color-lightslategray-100);
   padding: 18px 24px;
   background-color: var(--color-ghostwhite);
   position: absolute;
@@ -63,4 +126,23 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  isolation: isolate;
+  transform: translate3d(0, 0, 0);
+  transition:
+    transform 620ms cubic-bezier(0.16, 1, 0.3, 1),
+    background 620ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 620ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 620ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 620ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, filter;
+}
+.hoursOfInnovationWrapper:hover .hoursOfInnovation,
+.workshopsMentorshipWrapper:hover .hoursOfInnovation,
+.hoursOfInnovationWrapper:focus-visible .hoursOfInnovation,
+.workshopsMentorshipWrapper:focus-visible .hoursOfInnovation {
+  color: var(--color-gray-200);
+  text-shadow:
+    0 2px 5px rgba(0, 0, 0, 0.16),
+    0 0 16px rgba(16, 145, 250, 0.2);
+  transform: translate3d(0, -2px, 0);
 }
