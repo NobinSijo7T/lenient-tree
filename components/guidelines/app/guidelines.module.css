@@ -39,7 +39,6 @@
   width: 300px;
   flex-shrink: 0;
   --path-glow-progress: 0%;
-  --path-glow-fade-end: 0%;
 }
 .frameChild {
   display: block;
@@ -48,29 +47,25 @@
   position: relative;
   object-fit: contain;
 }
-.glowPathMask {
+.glowRevealLayer {
   position: absolute;
   inset: 0;
   height: 100%;
   width: 100%;
   overflow: visible;
   pointer-events: none;
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    #000 0%,
-    #000 var(--path-glow-progress),
-    transparent var(--path-glow-fade-end)
-  );
-  mask-image: linear-gradient(
-    to bottom,
-    #000 0%,
-    #000 var(--path-glow-progress),
-    transparent var(--path-glow-fade-end)
-  );
-  transition:
-    -webkit-mask-image 0.12s linear,
-    mask-image 0.12s linear;
-  will-change: mask-image;
+  mix-blend-mode: screen;
+}
+.glowPathMask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: var(--path-glow-progress);
+  width: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  transition: height 0.12s linear;
+  will-change: height;
 }
 .glowPath {
   position: absolute;
@@ -79,10 +74,30 @@
   height: 1110px;
   width: 300px;
   object-fit: contain;
+}
+.glowAura {
+  opacity: 0.98;
   filter:
-    drop-shadow(0 0 5px rgba(23, 21, 207, 0.95))
-    drop-shadow(0 0 12px rgba(23, 21, 207, 0.62))
-    brightness(1.22);
+    drop-shadow(0 0 6px rgba(45, 245, 255, 0.95))
+    drop-shadow(0 0 13px rgba(23, 21, 207, 0.9))
+    drop-shadow(0 0 24px rgba(142, 82, 255, 0.72))
+    saturate(1.75)
+    brightness(1.3);
+}
+.glowCore {
+  opacity: 0.92;
+  filter:
+    drop-shadow(0 0 2px rgba(255, 255, 255, 0.78))
+    saturate(1.85)
+    brightness(1.48);
+}
+.glowHotline {
+  opacity: 0.78;
+  filter:
+    drop-shadow(0 0 4px rgba(23, 21, 207, 1))
+    drop-shadow(0 0 9px rgba(51, 88, 255, 0.9))
+    saturate(1.5)
+    brightness(1.72);
 }
 .frameGroup,
 .teamCollaborationParent {
@@ -169,4 +184,41 @@
   .glowPathMask {
     transition: none;
   }
+}
+
+.circleOverlay1,
+.circleOverlay2,
+.circleOverlay3,
+.circleOverlay4 {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  pointer-events: none;
+  font-family: var(--font-orbitron);
+}
+
+.circleOverlay1 { top: 166px; }
+.circleOverlay2 { top: 436px; }
+.circleOverlay3 { top: 706px; }
+.circleOverlay4 { top: 976px; }
+
+.monthText {
+  font-size: 14px;
+  font-weight: 500;
+  color: #a5b4fc;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1.3;
+}
+
+.daysText {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--color-white);
+  line-height: 1.3;
+  white-space: nowrap;
 }
