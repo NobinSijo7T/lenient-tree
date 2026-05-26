@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import Image from "next/image";
 import Moving from "../components/moving";
 import TT from "../components/t-t";
-import FrameComponent from "../components/frame-component";
+import GroupComponent from "../components/about-us/components/group-component";
 import Grid from "../components/grid";
 import Container from "../components/container";
 import styles from "./software.module.css";
@@ -104,65 +104,7 @@ const Software: NextPage = () => {
               <TT property1="T1" state="Hero" />
             </div>
             <section className={styles.aboutSection}>
-              <div className={styles.frameWrapper}>
-                <div className={styles.frameContainer}>
-                  <Image
-                    className={styles.groupIcon}
-                    loading="lazy"
-                    width={583}
-                    height={904}
-                    sizes="(max-width: 640px) 64vw, 32vw"
-                    alt=""
-                    src="/robot@2x.png"
-                  />
-                  <div className={styles.frameDiv}>
-                    <div className={styles.frameParent2}>
-                      <div className={styles.aboutWrapper}>
-                        <h3 className={styles.about}>About</h3>
-                      </div>
-                      <div className={styles.taskCompletion}>
-                        <div className={styles.dotParent}>
-                          <div className={styles.dot2} />
-                          <h1 className={styles.stacksprintIsAContainer}>
-                            <span className={styles.stacksprintIsAContainer2}>
-                              <span className={styles.stacksprintIsA}>
-                                StackSprint is a 24 hour intermediate level
-                                hackathon focused on building end-to-end
-                                software products.
-                              </span>
-                              <span className={styles.teamsMustDesign}>
-                                Teams must design
-                              </span>
-                              <span className={styles.scalableArchitecturesAnd}>
-                                scalable architectures and implement real
-                                features like authentication, APIs, and
-                                databases.
-                              </span>
-                            </span>
-                          </h1>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <section className={styles.innovationDataWrapper}>
-                <div className={styles.innovationData}>
-                  <FrameComponent
-                    hoursOfInnovation="24 Hours of Innovation"
-                    workshopsMentorship={`Workshops &
-Mentorship`}
-                  />
-                  <FrameComponent
-                    hoursOfInnovation={`Learn Current
-Trends & Tools`}
-                    frameDivPadding="40px 0px"
-                    workshopsMentorship={`& much more...`}
-                    workshopsMentorshipMargin="0"
-                    workshopsMentorshipFontWeight="400"
-                  />
-                </div>
-              </section>
+              <GroupComponent className={styles.aboutUs} />
             </section>
           </div>
         </div>
