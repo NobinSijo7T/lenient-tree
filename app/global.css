@@ -1,8 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=DONKEY:ital,wght@0,400&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Lufga:ital,wght@0,300;0,400&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Gilroy-Medium:ital,wght@0,400&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Avenir+LT+Std:ital,wght@0,400&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600&display=swap");
+
+@font-face {
+  font-family: "Lufga";
+  src: url("/fonts/lufga-regular.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 
 body {
   margin: 0;

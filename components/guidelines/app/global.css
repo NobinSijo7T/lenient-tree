@@ -1,0 +1,36 @@
+@import url("https://fonts.googleapis.com/css2?family=DONKEY:ital,wght@0,400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lufga:ital,wght@0,400&display=swap");
+
+body {
+  margin: 0;
+  line-height: normal;
+}
+:root {
+  /* Common Style Variables */
+
+  /* Color */
+  --color-lavender: #dfddff;
+  --color-white: #fff;
+
+  /* Gap */
+  --gap-24: 24px;
+
+  /* Font */
+  --font-donkey: DONKEY;
+  --font-lufga: Lufga;
+
+  /* FontSize */
+  --fs-19: 19px;
+  --fs-24: 24px;
+  --fs-32: 32px;
+  --fs-40: 40px;
+
+  /* Shadows */
+  --text-shadow-1: 1px 1px 2px rgba(0, 0, 0, 0.25);
+
+  /* LineHeights */
+  --lh-28: 28px;
+
+  /* LetterSpacings */
+  --ls-0_02: 0.02;
+}

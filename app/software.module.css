@@ -756,7 +756,7 @@
   flex-shrink: 0;
   position: relative;
   z-index: 5;
-  margin-top: clamp(-16px, 2vw, 60px);
+  margin-top: clamp(-28px, 2vw, 60px);
   text-align: left;
   font-size: 14px;
   color: var(--color-black);
@@ -1464,7 +1464,7 @@
   width: 100%;
   position: relative;
   z-index: 5;
-  margin-top: clamp(-16px, 2vw, 60px);
+  margin-top: clamp(-28px, 2vw, 60px);
 }
 
 .frameParent4 {

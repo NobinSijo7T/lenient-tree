@@ -3,6 +3,7 @@ import Image from "next/image";
 import Moving from "../components/moving";
 import TT from "../components/t-t";
 import GroupComponent from "../components/about-us/components/group-component";
+import Guidelines from "../components/guidelines/app/guidelines";
 import Cta from "../components/cta/cta";
 import Grid from "../components/grid";
 import Container from "../components/container";
@@ -107,6 +108,7 @@ const Software: NextPage = () => {
             <section className={styles.aboutSection}>
               <GroupComponent className={styles.aboutUs} />
             </section>
+            <Guidelines />
             <Cta />
           </div>
         </div>
