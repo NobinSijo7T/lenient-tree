@@ -5,7 +5,7 @@ import TT from "../components/t-t";
 import HeroPills from "../components/HeroPills";
 import GroupComponent from "../components/about-us/components/group-component";
 import Guidelines from "../components/guidelines/app/guidelines";
-import CircularGallery from "../components/CircularGallery";
+import SlideCarousel from "../components/SlideCarousel";
 import Cta from "../components/cta/cta";
 import Grid from "../components/grid";
 import Container from "../components/container";
@@ -72,7 +72,7 @@ const Software: NextPage = () => {
             <div id="guidelines" className={styles.guidelinesSection}>
               <Guidelines />
             </div>
-            <div id="timeline" style={{ paddingTop: '60px', paddingBottom: '40px' }}>
+            <div id="timeline" style={{ paddingTop: '60px', paddingBottom: '56px' }}>
               <h2 style={{ 
                 textAlign: 'center', 
                 fontSize: 'clamp(2rem, 5vw, 3rem)', 
@@ -84,14 +84,7 @@ const Software: NextPage = () => {
               }}>
                 How's The Journey So Far
               </h2>
-              <div style={{ height: '600px', position: 'relative' }}>
-                <CircularGallery 
-                  bend={1}
-                  borderRadius={0.05}
-                  scrollSpeed={2}
-                  scrollEase={0.05}
-                />
-              </div>
+              <SlideCarousel />
             </div>
             <Cta />
           </div>

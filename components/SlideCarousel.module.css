@@ -1,0 +1,177 @@
+.wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  padding: 0 56px;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+/* ── Three-card track ─────────────────────────────────────── */
+.track {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  overflow: hidden;       /* clip any mid-animation bleed */
+}
+
+/* ── Shared card shell ────────────────────────────────────── */
+.card {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  flex-shrink: 0;
+  transition:
+    width   0.48s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.48s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.48s cubic-bezier(0.4, 0, 0.2, 1),
+    filter  0.48s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, opacity;
+}
+
+/* Inner image wrapper — gives card a 3:2 aspect ratio */
+.imgWrap {
+  position: relative;
+  width: 100%;
+  padding-top: 66%;
+}
+
+.img {
+  object-fit: cover;
+  border-radius: 16px;
+  transition: filter 0.48s ease;
+}
+
+/* ── Side cards ───────────────────────────────────────────── */
+.cardSide {
+  width: 28%;
+  opacity: 0.55;
+  transform: scale(0.92);
+}
+
+.cardSide .img {
+  filter: brightness(0.65);
+}
+
+/* ── Center (active) card ─────────────────────────────────── */
+.cardCenter {
+  width: 40%;
+  opacity: 1;
+  transform: scale(1);
+  box-shadow:
+    0 8px 40px rgba(0, 0, 0, 0.6),
+    0 0 0 2px rgba(255, 255, 255, 0.08);
+  z-index: 2;
+}
+
+/* ── Slide animations ─────────────────────────────────────── */
+@keyframes slideInFromLeft {
+  from { opacity: 0; transform: scale(0.92) translateX(-60px); }
+  to   { opacity: 1; transform: scale(1)    translateX(0);    }
+}
+
+@keyframes slideInFromRight {
+  from { opacity: 0; transform: scale(0.92) translateX(60px); }
+  to   { opacity: 1; transform: scale(1)    translateX(0);    }
+}
+
+@keyframes slideOutToLeft {
+  from { opacity: 1; transform: scale(1)    translateX(0);    }
+  to   { opacity: 0; transform: scale(0.92) translateX(-60px); }
+}
+
+@keyframes slideOutToRight {
+  from { opacity: 1; transform: scale(1)    translateX(0);    }
+  to   { opacity: 0; transform: scale(0.92) translateX(60px); }
+}
+
+.slideIn {
+  animation: slideInFromRight 0.48s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+.slideOutLeft {
+  animation: slideOutToLeft 0.48s cubic-bezier(0.4, 0, 0.2, 1) both;
+  pointer-events: none;
+}
+
+.slideOutRight {
+  animation: slideOutToRight 0.48s cubic-bezier(0.4, 0, 0.2, 1) both;
+  pointer-events: none;
+}
+
+/* ── Arrow buttons ────────────────────────────────────────── */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(calc(-50% - 14px));
+  z-index: 10;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: #fff;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  font-size: 26px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.25s, transform 0.25s, box-shadow 0.25s;
+  padding: 0;
+}
+
+.arrow:hover {
+  background: rgba(255, 255, 255, 0.22);
+  transform: translateY(calc(-50% - 14px)) scale(1.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.arrowLeft  { left: 4px; }
+.arrowRight { right: 4px; }
+
+/* ── Dot indicators ───────────────────────────────────────── */
+.dots {
+  display: flex;
+  gap: 8px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.3s, transform 0.3s, width 0.3s;
+}
+
+.dotActive {
+  background: #fff;
+  transform: scale(1.3);
+  width: 22px;
+  border-radius: 4px;
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .wrapper { padding: 0 44px; }
+  .cardSide { width: 22%; opacity: 0.45; }
+  .cardCenter { width: 52%; }
+}
+
+@media (max-width: 480px) {
+  .cardSide { display: none; }
+  .cardCenter { width: 100%; }
+  .wrapper { padding: 0 44px; }
+}
