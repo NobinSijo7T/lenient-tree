@@ -1,3 +1,69 @@
+/* ── Floating pill keyframes ───────────────────────────────────────── */
+@keyframes floatA {
+  0%,100% { transform: translateY(0px) rotate(-0.3deg); }
+  50%      { transform: translateY(-12px) rotate(0.3deg); }
+}
+@keyframes floatB {
+  0%,100% { transform: translateY(0px) rotate(0.4deg); }
+  50%      { transform: translateY(-18px) rotate(-0.4deg); }
+}
+@keyframes floatC {
+  0%,100% { transform: translateY(0px) rotate(-0.5deg); }
+  50%      { transform: translateY(-10px) rotate(0.5deg); }
+}
+@keyframes floatD {
+  0%,100% { transform: translateY(0px) rotate(0.2deg); }
+  50%      { transform: translateY(-15px) rotate(-0.2deg); }
+}
+@keyframes floatE {
+  0%,100% { transform: translateY(0px) rotate(-0.6deg); }
+  50%      { transform: translateY(-20px) rotate(0.6deg); }
+}
+
+/* Float + parallax — applied on top of existing pill position styles */
+.pillFloat1 {
+  animation: floatA 4s ease-in-out infinite;
+  will-change: transform;
+  transition: box-shadow 0.3s ease;
+}
+.pillFloat2 {
+  animation: floatB 5.2s ease-in-out infinite;
+  will-change: transform;
+  transition: box-shadow 0.3s ease;
+}
+.pillFloat3 {
+  animation: floatC 3.8s ease-in-out infinite;
+  will-change: transform;
+  transition: box-shadow 0.3s ease;
+}
+.pillFloat4 {
+  animation: floatD 4.7s ease-in-out infinite;
+  will-change: transform;
+  transition: box-shadow 0.3s ease;
+}
+.pillFloat5 {
+  animation: floatE 6.1s ease-in-out infinite;
+  will-change: transform;
+  transition: box-shadow 0.3s ease;
+}
+
+/* Parallax displaces the CSS animation baseline — combine with inline translateY */
+.pillFloat1,
+.pillFloat2,
+.pillFloat3,
+.pillFloat4,
+.pillFloat5 {
+  /* Keep glow visible while floating */
+  filter: drop-shadow(0 8px 18px rgba(42, 43, 198, 0.35));
+}
+.pillFloat1:hover,
+.pillFloat2:hover,
+.pillFloat3:hover,
+.pillFloat4:hover,
+.pillFloat5:hover {
+  filter: drop-shadow(0 12px 28px rgba(80, 120, 255, 0.55));
+}
+
 .software {
   width: 100%;
   position: relative;
@@ -12,6 +78,7 @@
   gap: 1195px;
   line-height: normal;
   letter-spacing: normal;
+  z-index: 1;
 }
 .separatorIcon,
 .separatorParent {
@@ -22,16 +89,18 @@
 .separatorParent {
   margin: 0 !important;
   position: absolute;
-  top: -21px;
+  top: 120px;
   left: 0;
   display: flex;
   align-items: flex-start;
   isolation: isolate;
+  z-index: 0 !important;
+  pointer-events: none;
 }
 .separatorIcon {
   height: 1105px;
   object-fit: cover;
-  z-index: 0;
+  z-index: 0 !important;
 }
 .contentwidgetsproject,
 .frameChild,
@@ -112,7 +181,7 @@
   text-align: left;
   font-size: var(--fs-40);
   color: var(--color-white);
-  font-family: var(--font-donkey);
+  font-family: "Audiowide", sans-serif;
 }
 .eventProgressParent,
 .frameGroup {
@@ -157,12 +226,12 @@
 .r,
 .stacksprintHackathon {
   z-index: 1;
-  font-family: var(--font-donkey);
+  font-family: var(--font-orbitron);
 }
 .stacksprintHackathon {
   width: 1303px;
   position: relative;
-  font-size: 200px;
+  font-size: 64px;
   line-height: 103.49%;
   color: var(--color-gainsboro);
   display: inline-block;
@@ -212,7 +281,7 @@
   z-index: 2;
   text-align: center;
   font-size: var(--fs-32);
-  font-family: var(--font-donkey);
+  font-family: var(--font-orbitron);
 }
 .expressjs {
   margin: 0;
@@ -244,7 +313,7 @@
   z-index: 3;
   text-align: center;
   font-size: var(--fs-32);
-  font-family: var(--font-donkey);
+  font-family: var(--font-orbitron);
 }
 .mongoDb {
   margin: 0;
@@ -397,6 +466,7 @@
   padding: 13px 38px;
   z-index: 1;
   text-align: center;
+  font-family: var(--font-orbitron);
 }
 .nodejs {
   margin: 0;
@@ -422,6 +492,38 @@
   align-items: center;
   gap: 6px;
   z-index: 2;
+  font-family: var(--font-orbitron);
+}
+
+/* Tech Stack Container */
+.techStackContainer {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  z-index: 1;
+}
+
+.techStackGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  align-items: center;
+  justify-items: center;
+  width: 100%;
+  max-width: 600px;
+}
+
+.techStackSecondary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 700px;
 }
 .lenientTree,
 .presents {
@@ -443,39 +545,104 @@
   text-align: center;
 }
 .rectangleParent {
-  width: 1280px;
+  width: calc(100% - clamp(32px, 8vw, 120px));
   margin: 0 !important;
   position: absolute;
-  bottom: 139px;
-  left: 60px;
+  bottom: clamp(40px, 8vh, 100px);
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 51px;
-  max-width: 100%;
+  align-items: stretch;
+  gap: 0;
+  max-width: 1280px;
   z-index: 4;
   text-align: center;
   font-size: var(--fs-40);
   color: var(--color-gainsboro);
-  font-family: var(--font-donkey);
+  font-family: var(--font-orbitron);
 }
 .frameInner {
-  align-self: stretch;
-  height: 4px;
+  width: 100%;
+  height: 1px;
   position: relative;
-  background-color: var(--color-dodgerblue-100);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(100, 140, 255, 0.6) 20%,
+    rgba(100, 140, 255, 0.9) 50%,
+    rgba(100, 140, 255, 0.6) 80%,
+    transparent
+  );
+  margin-bottom: 20px;
 }
 .hoursParent {
-  align-self: stretch;
+  width: 100%;
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: var(--padding-0) 80px;
+  gap: 0;
   box-sizing: border-box;
-  gap: var(--gap-20);
-  max-width: 100%;
 }
+
+/* Three equal-width slots — guarantees true center pinning */
+.barLeft,
+.barCenter,
+.barRight {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+.barLeft   { justify-content: flex-start; }
+.barCenter { justify-content: center; }
+.barRight  { justify-content: flex-end; }
+
+/* ── Inline Scroll Down button ─────────────────────────────────────── */
+.scrollDownBtn {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px clamp(18px, 3vw, 40px);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.18),
+    rgba(255, 255, 255, 0.05) 52%,
+    rgba(26, 34, 71, 0.52)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.52);
+  border-radius: 999px;
+  backdrop-filter: blur(18px) saturate(160%);
+  box-shadow:
+    inset 1px 1px 0 rgba(255, 255, 255, 0.32),
+    inset -1px -1px 0 rgba(255, 255, 255, 0.12),
+    0 12px 32px rgba(0, 0, 0, 0.22);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
+}
+.scrollDownBtn:hover {
+  background: rgba(255, 255, 255, 0.14);
+  transform: translateY(-2px);
+  box-shadow:
+    inset 1px 1px 0 rgba(255, 255, 255, 0.4),
+    0 16px 40px rgba(0, 0, 0, 0.3);
+}
+.scrollDownText {
+  font-size: var(--fs-16);
+  font-family: var(--font-lufga);
+  color: var(--color-white);
+  letter-spacing: 0.02em;
+  text-transform: capitalize;
+}
+.scrollDownIcon {
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+
 .hours,
 .june08 {
   margin: 0;
@@ -492,6 +659,49 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+}
+.spotsButton {
+  cursor: pointer;
+  border: 0;
+  padding: 12px clamp(20px, 3vw, 36px);
+  background-color: #2a2bc6;
+  box-shadow:
+    2px 2px 0 -0.5px #333 inset,
+    -2px -2px 0 -0.5px #262626 inset,
+    2px 2px 0.5px -1px #fff inset,
+    -2px -2px 0.5px -1px #fff inset,
+    0 0 3px rgba(255, 255, 255, 0.5) inset,
+    0 0 11px #f2f2f2 inset;
+  backdrop-filter: blur(46px);
+  border-radius: var(--br-32);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  min-height: 56px;
+  z-index: 10;
+  text-decoration: none;
+}
+.spotsButton:hover {
+  background-color: var(--color-mediumslateblue);
+  transform: translateY(-2px);
+  box-shadow:
+    2px 2px 0 -0.5px #333 inset,
+    -2px -2px 0 -0.5px #262626 inset,
+    2px 2px 0.5px -1px #fff inset,
+    -2px -2px 0.5px -1px #fff inset,
+    0 0 3px rgba(255, 255, 255, 0.5) inset,
+    0 0 11px #f2f2f2 inset,
+    0 10px 20px rgba(42, 43, 198, 0.4);
+}
+.spotsButtonText {
+  font-size: clamp(16px, 2.2vw, 24px);
+  letter-spacing: 0.02em;
+  font-family: var(--font-orbitron);
+  color: var(--color-white);
+  text-transform: uppercase;
+  font-weight: 500;
+  white-space: nowrap;
 }
 .june08 {
   display: inline-block;
@@ -585,7 +795,7 @@
   letter-spacing: 0.02em;
   line-height: 145%;
   font-weight: 400;
-  font-family: inherit;
+  font-family: var(--font-poppins);
   display: flex;
   align-items: center;
   width: 100%;
@@ -801,7 +1011,7 @@
   text-align: center;
   font-size: var(--fs-64);
   color: var(--color-white);
-  font-family: var(--font-donkey);
+  font-family: var(--font-orbitron);
 }
 .doNotWate {
   position: relative;
@@ -841,7 +1051,7 @@
   position: relative;
   font-size: var(--fs-32);
   letter-spacing: 0.02em;
-  font-family: var(--font-lufga);
+  font-family: var(--font-orbitron);
   color: var(--color-white);
   text-align: left;
 }
@@ -947,10 +1157,11 @@
   .reactjs {
     font-size: var(--fs-26);
   }
-  .hours,
+  .spotsButton {
+    min-height: 44px;
+  }
   .june08 {
-    font-size: var(--fs-32);
-    line-height: 33px;
+    font-size: clamp(14px, 2.5vw, 22px);
   }
   .frameParent2 {
     gap: 22px;
@@ -1042,10 +1253,19 @@
   .presents {
     font-size: var(--fs-22);
   }
-  .hours,
+  .hoursParent {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
   .june08 {
-    font-size: var(--fs-24);
-    line-height: 25px;
+    font-size: 12px;
+    white-space: normal;
+    text-align: center;
+  }
+  .spotsButton {
+    min-height: 38px;
+    padding: 8px 14px;
   }
   .aboutWrapper {
     padding-left: var(--padding-20);
@@ -1224,7 +1444,7 @@
 
 .stacksprintHackathon {
   width: min(100%, 1303px);
-  font-size: clamp(3.4rem, 13vw, 12.5rem);
+  font-size: clamp(2rem, 5vw, 4rem);
   line-height: 0.95;
   overflow-wrap: anywhere;
 }
@@ -1320,27 +1540,34 @@
   transform: translateX(-50%);
 }
 
+.june08 {
+  font-size: clamp(16px, 2.2vw, 28px);
+  font-family: var(--font-orbitron);
+  color: var(--color-gainsboro);
+  white-space: nowrap;
+  text-align: right;
+  flex-shrink: 0;
+}
+
 .rectangleParent {
-  right: clamp(16px, 4vw, 60px);
-  bottom: clamp(78px, 12vh, 139px);
-  left: clamp(16px, 4vw, 60px);
-  width: auto;
-  gap: clamp(24px, 4vw, 51px);
+  right: auto;
+  bottom: clamp(30px, 6vh, 100px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - clamp(32px, 8vw, 120px));
+  gap: 0;
 }
 
 .hoursParent {
-  flex-wrap: wrap;
-  justify-content: center;
-  padding: 0 clamp(0px, 5vw, 80px);
+  flex-wrap: nowrap;
+  padding: 0;
 }
 
-.hours,
 .june08 {
-  width: auto;
-  font-size: clamp(28px, 3vw, 40px);
-  line-height: 1.05;
-  text-align: center;
+  font-size: clamp(14px, 2vw, 28px);
+  line-height: 1.1;
 }
+
 
 .frameWrapper {
   align-self: stretch;
@@ -1906,10 +2133,10 @@
 }
 
 .movingInline {
-  position: static;
-  bottom: auto;
-  left: auto;
-  transform: none;
+  position: static !important;
+  bottom: auto !important;
+  left: auto !important;
+  transform: none !important;
   width: clamp(160px, 18vw, 232px);
   height: auto;
   padding: 0;

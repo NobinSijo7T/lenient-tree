@@ -39,16 +39,7 @@ const GroupComponent: NextPage<GroupComponentType> = ({ className = "" }) => {
       <h1 className={styles.stacksprintIsAContainer}>
         <span className={styles.stacksprintIsAContainer2}>
           <span className={styles.stacksprintIsA}>
-            StackSprint is a 24 hour intermediate level hackathon focused on
-            building end-to-end software products.
-            <br />
-          </span>
-          <span className={styles.teamsMustDesign}>Teams must design</span>
-          <span className={styles.span}>{` `}</span>
-          <span className={styles.scalableArchitecturesAnd}>
-            scalable architectures and implement real features like <br />
-            authentication, APIs, and <br />
-            databases.
+            Residency Internship is a 3-week immersive program by lenienttree.com for developers, founders, and creators to build, collaborate, and innovate in a startup-driven environment.
             <br />
           </span>
         </span>

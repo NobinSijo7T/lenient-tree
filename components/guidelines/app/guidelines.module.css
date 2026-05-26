@@ -18,8 +18,8 @@
   position: relative;
   font-size: inherit;
   line-height: 103.49%;
-  font-weight: 400;
-  font-family: inherit;
+  font-weight: 500;
+  font-family: var(--font-orbitron);
   text-shadow: var(--text-shadow-1);
 }
 .frameParent {
@@ -70,12 +70,12 @@
 .teamCollaboration {
   margin: 0;
   font-size: inherit;
-  font-weight: 400;
-  font-family: inherit;
+  font-weight: 500;
+  font-family: var(--font-orbitron);
 }
 .workEffectivelyAs {
   font-size: var(--fs-24);
-  font-family: var(--font-lufga);
+  font-family: var(--font-poppins);
 }
 .functionalPrototypeParent {
   align-self: stretch;

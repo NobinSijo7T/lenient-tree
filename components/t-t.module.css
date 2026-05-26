@@ -45,7 +45,7 @@
   width: 100%;
   height: auto;
   position: relative;
-  z-index: 20;
+  z-index: 9999 !important;
 }
 
 .ttInner {
@@ -75,6 +75,7 @@
 .navWrapper {
   pointer-events: auto;
   padding: clamp(14px, 2.3vw, 20px) 0 0;
+  z-index: 9999 !important;
 }
 
 .ttInner {

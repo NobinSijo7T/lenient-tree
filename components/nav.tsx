@@ -2,7 +2,7 @@
 
 import type { NextPage } from "next";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./nav.module.css";
 
 export type NavType = {
@@ -14,7 +14,45 @@ export type NavType = {
 
 const Nav: NextPage<NavType> = ({ className = "", state = "Hero" }) => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const navItems = ["Home", "About", "Timeline", "About"];
+  const [activeSection, setActiveSection] = useState("home");
+
+  const navItems = [
+    { name: "Home", id: "home" },
+    { name: "About", id: "about" },
+    { name: "Guidelines", id: "guidelines" },
+    { name: "Timeline", id: "timeline" }
+  ];
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + window.innerHeight / 3;
+      
+      for (const item of navItems) {
+        const el = document.getElementById(item.id);
+        if (el) {
+          const top = el.offsetTop;
+          const height = el.offsetHeight;
+          if (scrollPosition >= top && scrollPosition < top + height) {
+            setActiveSection(item.id);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    // Run once initially
+    handleScroll();
+    
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const handleNavClick = (sectionId: string) => {
+    const el = document.getElementById(sectionId);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
     <div
@@ -25,19 +63,21 @@ const Nav: NextPage<NavType> = ({ className = "", state = "Hero" }) => {
     >
       <div className={styles.navChild} aria-hidden="true" />
       <nav className={styles.navigationDataParent}>
-        {navItems.map((item, index) => (
-          <button
-            className={
-              index === 0 ? styles.navigationData : styles.navigationData2
-            }
-            key={`${item}-${index}`}
-            type="button"
-          >
-            <span className={index === 0 ? styles.home : styles.about}>
-              {item}
-            </span>
-          </button>
-        ))}
+        {navItems.map((item) => {
+          const isActive = activeSection === item.id;
+          return (
+            <button
+              className={isActive ? styles.navigationData : styles.navigationData2}
+              key={item.id}
+              onClick={() => handleNavClick(item.id)}
+              type="button"
+            >
+              <span className={isActive ? styles.home : styles.about}>
+                {item.name}
+              </span>
+            </button>
+          );
+        })}
       </nav>
       <button className={styles.sd} type="button">
         <div className={styles.register}>Register</div>
@@ -70,11 +110,22 @@ const Nav: NextPage<NavType> = ({ className = "", state = "Hero" }) => {
         <span />
       </button>
       <div className={styles.mobileMenu}>
-        {navItems.map((item, index) => (
-          <button key={`${item}-mobile-${index}`} type="button">
-            {item}
-          </button>
-        ))}
+        {navItems.map((item) => {
+          const isActive = activeSection === item.id;
+          return (
+            <button 
+              key={`${item.id}-mobile`} 
+              onClick={() => {
+                handleNavClick(item.id);
+                setMenuOpen(false);
+              }}
+              style={isActive ? { backgroundColor: "rgba(255, 255, 255, 0.15)", fontWeight: "bold" } : {}}
+              type="button"
+            >
+              {item.name}
+            </button>
+          );
+        })}
         <button className={styles.mobileRegister} type="button">
           Register
           <Image

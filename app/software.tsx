@@ -2,8 +2,10 @@ import type { NextPage } from "next";
 import Image from "next/image";
 import Moving from "../components/moving";
 import TT from "../components/t-t";
+import HeroPills from "../components/HeroPills";
 import GroupComponent from "../components/about-us/components/group-component";
 import Guidelines from "../components/guidelines/app/guidelines";
+import CircularGallery from "../components/CircularGallery";
 import Cta from "../components/cta/cta";
 import Grid from "../components/grid";
 import Container from "../components/container";
@@ -12,6 +14,7 @@ import styles from "./software.module.css";
 const Software: NextPage = () => {
   return (
     <div className={styles.software}>
+      <TT property1="T1" state="Hero" />
       <section className={styles.separatorParent}>
         <Image
           className={styles.separatorIcon}
@@ -55,39 +58,8 @@ const Software: NextPage = () => {
       <main className={styles.softwareInner}>
         <div className={styles.frameGroup}>
           <div className={styles.eventProgressParent}>
-            <div className={styles.eventProgress}>
-              <div className={styles.stacksprintHackathonParent}>
-                <div className={styles.stacksprintHackathon}>
-                  STACKSPRINT
-                  <br />
-                  HACKATHON
-                </div>
-                <div className={styles.r}>
-                  <h2 className={styles.reactjs}>React.js</h2>
-                </div>
-                <div className={styles.e}>
-                  <h2 className={styles.expressjs}>express.js</h2>
-                </div>
-                <div className={styles.m}>
-                  <h2 className={styles.mongoDb}>Mongo DB</h2>
-                </div>
-                <div className={styles.dot} />
-                <div className={styles.html}>
-                  <h3 className={styles.javascript}>HTML</h3>
-                </div>
-                <div className={styles.tailwind}>
-                  <h3 className={styles.tailwind2}>tailwind</h3>
-                </div>
-                <div className={styles.js}>
-                  <h3 className={styles.javascript}>javascript</h3>
-                </div>
-                <div className={styles.python}>
-                  <h3 className={styles.python2}>python</h3>
-                </div>
-                <div className={styles.css}>
-                  <h3 className={styles.css2}>css</h3>
-                </div>
-              </div>
+            <div id="home" className={styles.eventProgress}>
+              <HeroPills />
               <div className={styles.n}>
                 <h2 className={styles.nodejs}>Node.js</h2>
               </div>
@@ -98,17 +70,58 @@ const Software: NextPage = () => {
               <section className={styles.rectangleParent}>
                 <div className={styles.frameInner} />
                 <div className={styles.hoursParent}>
-                  <h1 className={styles.hours}>24 hours</h1>
-                  <Moving className={styles.movingInline} property1="up" />
-                  <h2 className={styles.june08}>June 08 - 09, 2026</h2>
+                  <div className={styles.barLeft}>
+                    <button className={styles.spotsButton}>
+                      <span className={styles.spotsButtonText}>15 spots available</span>
+                    </button>
+                  </div>
+                  <div className={styles.barCenter}>
+                    <button className={styles.scrollDownBtn}>
+                      <span className={styles.scrollDownText}>Scroll down</span>
+                      <Image
+                        className={styles.scrollDownIcon}
+                        width={14}
+                        height={14}
+                        alt="scroll"
+                        src="/Union1.svg"
+                      />
+                    </button>
+                  </div>
+                  <div className={styles.barRight}>
+                    <h2 className={styles.june08}>JUNE 7TH - JUNE 30TH</h2>
+                  </div>
                 </div>
               </section>
-              <TT property1="T1" state="Hero" />
+
+
             </div>
-            <section className={styles.aboutSection}>
+            <section id="about" className={styles.aboutSection}>
               <GroupComponent className={styles.aboutUs} />
             </section>
-            <Guidelines />
+            <div id="guidelines">
+              <Guidelines />
+            </div>
+            <div id="timeline" style={{ paddingTop: '60px', paddingBottom: '40px' }}>
+              <h2 style={{ 
+                textAlign: 'center', 
+                fontSize: 'clamp(2rem, 5vw, 3rem)', 
+                fontWeight: 'bold', 
+                color: '#ffffff',
+                marginBottom: '40px',
+                textShadow: '0 2px 10px rgba(0,0,0,0.3)',
+                fontFamily: 'Orbitron, sans-serif'
+              }}>
+                How's The Journey So Far
+              </h2>
+              <div style={{ height: '600px', position: 'relative' }}>
+                <CircularGallery 
+                  bend={1}
+                  borderRadius={0.05}
+                  scrollSpeed={2}
+                  scrollEase={0.05}
+                />
+              </div>
+            </div>
             <Cta />
           </div>
         </div>

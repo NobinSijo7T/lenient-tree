@@ -202,7 +202,7 @@
   letter-spacing: 0.02em;
   line-height: 145%;
   font-weight: 400;
-  font-family: inherit;
+  font-family: var(--font-orbitron);
   display: flex;
   align-items: center;
   width: 1000px;
@@ -247,7 +247,7 @@
   font-size: var(--fs-24);
   line-height: 103.49%;
   font-weight: 400;
-  font-family: inherit;
+  font-family: var(--font-orbitron);
   display: inline-block;
   text-shadow: var(--text-shadow-1);
   min-width: 68px;

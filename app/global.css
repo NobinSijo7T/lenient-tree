@@ -2,6 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Gilroy-Medium:ital,wght@0,400&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Avenir+LT+Std:ital,wght@0,400&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Instrument+Serif:ital@0;1&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 @font-face {
   font-family: "Lufga";
@@ -11,10 +12,44 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "Sector 034";
+  src: url("/fonts/sector_034.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Font utility classes */
+.audiowide-regular {
+  font-family: "Audiowide", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.poppins-regular {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.instrument-serif-regular {
+  font-family: "Instrument Serif", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
 
 body {
   margin: 0;
   line-height: normal;
+  font-family: var(--font-poppins);
+}
+
+/* Apply Orbitron font to all headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-orbitron) !important;
+  font-weight: 500;
 }
 
 html {
@@ -27,6 +62,7 @@ body {
   width: 100%;
   min-width: 320px;
   overflow-x: hidden;
+  font-family: var(--font-poppins);
 }
 
 *,
@@ -117,11 +153,15 @@ body {
   --br-100: 100px;
 
   /* Font */
-  --font-avenir-lt-std: Avenir LT Std;
-  --font-donkey: DONKEY;
-  --font-gilroy-medium: Gilroy-Medium;
-  --font-lufga: Lufga;
-  --font-orbitron: Orbitron, system-ui, sans-serif;
+  --font-avenir-lt-std: "Avenir LT Std", sans-serif;
+  --font-donkey: "DONKEY", sans-serif;
+  --font-gilroy-medium: "Gilroy-Medium", sans-serif;
+  --font-lufga: "Lufga", sans-serif;
+  --font-orbitron: "Orbitron", system-ui, sans-serif;
+  --font-sector-034: "Sector 034", sans-serif;
+  --font-audiowide: "Audiowide", sans-serif;
+  --font-instrument-serif: "Instrument Serif", serif;
+  --font-poppins: "Poppins", sans-serif;
 
   /* FontSize */
   --fs-10: 10px;

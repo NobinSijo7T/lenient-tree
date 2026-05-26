@@ -113,3 +113,15 @@
     bottom: 18px;
   }
 }
+
+/* ── Final override: flow as inline flex child inside barCenter slot ── */
+.moving {
+  position: static !important;
+  bottom: auto !important;
+  left:   auto !important;
+  transform: none !important;
+  width: clamp(150px, 17vw, 232px);
+  height: auto;
+  padding: 0;
+  margin: 0;
+}
