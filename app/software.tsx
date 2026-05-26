@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import Image from "next/image";
 import Moving from "../components/moving";
-import TT from "../components/t-t";
+import Nav from "../components/nav";
 import HeroPills from "../components/HeroPills";
 import GroupComponent from "../components/about-us/components/group-component";
 import Guidelines from "../components/guidelines/app/guidelines";
@@ -14,7 +14,7 @@ import styles from "./software.module.css";
 const Software: NextPage = () => {
   return (
     <div className={styles.software}>
-      <TT property1="T1" state="Hero" />
+      <Nav state="Hero" />
       <section className={styles.separatorParent}>
         <Image
           className={styles.separatorIcon}

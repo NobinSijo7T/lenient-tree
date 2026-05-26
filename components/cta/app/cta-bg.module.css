@@ -81,6 +81,7 @@
   overflow: hidden;
   align-items: center;
   justify-content: center;
+  text-decoration: none;
 }
 .registerWrapper:hover {
   background-color: var(--color-mediumslateblue);

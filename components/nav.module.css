@@ -15,6 +15,7 @@
   position: relative;
   isolation: isolate;
   gap: var(--gap-20);
+  pointer-events: auto;
 }
 .navChild {
   width: 1388px;
@@ -117,6 +118,7 @@
 }
 .sd {
   cursor: pointer;
+  position: relative;
   border: 0;
   padding: var(--padding-8) var(--padding-48);
   background-color: transparent;
@@ -132,6 +134,8 @@
   gap: var(--gap-20);
   z-index: 2;
   flex-shrink: 0;
+  text-decoration: none;
+  pointer-events: auto;
 }
 .register {
   font-size: var(--fs-20);
@@ -240,7 +244,7 @@
   transform: translateX(-50%);
   width: calc(100% - clamp(32px, 6vw, 88px));
   max-width: 1400px;
-  z-index: 9999 !important;
+  z-index: 2147483647 !important;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -367,7 +371,7 @@
   position: absolute;
   top: calc(100% + 10px);
   right: clamp(16px, 4vw, 24px);
-  z-index: 10000 !important;
+  z-index: 2147483647 !important;
   display: none;
   width: min(250px, calc(100vw - 32px));
   padding: 12px;
@@ -391,7 +395,8 @@
   backdrop-filter: blur(28px) saturate(180%);
 }
 
-.mobileMenu button {
+.mobileMenu button,
+.mobileMenu a {
   cursor: pointer;
   width: 100%;
   border: 0;
@@ -402,19 +407,24 @@
   font-size: var(--fs-16);
   padding: 12px 14px;
   text-align: left;
+  text-decoration: none;
 }
 
 .mobileMenu button:hover,
-.mobileMenu button:focus-visible {
+.mobileMenu button:focus-visible,
+.mobileMenu a:hover,
+.mobileMenu a:focus-visible {
   background-color: rgba(255, 255, 255, 0.1);
   outline: none;
 }
 
 .mobileRegister {
   display: flex;
+  position: relative;
   align-items: center;
   justify-content: space-between;
   margin-top: 6px;
+  pointer-events: auto;
   background:
     linear-gradient(135deg, rgba(82, 117, 196, 0.6), rgba(20, 32, 88, 0.7)) !important;
 }
@@ -435,7 +445,7 @@
     backdrop-filter: blur(16px);
     border: 1px solid rgba(183, 190, 234, 0.15);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    z-index: 9999 !important;
+    z-index: 2147483647 !important;
   }
 
   .navigationDataParent,

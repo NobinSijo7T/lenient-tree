@@ -12,7 +12,7 @@
   padding: clamp(88px, 12vw, 171px) clamp(16px, 10vw, 192px);
   box-sizing: border-box;
   position: relative;
-  z-index: -10;
+  z-index: 1;
   isolation: isolate;
   line-height: normal;
   letter-spacing: normal;
@@ -87,6 +87,7 @@
   align-items: center;
   justify-content: center;
   display: flex;
+  text-decoration: none;
 }
 
 .registerWrapper:hover {

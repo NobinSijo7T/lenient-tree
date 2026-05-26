@@ -2,6 +2,8 @@ import type { NextPage } from "next";
 import Image from "next/image";
 import styles from "./cta-bg.module.css";
 
+const REGISTER_URL = "https://forms.gle/yGqLcHcexxrzBDxD8";
+
 const CtaBg: NextPage = () => {
   return (
     <div className={styles.ctaBg}>
@@ -18,9 +20,14 @@ const CtaBg: NextPage = () => {
           Do not wate this opportunity, Join now...
         </div>
         <div className={styles.ctaInner}>
-          <button className={styles.registerWrapper}>
+          <a
+            className={styles.registerWrapper}
+            href={REGISTER_URL}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
             <div className={styles.register}>Register</div>
-          </button>
+          </a>
         </div>
       </section>
     </div>

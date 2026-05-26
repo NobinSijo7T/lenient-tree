@@ -5,6 +5,8 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import styles from "./nav.module.css";
 
+const REGISTER_URL = "https://forms.gle/yGqLcHcexxrzBDxD8";
+
 export type NavType = {
   className?: string;
 
@@ -54,6 +56,18 @@ const Nav: NextPage<NavType> = ({ className = "", state = "Hero" }) => {
     }
   };
 
+  const handleRegisterClick = () => {
+    const newWindow = window.open(
+      REGISTER_URL,
+      "_blank",
+      "noopener,noreferrer",
+    );
+
+    if (!newWindow) {
+      window.location.href = REGISTER_URL;
+    }
+  };
+
   return (
     <div
       className={[styles.nav, menuOpen ? styles.navOpen : "", className].join(
@@ -79,7 +93,11 @@ const Nav: NextPage<NavType> = ({ className = "", state = "Hero" }) => {
           );
         })}
       </nav>
-      <button className={styles.sd} type="button">
+      <button
+        className={styles.sd}
+        onClick={handleRegisterClick}
+        type="button"
+      >
         <div className={styles.register}>Register</div>
         <Image
           className={styles.unionIcon}
@@ -126,7 +144,14 @@ const Nav: NextPage<NavType> = ({ className = "", state = "Hero" }) => {
             </button>
           );
         })}
-        <button className={styles.mobileRegister} type="button">
+        <button
+          className={styles.mobileRegister}
+          onClick={() => {
+            setMenuOpen(false);
+            handleRegisterClick();
+          }}
+          type="button"
+        >
           Register
           <Image
             className={styles.unionIcon2}
