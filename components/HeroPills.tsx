@@ -37,11 +37,13 @@ export default function HeroPills() {
     <div className={styles.stacksprintHackathonParent}>
       <div className={styles.heroContentContainer}>
         <div className={styles.stacksprintHackathon}>
-          RESIDENCY
-          <br />
-          INTERNSHIP
-          <br />
-          PROGRAM
+          <span className={styles.heroTitleLine}>RESIDENCY</span>
+          <span className={`${styles.heroTitleLine} ${styles.heroTitleSecondary}`}>
+            INTERNSHIP
+          </span>
+          <span className={`${styles.heroTitleLine} ${styles.heroTitleSecondary}`}>
+            PROGRAM
+          </span>
         </div>
 
         <section className={styles.heroBottomBar}>
