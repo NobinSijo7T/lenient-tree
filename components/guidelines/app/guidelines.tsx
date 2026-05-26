@@ -146,24 +146,21 @@ const Guidelines: NextPage = () => {
         </div>
         <section className={styles.frameGroup}>
           <div className={styles.teamCollaborationParent}>
-            <h2 className={styles.teamCollaboration}>Team Collaboration</h2>
+            <h2 className={styles.teamCollaboration}> Talent Identification & Skill Evaluation</h2>
             <div className={styles.workEffectivelyAs}>
-              Work effectively as a team, ensuring equal contribution and clear
-              communication throughout.
+             Evaluating entrepreneurial mindset, technical capabilities, and growth potential
             </div>
           </div>
           <div className={styles.teamCollaborationParent}>
-            <h2 className={styles.teamCollaboration}>Innovation First</h2>
+            <h2 className={styles.teamCollaboration}>Real-World Project Building</h2>
             <div className={styles.workEffectivelyAs}>
-              Build original solutions that solve real problems creatively, not
-              just incremental improvements.
+              Hands-on MVP development, product design, and implementation.
             </div>
           </div>
           <div className={styles.teamCollaborationParent}>
-            <h2 className={styles.teamCollaboration}>Time Discipline</h2>
+            <h2 className={styles.teamCollaboration}> Deployment & Professional Execution</h2>
             <div className={styles.workEffectivelyAs}>
-              Complete your project within the given timeframe—no late
-              submissions or post-deadline edits.
+              Production deployment, presentation, collaboration, and startup-level execution.
             </div>
           </div>
           <div className={styles.functionalPrototypeParent}>

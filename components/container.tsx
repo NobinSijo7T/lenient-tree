@@ -1,12 +1,50 @@
+"use client";
+
 import type { NextPage } from "next";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 import styles from "./container.module.css";
 
 export type ContainerType = {
   className?: string;
 };
 
+const COUNTDOWN_TARGET = new Date("2026-06-10T10:00:00+05:30").getTime();
+
+const getCountdownParts = () => {
+  const timeLeft = Math.max(COUNTDOWN_TARGET - Date.now(), 0);
+  const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((timeLeft / (1000 * 60 * 60)) % 24);
+  const minutes = Math.floor((timeLeft / (1000 * 60)) % 60);
+  const seconds = Math.floor((timeLeft / 1000) % 60);
+
+  return { days, hours, minutes, seconds };
+};
+
+const formatCountdownValue = (value: number) =>
+  value.toString().padStart(2, "0");
+
 const Container: NextPage<ContainerType> = ({ className = "" }) => {
+  const [countdown, setCountdown] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
+
+  useEffect(() => {
+    const updateCountdown = () => {
+      setCountdown(getCountdownParts());
+    };
+
+    updateCountdown();
+    const intervalId = window.setInterval(updateCountdown, 1000);
+
+    return () => {
+      window.clearInterval(intervalId);
+    };
+  }, []);
+
   return (
     <section className={[styles.container, className].join(" ")}>
       <div className={styles.container2}>
@@ -43,20 +81,28 @@ const Container: NextPage<ContainerType> = ({ className = "" }) => {
           </div>
           <div className={styles.frameParent}>
             <div className={styles.frame}>
-              <h2 className={styles.partialContainer}>22</h2>
+              <h2 className={styles.partialContainer}>
+                {formatCountdownValue(countdown.days)}
+              </h2>
             </div>
             <div className={styles.frame}>
-              <h2 className={styles.partialContainer}>18</h2>
+              <h2 className={styles.partialContainer}>
+                {formatCountdownValue(countdown.hours)}
+              </h2>
             </div>
             <div className={styles.rectangleParent}>
               <div className={styles.frameChild} />
               <div className={styles.frameChild} />
             </div>
             <div className={styles.frame}>
-              <h2 className={styles.partialContainer}>31</h2>
+              <h2 className={styles.partialContainer}>
+                {formatCountdownValue(countdown.minutes)}
+              </h2>
             </div>
             <div className={styles.frame}>
-              <h2 className={styles.partialContainer}>48</h2>
+              <h2 className={styles.partialContainer}>
+                {formatCountdownValue(countdown.seconds)}
+              </h2>
             </div>
           </div>
           <div className={styles.daysParent}>
