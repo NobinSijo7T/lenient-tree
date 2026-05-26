@@ -286,7 +286,14 @@ const Guidelines: NextPage = () => {
             style={{ left: `${pointerPosition.x}px`, top: `${pointerPosition.y}px` }}
             aria-hidden="true"
           >
-            <span className={styles.timelinePointerLabel}>LT</span>
+            <Image
+              className={styles.timelinePointerLabel}
+              src="/white.png"
+              alt="LT"
+              width={48}
+              height={48}
+              style={{ objectFit: "contain" }}
+            />
           </div>
           {/* Timeline circle date overlays */}
           <div className={styles.circleOverlay1}>
