@@ -1,0 +1,68 @@
+@import url("https://fonts.googleapis.com/css2?family=DONKEY:ital,wght@0,400&display=swap");
+
+body {
+  margin: 0;
+  line-height: normal;
+}
+:root {
+  /* Common Style Variables */
+
+  /* Color */
+  --color-blueviolet: #4a47ff;
+  --color-dodgerblue: #1091fa;
+  --color-gainsboro: #dedee3;
+  --color-ghostwhite: #f6f7fc;
+  --color-gray: #050419;
+  --color-lightslategray: #81809c;
+  --color-mediumblue: #1715cf;
+
+  /* Padding */
+  --padding-0: 0;
+
+  /* BorderRadius */
+  --br-32: 32px;
+
+  /* Font */
+  --font-donkey: DONKEY;
+
+  /* FontSize */
+  --fs-19: 19px;
+  --fs-24: 24px;
+  --fs-28: 28px;
+  --fs-64: 64px;
+
+  /* Borders */
+  --border-1: 3px solid var(--color-mediumblue);
+  --border-2: 3px solid var(--color-blueviolet);
+
+  /* Shadows */
+  --shadow-drop: 2px 4px 2.8px rgba(0, 0, 0, 0.05);
+  --text-shadow-1: 1px 1px 2px rgba(0, 0, 0, 0.25);
+
+  /* WidthHeights */
+  --height-162: 162px;
+  --height-1964: 1964px;
+  --width-225: 225px;
+  --width-1440: 1440px;
+  --width-313_5: 313.5px;
+
+  /* LineHeights */
+  --lh-20: 20px;
+
+  /* LetterSpacings */
+  --ls-0_02: 0.02;
+
+  --left-0: 0px;
+  --left-353_5: 353.5px;
+  --left-44_3: 44.3px;
+  --top-0: 0px;
+  --top-12: 12px;
+  --top-20: 20px;
+  --top-24: 24px;
+  --top-28: 28px;
+  --top-36: 36px;
+  --top-40: 40px;
+  --top-48: 48px;
+  --top-60: 60px;
+  --top-72: 72px;
+}

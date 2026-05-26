@@ -1,0 +1,65 @@
+.grid {
+  height: 100%;
+  width: 100%;
+  margin: 0 !important;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 100%;
+  z-index: 1;
+  flex-shrink: 0;
+}
+.gridData {
+  align-self: stretch;
+  border-radius: var(--br-4);
+  display: flex;
+  align-items: center;
+  row-gap: var(--gap-20);
+}
+.gridData,
+.gridDataChild {
+  flex-shrink: 0;
+}
+.gridDataChild,
+.gridDataChild16 {
+  height: var(--height-180);
+  width: var(--width-178);
+  position: relative;
+  border-radius: var(--br-4);
+  border: var(--border-3);
+  box-sizing: border-box;
+}
+@media screen and (max-width: 1400px) {
+  .grid {
+    height: auto;
+  }
+  .gridData {
+    flex-wrap: wrap;
+  }
+}
+
+/* Responsive layout pass */
+.grid {
+  pointer-events: none;
+}
+
+.gridData {
+  flex-wrap: nowrap;
+}
+
+.gridDataChild,
+.gridDataChild16 {
+  width: clamp(78px, 12.4vw, 178px);
+  height: clamp(78px, 12.5vw, 180px);
+}
+
+@media screen and (max-width: 640px) {
+  .grid {
+    opacity: 0.65;
+  }
+}

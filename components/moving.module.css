@@ -1,0 +1,115 @@
+.moving,
+.sd {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+}
+.moving {
+  width: 232px;
+  height: var(--height-60);
+  margin: 0 !important;
+  position: absolute;
+  bottom: 41px;
+  left: 584px;
+  flex-direction: column;
+  padding: var(--padding-0) var(--padding-0) var(--padding-20);
+  z-index: 3;
+}
+.sd {
+  cursor: pointer;
+  border: 1px solid var(--color-white);
+  padding: var(--padding-10) var(--padding-40);
+  background-color: var(--color-gray-600);
+  width: 100%;
+  backdrop-filter: blur(13.3px);
+  border-radius: var(--br-32);
+  justify-content: center;
+  gap: var(--gap-20);
+  max-width: 100%;
+}
+.scrollDown {
+  font-size: var(--fs-16);
+  letter-spacing: 0.02em;
+  text-transform: capitalize;
+  font-family: var(--font-lufga);
+  color: var(--color-white);
+  text-align: left;
+}
+.scrollDown,
+.unionIcon,
+.unionIcon2 {
+  position: relative;
+  flex-shrink: 0;
+}
+.unionIcon {
+  height: var(--height-20);
+  width: var(--width-35);
+  display: none;
+}
+.unionIcon2 {
+  height: var(--height-18);
+  width: 17.5px;
+  object-fit: contain;
+}
+
+/* Responsive layout pass */
+.moving {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.sd {
+  padding-right: clamp(22px, 4vw, 40px);
+  padding-left: clamp(22px, 4vw, 40px);
+}
+
+@media screen and (max-width: 640px) {
+  .moving {
+    bottom: 26px;
+    width: min(100%, 210px);
+  }
+
+.sd {
+  gap: 12px;
+  }
+}
+
+/* Hero reference alignment */
+.moving {
+  bottom: clamp(18px, 3.8vh, 36px);
+  z-index: 9;
+}
+
+.sd {
+  border-color: rgba(255, 255, 255, 0.52);
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.18),
+      rgba(255, 255, 255, 0.05) 52%,
+      rgba(26, 34, 71, 0.52)
+    ),
+    rgba(255, 255, 255, 0.08);
+  box-shadow:
+    inset 1px 1px 0 rgba(255, 255, 255, 0.32),
+    inset -1px -1px 0 rgba(255, 255, 255, 0.12),
+    0 12px 32px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(18px) saturate(160%);
+}
+
+.scrollDown {
+  letter-spacing: 0;
+}
+
+/* Requested hero alignment fix */
+.moving {
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@media screen and (max-width: 640px) {
+  .moving {
+    bottom: 18px;
+  }
+}

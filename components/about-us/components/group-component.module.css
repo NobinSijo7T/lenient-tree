@@ -1,0 +1,276 @@
+.bgParent {
+  position: absolute;
+  top: 0;
+  left: -446px;
+  width: 2491.5px;
+  height: 2139.5px;
+  flex-shrink: 0;
+  text-align: left;
+  font-size: var(--fs-64);
+  color: var(--color-gray);
+  font-family: var(--font-donkey);
+}
+.bgIcon,
+.bottom {
+  position: absolute;
+  width: var(--width-1440);
+}
+.bgIcon {
+  top: 0;
+  left: 446px;
+  height: 2048px;
+  object-fit: cover;
+}
+.bottom {
+  top: 2046px;
+  left: 1440px;
+  height: 705px;
+  overflow: hidden;
+  transform: rotate(180deg);
+  transform-origin: 0 0;
+}
+.bottomChild {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+.bottomChild,
+.bottomInner,
+.bottomItem {
+  right: 0;
+  max-width: 100%;
+  overflow: hidden;
+  height: var(--height-1964);
+  transform: rotate(-180deg);
+  flex-shrink: 0;
+}
+.bottomItem {
+  position: absolute;
+  width: 100%;
+  top: 12px;
+  left: 0;
+}
+.bottomInner {
+  top: 24px;
+}
+.bottomChild2,
+.bottomInner,
+.rectangleIcon {
+  position: absolute;
+  width: 100%;
+  left: 0;
+}
+.rectangleIcon {
+  top: 36px;
+  right: 0;
+  max-width: 100%;
+  overflow: hidden;
+  height: var(--height-1964);
+  transform: rotate(-180deg);
+  flex-shrink: 0;
+}
+.bottomChild2 {
+  top: 48px;
+}
+.bottomChild2,
+.bottomChild3,
+.bottomChild4 {
+  right: 0;
+  max-width: 100%;
+  overflow: hidden;
+  height: var(--height-1964);
+  transform: rotate(-180deg);
+  flex-shrink: 0;
+}
+.bottomChild3 {
+  position: absolute;
+  width: 100%;
+  top: 60px;
+  left: 0;
+}
+.bottomChild4 {
+  top: 72px;
+}
+.bottomChild4,
+.bottomChild5,
+.top {
+  position: absolute;
+  left: 0;
+  width: 100%;
+}
+.bottomChild5 {
+  top: 84px;
+  right: 0;
+  max-width: 100%;
+  overflow: hidden;
+  height: var(--height-1964);
+  transform: rotate(-180deg);
+  flex-shrink: 0;
+}
+.top {
+  top: 0;
+  height: 100%;
+}
+.topChild,
+.topChild2,
+.topChild3,
+.topChild4,
+.topChild5,
+.topInner,
+.topItem {
+  position: absolute;
+  width: 100%;
+  top: 12px;
+  right: 0;
+  left: 0;
+  max-width: 100%;
+  overflow: hidden;
+  height: 1329px;
+}
+.topChild2,
+.topChild3,
+.topChild4,
+.topChild5,
+.topInner,
+.topItem {
+  top: 20px;
+  height: 1321px;
+}
+.topChild2,
+.topChild3,
+.topChild4,
+.topChild5,
+.topInner {
+  top: 28px;
+  height: 1313px;
+}
+.topChild2,
+.topChild3,
+.topChild4,
+.topChild5 {
+  top: 36px;
+  height: 1305px;
+}
+.topChild3,
+.topChild4,
+.topChild5 {
+  top: 44px;
+  height: 1297px;
+}
+.topChild4,
+.topChild5 {
+  top: 51px;
+  height: 1290px;
+}
+.topChild5 {
+  top: 59px;
+  height: 1282px;
+}
+.frameChild {
+  top: 693px;
+  left: 0;
+  width: 982px;
+  height: 982px;
+  object-fit: cover;
+}
+.dot,
+.frameChild,
+.frameItem {
+  position: absolute;
+}
+.frameItem {
+  top: 677px;
+  right: 0;
+  width: 1462.5px;
+  height: 1462.5px;
+  object-fit: cover;
+}
+.dot {
+  top: 331px;
+  left: 982px;
+  background-color: var(--color-dodgerblue);
+  width: 362px;
+  height: 13px;
+}
+.stacksprintIsAContainer {
+  margin: 0;
+  position: absolute;
+  top: 278px;
+  left: 666px;
+  font-size: inherit;
+  letter-spacing: 0.02em;
+  line-height: 145%;
+  font-weight: 400;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  width: 1000px;
+  filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.25));
+  min-height: 930px;
+}
+.stacksprintIsAContainer2 {
+  width: 100%;
+}
+.stacksprintIsA {
+  line-height: 145%;
+  white-space: pre-wrap;
+}
+.teamsMustDesign {
+  color: var(--color-lightslategray);
+  line-height: 145%;
+}
+.span {
+  line-height: 145%;
+}
+.scalableArchitecturesAnd {
+  color: var(--color-lightslategray);
+  line-height: 145%;
+  white-space: pre-wrap;
+}
+.robotIcon {
+  top: 1028px;
+  left: 446px;
+  width: 583px;
+  height: 903.5px;
+  object-fit: cover;
+}
+.about,
+.box,
+.robotIcon {
+  position: absolute;
+}
+.about {
+  margin: 0;
+  top: 209px;
+  left: 1132px;
+  font-size: var(--fs-24);
+  line-height: 103.49%;
+  font-weight: 400;
+  font-family: inherit;
+  display: inline-block;
+  text-shadow: var(--text-shadow-1);
+  min-width: 68px;
+}
+.box {
+  top: 1325px;
+  left: 1151px;
+  width: 667px;
+  height: 364px;
+}
+@media screen and (max-width: 750px) {
+  .stacksprintIsAContainer {
+    font-size: 51px;
+    line-height: 74px;
+  }
+}
+@media screen and (max-width: 450px) {
+  .stacksprintIsAContainer {
+    font-size: 38px;
+    line-height: 56px;
+  }
+  .about {
+    font-size: var(--fs-19);
+    line-height: var(--lh-20);
+  }
+}

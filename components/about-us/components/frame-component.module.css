@@ -1,0 +1,61 @@
+.frameParent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--height-162);
+}
+.hoursOfInnovationWrapper {
+  cursor: pointer;
+  border: var(--border-1);
+  padding: var(--padding-0);
+  background-color: var(--color-ghostwhite);
+  position: absolute;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  box-shadow: var(--shadow-drop);
+  border-radius: var(--br-32);
+  box-sizing: border-box;
+  width: var(--width-313_5);
+  overflow: hidden;
+}
+.hoursOfInnovationWrapper:hover,
+.workshopsMentorshipWrapper:hover {
+  background-color: var(--color-gainsboro);
+  border: var(--border-2);
+  box-sizing: border-box;
+}
+.hoursOfInnovation {
+  position: absolute;
+  top: 40px;
+  left: 44.3px;
+  font-size: var(--fs-28);
+  letter-spacing: 0.02em;
+  line-height: 145%;
+  font-family: var(--font-donkey);
+  color: var(--color-gray);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--width-225);
+  text-shadow: var(--text-shadow-1);
+}
+.workshopsMentorshipWrapper {
+  cursor: pointer;
+  border: var(--border-1);
+  padding: var(--padding-0);
+  background-color: var(--color-ghostwhite);
+  position: absolute;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  left: 353.5px;
+  box-shadow: var(--shadow-drop);
+  border-radius: var(--br-32);
+  box-sizing: border-box;
+  width: var(--width-313_5);
+  overflow: hidden;
+}

@@ -1,0 +1,7 @@
+.signUpPage {
+  width: var(--width-1440);
+  height: 2048px;
+  max-width: 100%;
+  line-height: normal;
+  letter-spacing: normal;
+}

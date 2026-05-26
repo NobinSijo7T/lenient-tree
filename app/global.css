@@ -1,0 +1,239 @@
+@import url("https://fonts.googleapis.com/css2?family=DONKEY:ital,wght@0,400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lufga:ital,wght@0,300;0,400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Gilroy-Medium:ital,wght@0,400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Avenir+LT+Std:ital,wght@0,400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600&display=swap");
+
+body {
+  margin: 0;
+  line-height: normal;
+}
+
+html {
+  width: 100%;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+body {
+  width: 100%;
+  min-width: 320px;
+  overflow-x: hidden;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+:root {
+  /* Figma Variables */
+
+  /* Spacing */
+  --font-size-16: 16px;
+  --font-size-161: 16px;
+  --font-weight-600: 600;
+  --item-spacing-xs: 8px;
+  --line-height-24: 24px;
+  --line-height-241: 24px;
+  --opacity-10: 10px;
+  --width-1200: 1200px;
+
+  /* Color */
+  --color-grey-11: #1d1d1d;
+  --color-grey-13: #222;
+
+  /* Common Style Variables */
+
+  /* Color */
+  --color-black: #000;
+  --color-darkslategray: #343650;
+  --color-dodgerblue-100: #5990ff;
+  --color-dodgerblue-200: #1091fa;
+  --color-dodgerblue-300: rgba(16, 145, 250, 0.2);
+  --color-gainsboro: #d9d9d9;
+  --color-ghostwhite: #f6f7fc;
+  --color-gray-100: #0a2647;
+  --color-gray-200: #050419;
+  --color-gray-300: #000600;
+  --color-gray-400: rgba(255, 255, 255, 0.15);
+  --color-gray-500: rgba(255, 255, 255, 0.25);
+  --color-gray-600: rgba(255, 255, 255, 0.1);
+  --color-lavender: #dfddff;
+  --color-lightslategray-100: #849abc;
+  --color-lightslategray-200: #81809c;
+  --color-lightsteelblue: #cad7ff;
+  --color-mediumblue: #1715cf;
+  --color-mediumslateblue: #5252ed;
+  --color-midnightblue: #0d0b3a;
+  --color-royalblue-100: rgba(11, 85, 195, 0.5);
+  --color-royalblue-200: rgba(11, 85, 195, 0.25);
+  --color-royalblue-300: rgba(11, 85, 195, 0.49);
+  --color-silver: rgba(191, 191, 191, 0.4);
+  --color-slateblue: #3e3fbe;
+  --color-white: #fff;
+
+  /* Gap */
+  --gap-10: 10px;
+  --gap-19: 19px;
+  --gap-20: 20px;
+  --gap-24: 24px;
+  --gap-30: 30px;
+  --gap-40: 40px;
+  --gap-60: 60px;
+
+  /* Padding */
+  --padding-0: 0px;
+  --padding-4: 4px;
+  --padding-7: 7px;
+  --padding-8: 8px;
+  --padding-10: 10px;
+  --padding-12: 12px;
+  --padding-20: 20px;
+  --padding-22: 22px;
+  --padding-30: 30px;
+  --padding-36: 36px;
+  --padding-40: 40px;
+  --padding-48: 48px;
+  --padding-60: 60px;
+
+  /* BorderRadius */
+  --br-1: 1px;
+  --br-4: 4px;
+  --br-8: 8px;
+  --br-12: 12px;
+  --br-20: 20px;
+  --br-24: 24px;
+  --br-32: 32px;
+  --br-80: 80px;
+  --br-100: 100px;
+
+  /* Font */
+  --font-avenir-lt-std: Avenir LT Std;
+  --font-donkey: DONKEY;
+  --font-gilroy-medium: Gilroy-Medium;
+  --font-lufga: Lufga;
+  --font-orbitron: Orbitron, system-ui, sans-serif;
+
+  /* FontSize */
+  --fs-10: 10px;
+  --fs-16: 16px;
+  --fs-19: 19px;
+  --fs-20: 20px;
+  --fs-22: 22px;
+  --fs-24: 24px;
+  --fs-26: 26px;
+  --fs-28: 28px;
+  --fs-32: 32px;
+  --fs-40: 40px;
+  --fs-64: 64px;
+
+  /* Borders */
+  --border-1: 2px solid var(--color-lightslategray-100);
+  --border-2: 3px solid var(--color-mediumblue);
+  --border-3: 1px solid var(--color-silver);
+  --border-4: 2px solid var(--color-midnightblue);
+
+  /* Shadows */
+  --shadow-drop: 2px 4px 2.8px rgba(0, 0, 0, 0.05);
+  --shadow-inner:
+    3px 3px 0.5px -3.5px rgba(255, 255, 255, 0.5) inset,
+    2px 2px 1px -2px #666 inset, -2px -2px 1px -2px #666 inset,
+    0px 0px 0px 1px #a6a6a6 inset, 0px 0px 22px #f2f2f2 inset;
+  --shadow-inner-1:
+    1px 1px 0px -0.5px #333 inset, -1px -1px 0px -0.5px #262626 inset,
+    1px 1px 0.5px -1px var(--color-white) inset,
+    -1px -1px 0.5px -1px var(--color-white) inset,
+    0px 0px 3px rgba(255, 255, 255, 0.5) inset, 0px 0px 11px #f2f2f2 inset;
+  --text-shadow-1: 1px 1px 2px rgba(0, 0, 0, 0.25);
+  --text-shadow-2: 1px 1px 2px var(--color-gray-500);
+
+  /* WidthHeights */
+  --height-8: 8px;
+  --height-18: 18px;
+  --height-20: 20px;
+  --height-26: 26px;
+  --height-28: 28px;
+  --height-31: 31px;
+  --height-40: 40px;
+  --height-60: 60px;
+  --height-64: 64px;
+  --height-76: 76px;
+  --height-80: 80px;
+  --height-180: 180px;
+  --height-1964: 1964px;
+  --min-w-203: 203px;
+  --width-8: 8px;
+  --width-10: 10px;
+  --width-20: 20px;
+  --width-28: 28px;
+  --width-35: 35px;
+  --width-60: 60px;
+  --width-140: 140px;
+  --width-178: 178px;
+  --width-225: 225px;
+  --width-1400: 1400px;
+  --width-386_7: 386.7px;
+
+  /* LineHeights */
+  --lh-28: 28px;
+  --lh-32: 32px;
+
+  /* LetterSpacings */
+  --ls-0_02: 0.02;
+
+  --left-0: 0px;
+  --left-60: 60px;
+  --top-0: 0px;
+  --top-12: 12px;
+  --top-36: 36px;
+}
+
+/* Lenis smooth scrolling styling */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+/* Custom Scrollbar styling with #2A2BC6 */
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #2A2BC6 transparent;
+}
+
+/* Chrome, Edge, Safari */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #2A2BC6;
+  border-radius: 10px;
+  border: 2px solid transparent;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #1e1e9c;
+}
