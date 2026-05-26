@@ -33,11 +33,56 @@
   max-width: 100%;
   row-gap: 20px;
 }
-.frameChild {
+.pathFrame {
+  position: relative;
   height: 1110px;
   width: 300px;
+  flex-shrink: 0;
+  --path-glow-progress: 0%;
+  --path-glow-fade-end: 0%;
+}
+.frameChild {
+  display: block;
+  height: 100%;
+  width: 100%;
   position: relative;
   object-fit: contain;
+}
+.glowPathMask {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+  overflow: visible;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    #000 0%,
+    #000 var(--path-glow-progress),
+    transparent var(--path-glow-fade-end)
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    #000 0%,
+    #000 var(--path-glow-progress),
+    transparent var(--path-glow-fade-end)
+  );
+  transition:
+    -webkit-mask-image 0.12s linear,
+    mask-image 0.12s linear;
+  will-change: mask-image;
+}
+.glowPath {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 1110px;
+  width: 300px;
+  object-fit: contain;
+  filter:
+    drop-shadow(0 0 5px rgba(23, 21, 207, 0.95))
+    drop-shadow(0 0 12px rgba(23, 21, 207, 0.62))
+    brightness(1.22);
 }
 .frameGroup,
 .teamCollaborationParent {
@@ -118,5 +163,10 @@
   .workEffectivelyAs {
     font-size: var(--fs-19);
     line-height: var(--lh-28);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .glowPathMask {
+    transition: none;
   }
 }
