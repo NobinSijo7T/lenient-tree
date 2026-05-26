@@ -117,6 +117,8 @@ const pointerEndTrack = [
 
 const pointerEndBias = 0.68;
 const pointerYOffset = 0;
+const timelineImageWidth = 300;
+const timelineImageHeight = 833;
 
 const getPointerXAtY = (
   track: readonly (readonly [number, number])[],
@@ -228,11 +230,11 @@ const Guidelines: NextPage = () => {
           <Image
             className={styles.frameChild}
             loading="lazy"
-            width={300}
-            height={1110}
+            width={timelineImageWidth}
+            height={timelineImageHeight}
             sizes="100vw"
             alt=""
-            src="/Frame-1731@2x.png"
+            src="/Frame-1731-trimmed@2x.png"
           />
           <div
             className={`${styles.glowRevealLayer} ${styles.glowAura}`}
@@ -241,11 +243,11 @@ const Guidelines: NextPage = () => {
             <div className={styles.glowPathMask}>
               <Image
                 className={styles.glowPath}
-                width={300}
-                height={1110}
+                width={timelineImageWidth}
+                height={timelineImageHeight}
                 sizes="100vw"
                 alt=""
-                src="/Frame-1731-gradient-path.png"
+                src="/Frame-1731-gradient-path-trimmed.png"
               />
             </div>
           </div>
@@ -256,11 +258,11 @@ const Guidelines: NextPage = () => {
             <div className={styles.glowPathMask}>
               <Image
                 className={styles.glowPath}
-                width={300}
-                height={1110}
+                width={timelineImageWidth}
+                height={timelineImageHeight}
                 sizes="100vw"
                 alt=""
-                src="/Frame-1731-gradient-path.png"
+                src="/Frame-1731-gradient-path-trimmed.png"
               />
             </div>
           </div>
@@ -271,11 +273,11 @@ const Guidelines: NextPage = () => {
             <div className={styles.glowPathMask}>
               <Image
                 className={styles.glowPath}
-                width={300}
-                height={1110}
+                width={timelineImageWidth}
+                height={timelineImageHeight}
                 sizes="100vw"
                 alt=""
-                src="/Frame-1731-glow-path.png"
+                src="/Frame-1731-glow-path-trimmed.png"
               />
             </div>
           </div>
@@ -298,10 +300,6 @@ const Guidelines: NextPage = () => {
           <div className={styles.circleOverlay3}>
             <span className={styles.monthText}>June</span>
             <span className={styles.daysText}>24<sup>th</sup> – 30<sup>th</sup></span>
-          </div>
-          <div className={styles.circleOverlay4}>
-            <span className={styles.monthText}>July</span>
-            <span className={styles.daysText}>1<sup>st</sup> – 7<sup>th</sup></span>
           </div>
         </div>
         <section className={styles.frameGroup}>

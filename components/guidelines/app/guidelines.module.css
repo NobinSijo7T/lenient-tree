@@ -35,7 +35,7 @@
 }
 .pathFrame {
   position: relative;
-  height: 1110px;
+  height: 833px;
   width: 300px;
   flex-shrink: 0;
   --path-glow-progress: 0%;
@@ -71,7 +71,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  height: 1110px;
+  height: 833px;
   width: 300px;
   object-fit: contain;
 }
@@ -224,8 +224,7 @@
 
 .circleOverlay1,
 .circleOverlay2,
-.circleOverlay3,
-.circleOverlay4 {
+.circleOverlay3 {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
@@ -240,7 +239,6 @@
 .circleOverlay1 { top: 166px; }
 .circleOverlay2 { top: 436px; }
 .circleOverlay3 { top: 706px; }
-.circleOverlay4 { top: 976px; }
 
 .monthText {
   font-size: 14px;
