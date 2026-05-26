@@ -56,14 +56,17 @@ const GroupComponent: NextPage<GroupComponentType> = ({ className = "" }) => {
       <h3 className={styles.about}>About</h3>
       <section className={styles.box}>
         <FrameComponent
-          hoursOfInnovation="24 Hours of Innovation"
-          workshopsMentorship={`Workshops &
-Mentorship`}
+          hoursOfInnovation={`Stipend-Based
+Internship
+Opportunities`}
+          workshopsMentorship={`1: 1
+MENTORSHIP`}
         />
         <FrameComponent
           frameDivTop="202px"
-          hoursOfInnovation={`Learn Current
-Trends & Tools`}
+          hoursOfInnovation={`Production-Grade
+MVP
+Development`}
           workshopsMentorship={`& much more...`}
           workshopsMentorshipTop="60.5px"
           workshopsMentorshipMargin="0"

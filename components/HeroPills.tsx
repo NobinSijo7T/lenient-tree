@@ -85,7 +85,6 @@ export default function HeroPills() {
         <h2 className={styles.nodejs}>Node.js</h2>
       </div>
 
-      <div className={styles.dot} />
 
       {/* Small pills — HTML, Tailwind, JavaScript, Python, CSS */}
       <div className={`${styles.html} ${styles.pillFloat4}`} style={p(-0.14)}>

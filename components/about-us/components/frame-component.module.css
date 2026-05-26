@@ -8,7 +8,7 @@
 .hoursOfInnovationWrapper {
   cursor: pointer;
   border: var(--border-1);
-  padding: var(--padding-0);
+  padding: 18px 24px;
   background-color: var(--color-ghostwhite);
   position: absolute;
   height: 100%;
@@ -20,6 +20,9 @@
   box-sizing: border-box;
   width: var(--width-313_5);
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .hoursOfInnovationWrapper:hover,
 .workshopsMentorshipWrapper:hover {
@@ -28,25 +31,24 @@
   box-sizing: border-box;
 }
 .hoursOfInnovation {
-  position: absolute;
-  top: 40px;
-  left: 44.3px;
+  position: static;
   font-size: var(--fs-28);
   letter-spacing: 0.02em;
-  line-height: 145%;
+  line-height: 1.25;
   font-family: var(--font-donkey);
   color: var(--color-gray);
   text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: var(--width-225);
+  width: 100%;
   text-shadow: var(--text-shadow-1);
+  white-space: pre-line;
 }
 .workshopsMentorshipWrapper {
   cursor: pointer;
   border: var(--border-1);
-  padding: var(--padding-0);
+  padding: 18px 24px;
   background-color: var(--color-ghostwhite);
   position: absolute;
   height: 100%;
@@ -58,4 +60,7 @@
   box-sizing: border-box;
   width: var(--width-313_5);
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
