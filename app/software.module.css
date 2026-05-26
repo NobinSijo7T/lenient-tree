@@ -219,13 +219,17 @@
   margin: 0 !important;
   position: absolute;
   top: 275px;
-  left: 48px;
+  left: 12px;
   font-size: var(--fs-24);
   font-family: var(--font-lufga);
+  z-index: 20;
 }
-.r,
-.stacksprintHackathon {
+.r {
   z-index: 1;
+  font-family: var(--font-orbitron);
+}
+.stacksprintHackathon {
+  z-index: 0;
   font-family: var(--font-orbitron);
 }
 .stacksprintHackathon {
@@ -454,8 +458,8 @@
 .n {
   margin: 0 !important;
   position: absolute;
-  top: 328px;
-  left: 60px;
+  top: 40px;
+  left: -20px;
   backdrop-filter: blur(28.1px);
   border-radius: var(--br-32);
   background-color: var(--color-royalblue-200);
@@ -464,7 +468,7 @@
   align-items: center;
   justify-content: center;
   padding: 13px 38px;
-  z-index: 1;
+  z-index: 2;
   text-align: center;
   font-family: var(--font-orbitron);
 }
@@ -492,6 +496,27 @@
   align-items: center;
   gap: 6px;
   z-index: 2;
+  font-family: var(--font-orbitron);
+}
+.heroContentContainer {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 4vh, 40px);
+  width: 100%;
+  max-width: 1303px;
+  z-index: 2;
+}
+
+.heroBottomBar {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0;
+  z-index: 4;
+  text-align: center;
+  font-size: var(--fs-40);
+  color: var(--color-gainsboro);
   font-family: var(--font-orbitron);
 }
 
@@ -1437,9 +1462,10 @@
 .stacksprintHackathonParent {
   top: clamp(116px, 24vh, 275px);
   right: clamp(16px, 4vw, 48px);
-  left: clamp(16px, 4vw, 48px);
+  left: clamp(8px, 2vw, 12px);
   width: auto;
   font-size: clamp(14px, 1.8vw, 24px);
+  z-index: 20;
 }
 
 .stacksprintHackathon {
@@ -1474,8 +1500,8 @@
 }
 
 .n {
-  top: clamp(245px, 40vh, 328px);
-  left: clamp(16px, 4vw, 60px);
+  top: clamp(20px, 3vh, 50px);
+  left: clamp(-30px, -3vw, -10px);
 }
 
 .reactjs,
@@ -1806,6 +1832,7 @@
     top: 170px;
     right: 16px;
     left: 16px;
+    z-index: 20;
   }
 
   .stacksprintHackathon {
@@ -1846,8 +1873,8 @@
   }
 
   .n {
-    top: 440px;
-    left: 16px;
+    top: -52px;
+    left: 130px;
   }
 
   .lenientTreeParent {
@@ -1957,8 +1984,8 @@
 .stacksprintHackathonParent {
   top: 29%;
   right: clamp(20px, 5vw, 48px);
-  left: clamp(20px, 5vw, 48px);
-  z-index: 7;
+  left: clamp(8px, 2vw, 12px);
+  z-index: 20;
 }
 
 .stacksprintHackathon {
@@ -2157,6 +2184,7 @@
     top: 226px;
     right: 14px;
     left: 14px;
+    z-index: 20;
   }
 
   .stacksprintHackathon {
@@ -2200,8 +2228,8 @@
   }
 
   .n {
-    top: 286px;
-    left: 3%;
+    top: 60px;
+    left: -2%;
   }
 
   .m {
@@ -2259,7 +2287,7 @@
   }
 
   .n {
-    top: 294px;
+    top: 65px;
   }
 
   .m {

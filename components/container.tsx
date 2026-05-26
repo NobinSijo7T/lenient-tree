@@ -72,7 +72,13 @@ const Container: NextPage<ContainerType> = ({ className = "" }) => {
           <div className={styles.quickLinks}>Follow Us</div>
         </div>
         <div className={styles.container6}>
-          <div className={styles.socials}>
+          <a
+            className={styles.socials}
+            href="https://www.instagram.com/lenient_tree?igsh=ZmV4ajVlNGhhNW52"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Follow Lenient Tree on Instagram"
+          >
             <Image
               className={styles.maskGroupIcon}
               width={28}
@@ -81,8 +87,14 @@ const Container: NextPage<ContainerType> = ({ className = "" }) => {
               alt=""
               src="/Mask-group1@2x.png"
             />
-          </div>
-          <div className={styles.socials}>
+          </a>
+          <a
+            className={styles.socials}
+            href="https://x.com/lenienttree"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Follow Lenient Tree on X"
+          >
             <Image
               className={styles.maskGroupIcon}
               width={28}
@@ -91,10 +103,16 @@ const Container: NextPage<ContainerType> = ({ className = "" }) => {
               alt=""
               src="/Mask-group@2x.png"
             />
-          </div>
-          <div className={styles.socials}>
-            <h2 className={styles.in}>in</h2>
-          </div>
+          </a>
+          <a
+            className={styles.socials}
+            href="https://www.linkedin.com/company/lenient-tree/"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Follow Lenient Tree on LinkedIn"
+          >
+            <span className={styles.in}>in</span>
+          </a>
         </div>
       </div>
     </section>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import styles from "../app/software.module.css";
 
 export default function HeroPills() {
@@ -34,12 +35,40 @@ export default function HeroPills() {
 
   return (
     <div className={styles.stacksprintHackathonParent}>
-      <div className={styles.stacksprintHackathon}>
-        RESIDENCY
-        <br />
-        INTERNSHIP
-        <br />
-        PROGRAM
+      <div className={styles.heroContentContainer}>
+        <div className={styles.stacksprintHackathon}>
+          RESIDENCY
+          <br />
+          INTERNSHIP
+          <br />
+          PROGRAM
+        </div>
+
+        <section className={styles.heroBottomBar}>
+          <div className={styles.frameInner} />
+          <div className={styles.hoursParent}>
+            <div className={styles.barLeft}>
+              <button className={styles.spotsButton}>
+                <span className={styles.spotsButtonText}>15 spots available</span>
+              </button>
+            </div>
+            <div className={styles.barCenter}>
+              <button className={styles.scrollDownBtn}>
+                <span className={styles.scrollDownText}>Scroll down</span>
+                <Image
+                  className={styles.scrollDownIcon}
+                  width={14}
+                  height={14}
+                  alt="scroll"
+                  src="/Union1.svg"
+                />
+              </button>
+            </div>
+            <div className={styles.barRight}>
+              <h2 className={styles.june08}>JUNE 7TH - JUNE 30TH</h2>
+            </div>
+          </div>
+        </section>
       </div>
 
       {/* Large pills — React.js, Express.js, Mongo DB, Node.js */}
@@ -51,6 +80,9 @@ export default function HeroPills() {
       </div>
       <div className={`${styles.m} ${styles.pillFloat3}`} style={p(-0.06)}>
         <h2 className={styles.mongoDb}>Mongo DB</h2>
+      </div>
+      <div className={`${styles.n} ${styles.pillFloat1}`} style={p(-0.10)}>
+        <h2 className={styles.nodejs}>Node.js</h2>
       </div>
 
       <div className={styles.dot} />

@@ -60,39 +60,10 @@ const Software: NextPage = () => {
           <div className={styles.eventProgressParent}>
             <div id="home" className={styles.eventProgress}>
               <HeroPills />
-              <div className={styles.n}>
-                <h2 className={styles.nodejs}>Node.js</h2>
-              </div>
               <div className={styles.lenientTreeParent}>
                 <h2 className={styles.lenientTree}>lenient tree</h2>
                 <h2 className={styles.presents}>presents</h2>
               </div>
-              <section className={styles.rectangleParent}>
-                <div className={styles.frameInner} />
-                <div className={styles.hoursParent}>
-                  <div className={styles.barLeft}>
-                    <button className={styles.spotsButton}>
-                      <span className={styles.spotsButtonText}>15 spots available</span>
-                    </button>
-                  </div>
-                  <div className={styles.barCenter}>
-                    <button className={styles.scrollDownBtn}>
-                      <span className={styles.scrollDownText}>Scroll down</span>
-                      <Image
-                        className={styles.scrollDownIcon}
-                        width={14}
-                        height={14}
-                        alt="scroll"
-                        src="/Union1.svg"
-                      />
-                    </button>
-                  </div>
-                  <div className={styles.barRight}>
-                    <h2 className={styles.june08}>JUNE 7TH - JUNE 30TH</h2>
-                  </div>
-                </div>
-              </section>
-
 
             </div>
             <section id="about" className={styles.aboutSection}>

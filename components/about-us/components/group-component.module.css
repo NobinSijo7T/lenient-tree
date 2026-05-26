@@ -187,7 +187,7 @@
   object-fit: cover;
 }
 .dot {
-  top: 331px;
+  top: 276px;
   left: 982px;
   background-color: var(--color-dodgerblue);
   width: 362px;
@@ -242,15 +242,18 @@
 }
 .about {
   margin: 0;
-  top: 209px;
-  left: 1132px;
-  font-size: var(--fs-24);
+  top: 192px;
+  left: 1073px;
+  width: 180px;
+  font-size: var(--fs-40, 40px);
   line-height: 103.49%;
   font-weight: 400;
   font-family: var(--font-orbitron);
   display: inline-block;
-  text-shadow: var(--text-shadow-1);
-  min-width: 68px;
+  color: var(--color-mediumblue);
+  text-align: center;
+  text-shadow: 0 3px 12px rgba(16, 145, 250, 0.28);
+  min-width: 0;
 }
 .box {
   top: 1325px;
@@ -270,7 +273,7 @@
     line-height: 56px;
   }
   .about {
-    font-size: var(--fs-19);
-    line-height: var(--lh-20);
+    font-size: var(--fs-28);
+    line-height: 1;
   }
 }
