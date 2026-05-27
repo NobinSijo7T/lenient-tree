@@ -2516,6 +2516,12 @@
   }
 }
 
+@media screen and (max-width: 760px) {
+  .guidelinesSection {
+    padding: 0 10px;
+  }
+}
+
 .stacksprintHackathon {
   display: flex;
   flex-direction: column;

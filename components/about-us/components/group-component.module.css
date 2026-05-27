@@ -336,7 +336,7 @@
     flex-direction: column;
     align-items: center;
     gap: 24px;
-    padding: clamp(72px, 18vw, 104px) 16px clamp(56px, 16vw, 96px);
+    padding: clamp(118px, 28vw, 156px) 16px clamp(56px, 16vw, 96px);
     overflow: hidden;
     text-align: center;
   }
@@ -402,7 +402,7 @@
     order: 2;
     width: min(180px, 48vw);
     height: 8px;
-    margin: -10px 0 0;
+    margin: 0;
   }
 
   .stacksprintIsAContainer {
@@ -447,7 +447,7 @@
 @media screen and (max-width: 430px) {
   .bgParent {
     gap: 20px;
-    padding-top: 64px;
+    padding-top: 112px;
   }
 
   .stacksprintIsAContainer {
