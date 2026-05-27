@@ -323,3 +323,144 @@
     line-height: 1;
   }
 }
+
+@media screen and (max-width: 760px) {
+  .bgParent {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    padding: clamp(72px, 18vw, 104px) 16px clamp(56px, 16vw, 96px);
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .bgIcon {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    z-index: 0;
+  }
+
+  .frameChild,
+  .frameItem {
+    position: absolute;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .frameChild {
+    top: auto;
+    bottom: clamp(180px, 48vw, 320px);
+    left: clamp(-170px, -35vw, -88px);
+    width: clamp(260px, 72vw, 430px);
+    height: auto;
+    opacity: 0.34;
+  }
+
+  .frameItem {
+    top: auto;
+    right: clamp(-280px, -58vw, -150px);
+    bottom: clamp(18px, 9vw, 60px);
+    width: clamp(430px, 125vw, 720px);
+    height: auto;
+    opacity: 0.26;
+  }
+
+  .about,
+  .dot,
+  .stacksprintIsAContainer,
+  .robotIcon,
+  .box {
+    position: relative;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto;
+    z-index: 2;
+  }
+
+  .about {
+    order: 1;
+    width: auto;
+    margin: 0;
+    color: var(--color-mediumblue);
+    font-size: clamp(24px, 7vw, 34px);
+    line-height: 1;
+  }
+
+  .dot {
+    order: 2;
+    width: min(180px, 48vw);
+    height: 8px;
+    margin: -10px 0 0;
+  }
+
+  .stacksprintIsAContainer {
+    order: 3;
+    width: min(100%, 620px);
+    min-height: 0;
+    display: block;
+    margin: 0;
+    font-size: clamp(26px, 7vw, 44px);
+    line-height: 1.22;
+    letter-spacing: 0;
+    text-align: center;
+    overflow-wrap: anywhere;
+  }
+
+  .stacksprintIsA,
+  .stacksprintIsAContainer2 {
+    width: 100%;
+    white-space: normal;
+  }
+
+  .box {
+    order: 4;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+    width: min(100%, 540px);
+    height: auto;
+    margin-top: 2px;
+  }
+
+  .robotIcon {
+    order: 5;
+    align-self: flex-start;
+    width: min(72vw, 300px);
+    height: auto;
+    margin: 2px 0 0 clamp(-36px, -7vw, -18px);
+    object-fit: contain;
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .bgParent {
+    gap: 20px;
+    padding-top: 64px;
+  }
+
+  .stacksprintIsAContainer {
+    font-size: clamp(23px, 7.2vw, 32px);
+    line-height: 1.24;
+  }
+
+  .box {
+    width: 100%;
+  }
+
+  .robotIcon {
+    width: min(78vw, 260px);
+    margin-left: -34px;
+  }
+}

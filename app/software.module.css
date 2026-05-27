@@ -2762,3 +2762,17 @@
     min-width: 158px;
   }
 }
+
+@media screen and (max-width: 760px) {
+  .aboutSection {
+    min-height: 0;
+    overflow: hidden;
+    margin: -96px auto 0;
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .aboutSection {
+    margin-top: -72px;
+  }
+}
