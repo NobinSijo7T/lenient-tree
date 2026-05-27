@@ -2343,6 +2343,164 @@
   }
 }
 
+/* Mobile hero flow: keep headline, pills, and actions in separate rows. */
+@media screen and (max-width: 768px) {
+  .separatorParent,
+  .eventProgress {
+    height: 780px;
+  }
+
+  .separatorParent {
+    width: 100%;
+  }
+
+  .separatorIcon {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+  }
+
+  .stacksprintHackathonParent {
+    inset: 0;
+    width: 100%;
+    padding: 168px 16px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .heroContentContainer {
+    display: contents;
+  }
+
+  .stacksprintHackathon {
+    order: 1;
+    width: 100%;
+    max-width: 420px;
+    font-size: clamp(38px, 12vw, 58px);
+    line-height: 0.86;
+    white-space: normal;
+  }
+
+  .heroTitleLine {
+    overflow-wrap: anywhere;
+  }
+
+  .r,
+  .e,
+  .m,
+  .n {
+    order: 2;
+    position: static;
+    width: max-content;
+    max-width: 100%;
+    margin: 0 !important;
+    padding: 8px 14px;
+    transform: none !important;
+    animation: none;
+    font-size: clamp(14px, 4vw, 16px);
+  }
+
+  .reactjs,
+  .expressjs,
+  .mongoDb,
+  .nodejs {
+    height: auto;
+    width: auto;
+    max-width: 100%;
+    white-space: nowrap;
+  }
+
+  .html,
+  .tailwind,
+  .js,
+  .python,
+  .css,
+  .dot {
+    display: none;
+  }
+
+  .heroBottomBar {
+    order: 3;
+    width: min(100%, 420px);
+    margin-top: 8px;
+  }
+
+  .frameInner {
+    margin-bottom: 16px;
+  }
+
+  .hoursParent {
+    grid-template-columns: 1fr;
+    row-gap: 12px;
+    padding: 0;
+    justify-items: stretch;
+  }
+
+  .barLeft,
+  .barCenter,
+  .barRight {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .spotsButton,
+  .scrollDownBtn {
+    max-width: 100%;
+  }
+
+  .june08 {
+    width: 100%;
+    font-size: clamp(18px, 5.8vw, 24px);
+    line-height: 1.15;
+    text-align: center;
+    white-space: normal;
+  }
+
+  .lenientTreeParent {
+    top: 74px;
+    left: 50%;
+    max-width: calc(100% - 32px);
+    transform: translateX(-50%);
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .separatorParent,
+  .eventProgress {
+    height: 740px;
+  }
+
+  .stacksprintHackathonParent {
+    padding-top: 154px;
+  }
+
+  .stacksprintHackathon {
+    font-size: clamp(34px, 11vw, 44px);
+  }
+
+  .lenientTreeParent {
+    top: 68px;
+  }
+}
+
+@media screen and (min-width: 641px) and (max-width: 768px) {
+  .separatorParent,
+  .eventProgress {
+    height: 860px;
+  }
+
+  .stacksprintHackathonParent {
+    padding-top: 226px;
+  }
+
+  .lenientTreeParent {
+    top: 132px;
+  }
+}
+
 .guidelinesSection {
   align-self: stretch;
   display: flex;

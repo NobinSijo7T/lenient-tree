@@ -69,14 +69,22 @@ const Nav: NextPage<NavType> = ({ className = "", state = "Hero" }) => {
   };
 
   return (
-    <div
-      className={[styles.nav, menuOpen ? styles.navOpen : "", className].join(
-        " ",
+    <>
+      {menuOpen && (
+        <div 
+          className={styles.menuOverlay}
+          onClick={() => setMenuOpen(false)}
+          aria-hidden="true"
+        />
       )}
-      data-state={state}
-    >
-      <div className={styles.navChild} aria-hidden="true" />
-      <nav className={styles.navigationDataParent}>
+      <div
+        className={[styles.nav, menuOpen ? styles.navOpen : "", className].join(
+          " ",
+        )}
+        data-state={state}
+      >
+        <div className={styles.navChild} aria-hidden="true" />
+        <nav className={styles.navigationDataParent}>
         {navItems.map((item) => {
           const isActive = activeSection === item.id;
           return (
@@ -164,6 +172,7 @@ const Nav: NextPage<NavType> = ({ className = "", state = "Hero" }) => {
         </button>
       </div>
     </div>
+    </>
   );
 };
 
