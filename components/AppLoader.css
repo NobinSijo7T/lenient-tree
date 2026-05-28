@@ -1,0 +1,136 @@
+/* App Loader Styles */
+.app-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loader-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #0a0a1a 0%, #1a1a2e 50%, #0a0a1a 100%);
+}
+
+.loader-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+
+/* Animated ring around logo - REMOVED */
+
+/* Logo wrapper */
+.logo-wrapper {
+  position: relative;
+  z-index: 2;
+}
+
+.loader-logo {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.2));
+}
+
+/* Progress bar */
+.progress-container {
+  width: 200px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, 
+    rgba(255, 255, 255, 0.4) 0%, 
+    rgba(255, 255, 255, 0.8) 50%, 
+    rgba(255, 255, 255, 0.4) 100%
+  );
+  border-radius: 2px;
+}
+
+/* Loading text */
+.loading-text {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.8);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.dots {
+  display: flex;
+  gap: 2px;
+}
+
+.dots span {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .loader-content {
+    gap: 25px;
+  }
+  
+  .loader-ring {
+    width: 120px;
+    height: 120px;
+  }
+  
+  .loader-logo {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .progress-container {
+    width: 160px;
+  }
+  
+  .loading-text {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .loader-content {
+    gap: 20px;
+  }
+  
+  .loader-ring {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .loader-logo {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .progress-container {
+    width: 140px;
+  }
+  
+  .loading-text {
+    font-size: 11px;
+  }
+}

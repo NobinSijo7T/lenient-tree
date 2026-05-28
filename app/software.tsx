@@ -1,3 +1,5 @@
+"use client";
+
 import type { NextPage } from "next";
 import Image from "next/image";
 import Moving from "../components/moving";
@@ -9,11 +11,14 @@ import SlideCarousel from "../components/SlideCarousel";
 import Cta from "../components/cta/cta";
 import Grid from "../components/grid";
 import Container from "../components/container";
+import AppLoader from "../components/AppLoader";
 import styles from "./software.module.css";
 
 const Software: NextPage = () => {
   return (
-    <div className={styles.software}>
+    <>
+      <AppLoader />
+      <div className={styles.software}>
       <Nav state="Hero" />
       <section className={styles.separatorParent}>
         <Image
@@ -102,6 +107,7 @@ const Software: NextPage = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 
