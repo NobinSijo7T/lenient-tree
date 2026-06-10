@@ -298,7 +298,7 @@ const Guidelines: NextPage = () => {
           {/* Timeline circle date overlays */}
           <div className={styles.circleOverlay1}>
             <span className={styles.monthText}>June</span>
-            <span className={styles.daysText}>10<sup>th</sup> – 16<sup>th</sup></span>
+            <span className={styles.daysText}>11<sup>th</sup> – 16<sup>th</sup></span>
           </div>
           <div className={styles.circleOverlay2}>
             <span className={styles.monthText}>June</span>

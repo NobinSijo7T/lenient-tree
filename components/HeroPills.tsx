@@ -67,7 +67,7 @@ export default function HeroPills() {
               </button>
             </div>
             <div className={styles.barRight}>
-              <h2 className={styles.june08}>JUNE 10TH - JUNE 30TH</h2>
+              <h2 className={styles.june08}>JUNE 11TH - JUNE 30TH</h2>
             </div>
           </div>
         </section>

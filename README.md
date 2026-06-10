@@ -81,7 +81,7 @@ components/container.tsx
 Find this line near the top of the file:
 
 ```ts
-const COUNTDOWN_TARGET = new Date("2026-06-10T10:00:00+05:30").getTime();
+const COUNTDOWN_TARGET = new Date("2026-06-11T10:00:00+05:30").getTime();
 ```
 
 Change the date/time string to update the countdown target.
@@ -89,8 +89,8 @@ Change the date/time string to update the countdown target.
 Examples:
 
 ```ts
-// June 10, 2026 at 10:00 AM IST
-const COUNTDOWN_TARGET = new Date("2026-06-10T10:00:00+05:30").getTime();
+// June 11, 2026 at 10:00 AM IST
+const COUNTDOWN_TARGET = new Date("2026-06-11T10:00:00+05:30").getTime();
 
 // July 1, 2026 at 9:30 AM IST
 const COUNTDOWN_TARGET = new Date("2026-07-01T09:30:00+05:30").getTime();

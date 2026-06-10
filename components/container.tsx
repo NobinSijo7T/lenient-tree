@@ -9,7 +9,7 @@ export type ContainerType = {
   className?: string;
 };
 
-const COUNTDOWN_TARGET = new Date("2026-06-10T10:00:00+05:30").getTime();
+const COUNTDOWN_TARGET = new Date("2026-06-11T10:00:00+05:30").getTime();
 
 const getCountdownParts = () => {
   const timeLeft = Math.max(COUNTDOWN_TARGET - Date.now(), 0);
