@@ -1,0 +1,311 @@
+.testimonialSection {
+  padding: 80px 20px;
+  background: linear-gradient(180deg, #000814 0%, #001233 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.testimonialSection::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(0, 119, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 50%, rgba(138, 43, 226, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.title {
+  font-size: 48px;
+  font-weight: 700;
+  text-align: center;
+  background: linear-gradient(135deg, #ffffff 0%, #a0c4ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 16px;
+}
+
+.subtitle {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 18px;
+  margin-bottom: 60px;
+}
+
+.testimonialWrapper {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  justify-content: center;
+}
+
+.navButton {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  backdrop-filter: blur(10px);
+}
+
+.navButton:hover:not(:disabled) {
+  background: rgba(0, 119, 255, 0.2);
+  border-color: rgba(0, 119, 255, 0.5);
+  transform: scale(1.1);
+}
+
+.navButton:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.cardsContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  flex: 1;
+  max-width: 1200px;
+}
+
+.card {
+  background: linear-gradient(135deg, rgba(10, 25, 60, 0.8) 0%, rgba(20, 35, 70, 0.6) 100%);
+  border-radius: 20px;
+  padding: 3px;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    rgba(0, 119, 255, 0.5) 90deg,
+    rgba(138, 43, 226, 0.5) 180deg,
+    transparent 270deg
+  );
+  animation: rotate 4s linear infinite;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.cardInner {
+  background: linear-gradient(135deg, #0a1a3a 0%, #0f1e42 100%);
+  border-radius: 18px;
+  padding: 40px 30px;
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.profileSection {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.hexagonWrapper {
+  position: relative;
+  filter: drop-shadow(0 0 20px rgba(0, 119, 255, 0.6));
+}
+
+.hexagon {
+  width: 80px;
+  height: 92px;
+  position: relative;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  background: linear-gradient(135deg, #0077ff 0%, #8a2be2 100%);
+  padding: 3px;
+}
+
+.hexagon::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(0, 119, 255, 0.3) 0%, rgba(138, 43, 226, 0.3) 100%);
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.avatarPlaceholder {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  right: 3px;
+  bottom: 3px;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  background: linear-gradient(135deg, #1a2a5a 0%, #2a3a6a 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: 700;
+  color: #0077ff;
+}
+
+.quoteIcon {
+  font-size: 72px;
+  font-family: Georgia, serif;
+  color: rgba(0, 119, 255, 0.3);
+  line-height: 1;
+  font-weight: 700;
+}
+
+.content {
+  flex: 1;
+  margin-bottom: 20px;
+}
+
+.feedback {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 15px;
+  line-height: 1.7;
+  margin: 0;
+  min-height: 100px;
+}
+
+.rating {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.star {
+  color: #ffd700;
+  font-size: 20px;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.authorInfo {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 20px;
+}
+
+.authorName {
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+  letter-spacing: 0.5px;
+}
+
+.authorRole {
+  color: rgba(0, 119, 255, 0.8);
+  font-size: 14px;
+  margin: 0;
+  font-weight: 400;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 40px;
+}
+
+.paginationDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.paginationDot:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.paginationDot.active {
+  background: #0077ff;
+  width: 30px;
+  border-radius: 5px;
+}
+
+@media (max-width: 1200px) {
+  .cardsContainer {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .testimonialSection {
+    padding: 60px 20px;
+  }
+
+  .title {
+    font-size: 36px;
+  }
+
+  .subtitle {
+    font-size: 16px;
+    margin-bottom: 40px;
+  }
+
+  .testimonialWrapper {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .cardsContainer {
+    grid-template-columns: 1fr;
+  }
+
+  .navButton {
+    width: 40px;
+    height: 40px;
+  }
+
+  .cardInner {
+    padding: 30px 20px;
+  }
+
+  .feedback {
+    font-size: 14px;
+    min-height: 80px;
+  }
+}

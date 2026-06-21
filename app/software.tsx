@@ -8,6 +8,7 @@ import HeroPills from "../components/HeroPills";
 import GroupComponent from "../components/about-us/components/group-component";
 import Guidelines from "../components/guidelines/app/guidelines";
 import SlideCarousel from "../components/SlideCarousel";
+import Testimonials from "../components/Testimonials";
 import Cta from "../components/cta/cta";
 import Grid from "../components/grid";
 import Container from "../components/container";
@@ -91,6 +92,7 @@ const Software: NextPage = () => {
               </h2>
               <SlideCarousel />
             </div>
+            <Testimonials />
             <Cta />
           </div>
         </div>
