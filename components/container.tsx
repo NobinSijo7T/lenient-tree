@@ -82,7 +82,7 @@ const Container: NextPage<ContainerType> = ({ className = "" }) => {
         <div className={styles.container6}>
           <a
             className={styles.socials}
-            href="https://www.instagram.com/lenient_tree?igsh=ZmV4ajVlNGhhNW52"
+            href="https://x.com/lenienttree"
             target="_blank"
             rel="noreferrer"
             aria-label="Follow Lenient Tree on Instagram"
@@ -98,7 +98,7 @@ const Container: NextPage<ContainerType> = ({ className = "" }) => {
           </a>
           <a
             className={styles.socials}
-            href="https://x.com/lenienttree"
+            href="https://www.instagram.com/lenient_tree?igsh=ZmV4ajVlNGhhNW52"
             target="_blank"
             rel="noreferrer"
             aria-label="Follow Lenient Tree on X"
