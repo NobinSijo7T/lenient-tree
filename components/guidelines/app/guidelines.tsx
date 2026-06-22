@@ -9,8 +9,11 @@ const Guidelines: NextPage = () => {
   const [activeWeek, setActiveWeek] = useState<number>(1);
   const [scrollProgress, setScrollProgress] = useState<number>(0);
   const [pathLength, setPathLength] = useState<number>(0);
+  const [pathData, setPathData] = useState<string>('M 150,0 L 150,1800');
   const animationFrame = useRef<number | null>(null);
   const weekRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const weekSegmentRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const circleElRefs = useRef<(HTMLDivElement | null)[]>([]);
   const pathRef = useRef<SVGPathElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
@@ -22,13 +25,60 @@ const Guidelines: NextPage = () => {
     }
   };
 
+  // Build SVG path dynamically from actual DOM positions
+  const computePath = () => {
+    if (!sectionRef.current) return;
+    const sectionRect = sectionRef.current.getBoundingClientRect();
+    const totalHeight = sectionRect.height;
+    if (totalHeight === 0) return;
+
+    const viewBoxH = 1800;
+    const scaleY = viewBoxH / totalHeight;
+    const sectionAbsTop = sectionRect.top + window.scrollY;
+
+    // Circle radius in DOM px (fallback 90 = 180px/2 desktop, 70 = 140px/2 mobile)
+    const circleEl = circleElRefs.current[0];
+    const rDom = circleEl ? circleEl.getBoundingClientRect().width / 2 : 90;
+    const rxArc = rDom;              // X is 1:1 (300px DOM = 300 viewBox)
+    const ryArc = rDom * scaleY;     // Y is scaled
+
+    const parts: string[] = ['M 150,0'];
+    weekSegmentRefs.current.forEach((el, i) => {
+      if (!el) return;
+      const r = el.getBoundingClientRect();
+      const domCY = r.top + window.scrollY - sectionAbsTop + r.height / 2;
+      const cy = domCY * scaleY;
+      const sweep = i % 2 === 0 ? 1 : 0; // 1=right (W1,W3), 0=left (W2,W4)
+      parts.push(`L 150,${(cy - ryArc).toFixed(1)}`);
+      parts.push(`A ${rxArc.toFixed(1)},${ryArc.toFixed(1)} 0 0 ${sweep} 150,${(cy + ryArc).toFixed(1)}`);
+    });
+    parts.push('L 150,1800');
+    setPathData(parts.join(' '));
+  };
+
   useEffect(() => {
-    // Get the path length on mount
-    if (pathRef.current) {
-      const length = pathRef.current.getTotalLength();
-      setPathLength(length);
-    }
+    // Compute path then measure its length
+    const init = () => {
+      computePath();
+      if (pathRef.current) {
+        setPathLength(pathRef.current.getTotalLength());
+      }
+    };
+    const timer = setTimeout(init, 80);
+    window.addEventListener('resize', init);
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('resize', init);
+    };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // Re-measure path length after pathData updates cause a re-render
+  useEffect(() => {
+    if (pathRef.current && pathData !== 'M 150,0 L 150,1800') {
+      setPathLength(pathRef.current.getTotalLength());
+    }
+  }, [pathData]);
 
   useEffect(() => {
     const updateActiveWeek = () => {
@@ -155,16 +205,7 @@ const Guidelines: NextPage = () => {
             {/* Base path (dim) */}
             <path
               ref={pathRef}
-              d="M 150,0
-                 L 150,130
-                 A 95,95 0 0 1 150,320
-                 L 150,580
-                 A 95,95 0 0 0 150,770
-                 L 150,1030
-                 A 95,95 0 0 1 150,1220
-                 L 150,1480
-                 A 95,95 0 0 0 150,1670
-                 L 150,1800"
+              d={pathData}
               stroke="url(#masterGrad)"
               strokeWidth="20"
               fill="none"
@@ -174,16 +215,7 @@ const Guidelines: NextPage = () => {
             
             {/* Glowing path behind the moving circle */}
             <path
-              d="M 150,0
-                 L 150,130
-                 A 95,95 0 0 1 150,320
-                 L 150,580
-                 A 95,95 0 0 0 150,770
-                 L 150,1030
-                 A 95,95 0 0 1 150,1220
-                 L 150,1480
-                 A 95,95 0 0 0 150,1670
-                 L 150,1800"
+              d={pathData}
               stroke="url(#masterGrad)"
               strokeWidth="22"
               fill="none"
@@ -230,10 +262,11 @@ const Guidelines: NextPage = () => {
           {/* Week 1 */}
           <div className={styles.weekSection} ref={(el) => { weekRefs.current[0] = el; }}>
             <div className={styles.weekRow}>
-              <div className={styles.weekPathSegment}>
+              <div className={styles.weekPathSegment} ref={(el) => { weekSegmentRefs.current[0] = el; }}>
                 <div 
                   className={`${styles.largeWeekCircle} ${activeWeek === 1 ? styles.active : ''}`}
                   onClick={() => scrollToWeek(1)}
+                  ref={(el) => { circleElRefs.current[0] = el; }}
                 >
                   <div className={styles.circleContent}>
                     <div className={styles.largeWeekNumber}>1</div>
@@ -296,10 +329,11 @@ const Guidelines: NextPage = () => {
           {/* Week 2 */}
           <div className={styles.weekSection} ref={(el) => { weekRefs.current[1] = el; }}>
             <div className={styles.weekRow}>
-              <div className={styles.weekPathSegment}>
+              <div className={styles.weekPathSegment} ref={(el) => { weekSegmentRefs.current[1] = el; }}>
                 <div 
                   className={`${styles.largeWeekCircle} ${activeWeek === 2 ? styles.active : ''}`}
                   onClick={() => scrollToWeek(2)}
+                  ref={(el) => { circleElRefs.current[1] = el; }}
                 >
                   <div className={styles.circleContent}>
                     <div className={styles.largeWeekNumber}>2</div>
@@ -362,10 +396,11 @@ const Guidelines: NextPage = () => {
           {/* Week 3 */}
           <div className={styles.weekSection} ref={(el) => { weekRefs.current[2] = el; }}>
             <div className={styles.weekRow}>
-              <div className={styles.weekPathSegment}>
+              <div className={styles.weekPathSegment} ref={(el) => { weekSegmentRefs.current[2] = el; }}>
                 <div 
                   className={`${styles.largeWeekCircle} ${activeWeek === 3 ? styles.active : ''}`}
                   onClick={() => scrollToWeek(3)}
+                  ref={(el) => { circleElRefs.current[2] = el; }}
                 >
                   <div className={styles.circleContent}>
                     <div className={styles.largeWeekNumber}>3</div>
@@ -428,10 +463,11 @@ const Guidelines: NextPage = () => {
           {/* Week 4 */}
           <div className={styles.weekSection} ref={(el) => { weekRefs.current[3] = el; }}>
             <div className={styles.weekRow}>
-              <div className={styles.weekPathSegment}>
+              <div className={styles.weekPathSegment} ref={(el) => { weekSegmentRefs.current[3] = el; }}>
                 <div 
                   className={`${styles.largeWeekCircle} ${activeWeek === 4 ? styles.active : ''}`}
                   onClick={() => scrollToWeek(4)}
+                  ref={(el) => { circleElRefs.current[3] = el; }}
                 >
                   <div className={styles.circleContent}>
                     <div className={styles.largeWeekNumber}>4</div>
