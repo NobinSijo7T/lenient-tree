@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './Testimonials.module.css';
 import feedbackData from '../public/internship_feedback.json';
 
@@ -12,6 +12,10 @@ interface Testimonial {
 
 const Testimonials: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [mounted, setMounted] = useState(false);
+
+  // Mark as mounted so disabled props only apply after hydration
+  useEffect(() => { setMounted(true); }, []);
   const testimonials = feedbackData.filter((t: Testimonial) => t.feedback.trim() !== '');
 
   // Auto-play functionality
@@ -56,8 +60,9 @@ const Testimonials: React.FC = () => {
           <button 
             className={styles.navButton} 
             onClick={prevSlide}
-            disabled={currentIndex === 0}
+            disabled={mounted && currentIndex === 0}
             aria-label="Previous testimonials"
+            suppressHydrationWarning
           >
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -101,8 +106,9 @@ const Testimonials: React.FC = () => {
           <button 
             className={styles.navButton} 
             onClick={nextSlide}
-            disabled={currentIndex + 3 >= testimonials.length}
+            disabled={mounted && currentIndex + 3 >= testimonials.length}
             aria-label="Next testimonials"
+            suppressHydrationWarning
           >
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
