@@ -155,7 +155,7 @@ const Guidelines: NextPage = () => {
 
   return (
     <div className={styles.guidelines}>
-      <h1 className={styles.guidelines2}>Guidelines</h1>
+      <h1 className={styles.guidelines2}>Timeline</h1>
       <main className={styles.frameParent}>
 
         <section className={styles.frameGroup} ref={sectionRef}>

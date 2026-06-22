@@ -2,48 +2,53 @@
 
 import type { NextPage } from "next";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
+import PolicyModal from "./PolicyModal";
 import styles from "./container.module.css";
 
 export type ContainerType = {
   className?: string;
 };
 
-const COUNTDOWN_TARGET = new Date("2026-06-11T10:00:00+05:30").getTime();
-
-const getCountdownParts = () => {
-  const timeLeft = Math.max(COUNTDOWN_TARGET - Date.now(), 0);
-  const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((timeLeft / (1000 * 60 * 60)) % 24);
-  const minutes = Math.floor((timeLeft / (1000 * 60)) % 60);
-  const seconds = Math.floor((timeLeft / 1000) % 60);
-
-  return { days, hours, minutes, seconds };
-};
-
-const formatCountdownValue = (value: number) =>
-  value.toString().padStart(2, "0");
+interface PolicyContent {
+  title: string;
+  content: string[];
+}
 
 const Container: NextPage<ContainerType> = ({ className = "" }) => {
-  const [countdown, setCountdown] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-  });
+  const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState(false);
+  const [isTermsModalOpen, setIsTermsModalOpen] = useState(false);
+  const [privacyPolicy, setPrivacyPolicy] = useState<PolicyContent | null>(null);
+  const [termsConditions, setTermsConditions] = useState<PolicyContent | null>(null);
 
   useEffect(() => {
-    const updateCountdown = () => {
-      setCountdown(getCountdownParts());
-    };
+    // Load Privacy Policy
+    fetch('/Privacy_Policy_Lenient_Tree.json')
+      .then(res => res.json())
+      .then(data => setPrivacyPolicy(data))
+      .catch(err => console.error('Error loading privacy policy:', err));
 
-    updateCountdown();
-    const intervalId = window.setInterval(updateCountdown, 1000);
-
-    return () => {
-      window.clearInterval(intervalId);
-    };
+    // Load Terms and Conditions
+    fetch('/Terms_and_Conditions_Lenient_Tree.json')
+      .then(res => res.json())
+      .then(data => setTermsConditions(data))
+      .catch(err => console.error('Error loading terms and conditions:', err));
   }, []);
+
+  const scrollToTimeline = () => {
+    const guidelinesElement = document.getElementById('guidelines');
+    if (guidelinesElement) {
+      guidelinesElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  const handlePrivacyClick = () => {
+    setIsPrivacyModalOpen(true);
+  };
+
+  const handleTermsClick = () => {
+    setIsTermsModalOpen(true);
+  };
 
   return (
     <section className={[styles.container, className].join(" ")}>
@@ -53,66 +58,23 @@ const Container: NextPage<ContainerType> = ({ className = "" }) => {
         </div>
         <div className={styles.list}>
           <div className={styles.item}>
-            <div className={styles.component5}>
-              <div className={styles.text}>How to participate?</div>
-            </div>
-          </div>
-          <div className={styles.item}>
-            <div className={styles.component5}>
+            <div className={styles.component5} onClick={scrollToTimeline} style={{ cursor: 'pointer' }}>
               <div className={styles.text}>Timeline</div>
             </div>
           </div>
           <div className={styles.item}>
-            <div className={styles.component5}>
-              <div className={styles.text}>Guidelines</div>
+            <div className={styles.component5} onClick={handlePrivacyClick} style={{ cursor: 'pointer' }}>
+              <div className={styles.text}>Privacy Policy</div>
             </div>
           </div>
           <div className={styles.item}>
-            <div className={styles.component5}>
-              <div className={styles.text}>{`Rules & Regulations`}</div>
+            <div className={styles.component5} onClick={handleTermsClick} style={{ cursor: 'pointer' }}>
+              <div className={styles.text}>Terms and Conditions</div>
             </div>
           </div>
         </div>
       </div>
-      <div className={styles.container3}>
-        <div className={styles.container4}>
-          <div className={styles.item}>
-            <div className={styles.quickLinks}>Countdown</div>
-          </div>
-          <div className={styles.frameParent}>
-            <div className={styles.frame}>
-              <h2 className={styles.partialContainer}>
-                {formatCountdownValue(countdown.days)}
-              </h2>
-            </div>
-            <div className={styles.frame}>
-              <h2 className={styles.partialContainer}>
-                {formatCountdownValue(countdown.hours)}
-              </h2>
-            </div>
-            <div className={styles.rectangleParent}>
-              <div className={styles.frameChild} />
-              <div className={styles.frameChild} />
-            </div>
-            <div className={styles.frame}>
-              <h2 className={styles.partialContainer}>
-                {formatCountdownValue(countdown.minutes)}
-              </h2>
-            </div>
-            <div className={styles.frame}>
-              <h2 className={styles.partialContainer}>
-                {formatCountdownValue(countdown.seconds)}
-              </h2>
-            </div>
-          </div>
-          <div className={styles.daysParent}>
-            <div className={styles.days}>DAYS</div>
-            <div className={styles.hrs}>HRS</div>
-            <div className={styles.mins}>MINS</div>
-            <div className={styles.days}>SECS</div>
-          </div>
-        </div>
-      </div>
+
       <div className={styles.container5}>
         <div className={styles.item}>
           <div className={styles.quickLinks}>Follow Us</div>
@@ -161,6 +123,24 @@ const Container: NextPage<ContainerType> = ({ className = "" }) => {
           </a>
         </div>
       </div>
+
+      {/* Policy Modals */}
+      {privacyPolicy && (
+        <PolicyModal
+          isOpen={isPrivacyModalOpen}
+          onClose={() => setIsPrivacyModalOpen(false)}
+          title={privacyPolicy.title}
+          content={privacyPolicy.content}
+        />
+      )}
+      {termsConditions && (
+        <PolicyModal
+          isOpen={isTermsModalOpen}
+          onClose={() => setIsTermsModalOpen(false)}
+          title={termsConditions.title}
+          content={termsConditions.content}
+        />
+      )}
     </section>
   );
 };

@@ -139,20 +139,16 @@ const GroupComponent: NextPage<GroupComponentType> = ({ className = "" }) => {
         src="/robot@2x.webp"
       />
       <h3 className={styles.about}>About</h3>
-      <h2 className={styles.whatYouLearn}>What You Learn</h2>
+      <h2 className={styles.whatYouLearn}>Why Choose Us</h2>
       <section className={styles.box}>
         <FrameComponent
-          hoursOfInnovation={`Frontend Development:
-HTML, CSS, JavaScript, React`}
-          workshopsMentorship={`Backend Development:
-Node.js, Express, APIs`}
+          hoursOfInnovation="Stipend-Based Internship Opportunities"
+          workshopsMentorship="1:1 MENTORSHIP"
         />
         <FrameComponent
           frameDivTop="202px"
-          hoursOfInnovation={`Database & Cloud:
-PostgreSQL, Supabase, AWS`}
-          workshopsMentorship={`AI Development:
-LLMs, Chatbots, RAG, AI Apps`}
+          hoursOfInnovation="Production-Grade MVP Development"
+          workshopsMentorship="& much more..."
           workshopsMentorshipTop="60.5px"
           workshopsMentorshipMargin="0"
           workshopsMentorshipFontWeight="400"

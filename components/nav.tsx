@@ -17,7 +17,7 @@ export type NavType = {
 const navItems = [
   { name: "Home", id: "home" },
   { name: "About", id: "about" },
-  { name: "Guidelines", id: "guidelines" },
+ 
   { name: "Timeline", id: "timeline" }
 ];
 
@@ -136,6 +136,17 @@ const Nav: NextPage<NavType> = ({ className = "", state = "Hero" }) => {
         />
       </button>
       <button
+        aria-label={menuOpen ? "Close menu" : "Open menu"}
+        aria-expanded={menuOpen}
+        className={styles.hamburger}
+        onClick={toggleMenu}
+        type="button"
+      >
+        <span />
+        <span />
+        <span />
+      </button>
+      <button
         className={styles.mobileSd}
         onClick={handleRegisterClick}
         type="button"
@@ -149,17 +160,6 @@ const Nav: NextPage<NavType> = ({ className = "", state = "Hero" }) => {
           alt=""
           src="/Union2.svg"
         />
-      </button>
-      <button
-        aria-label={menuOpen ? "Close menu" : "Open menu"}
-        aria-expanded={menuOpen}
-        className={styles.hamburger}
-        onClick={toggleMenu}
-        type="button"
-      >
-        <span />
-        <span />
-        <span />
       </button>
       <div className={styles.mobileMenu}>
         {navItems.map((item) => {

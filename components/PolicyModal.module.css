@@ -1,0 +1,227 @@
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100000;
+  padding: 100px 20px 20px 20px; /* Added top padding to position below nav */
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modalContent {
+  background: linear-gradient(135deg, #0a1a3a 0%, #0f1e42 100%);
+  border-radius: 20px;
+  max-width: 900px;
+  width: 100%;
+  height: calc(100vh - 120px); /* Reduced height to account for nav bar */
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border: 1px solid rgba(0, 119, 255, 0.3);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  animation: slideUp 0.3s ease;
+  overflow: hidden;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.modalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 30px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  flex-shrink: 0;
+}
+
+.modalTitle {
+  font-size: 28px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+  font-family: var(--font-orbitron);
+  letter-spacing: 0.5px;
+}
+
+.closeButton {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 24px;
+  line-height: 1;
+  padding: 0;
+}
+
+.closeButton:hover {
+  background: rgba(255, 0, 0, 0.2);
+  border-color: rgba(255, 0, 0, 0.5);
+  transform: rotate(90deg);
+}
+
+.modalBody {
+  padding: 30px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex: 1 1 auto;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.8;
+  font-family: var(--font-lufga), 'Lufga', sans-serif;
+  height: 0; /* Critical for making flex item scrollable */
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+}
+
+/* Custom scrollbar */
+.modalBody::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modalBody::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+}
+
+.modalBody::-webkit-scrollbar-thumb {
+  background: rgba(0, 119, 255, 0.5);
+  border-radius: 10px;
+}
+
+.modalBody::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 119, 255, 0.7);
+}
+
+.contentParagraph {
+  margin-bottom: 16px;
+  font-size: 15px;
+  text-align: justify;
+  font-family: var(--font-lufga), 'Lufga', sans-serif;
+}
+
+.contentParagraph:first-child {
+  font-size: 18px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 24px;
+}
+
+.sectionTitle {
+  font-size: 20px;
+  font-weight: 600;
+  color: #0077ff;
+  margin: 24px 0 12px 0;
+  font-family: var(--font-lufga), 'Lufga', sans-serif;
+}
+
+.subsectionTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: #5a9fff;
+  margin: 16px 0 8px 0;
+  font-family: var(--font-lufga), 'Lufga', sans-serif;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .modalOverlay {
+    padding: 80px 10px 10px 10px;
+  }
+
+  .modalContent {
+    height: calc(100vh - 100px);
+    max-height: 90vh;
+    border-radius: 16px;
+  }
+
+  .modalHeader {
+    padding: 20px;
+  }
+
+  .modalTitle {
+    font-size: 20px;
+  }
+
+  .closeButton {
+    width: 36px;
+    height: 36px;
+    font-size: 20px;
+  }
+
+  .modalBody {
+    padding: 20px;
+  }
+
+  .contentParagraph {
+    font-size: 14px;
+  }
+
+  .contentParagraph:first-child {
+    font-size: 16px;
+  }
+
+  .sectionTitle {
+    font-size: 18px;
+  }
+
+  .subsectionTitle {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .modalOverlay {
+    padding: 70px 10px 10px 10px;
+  }
+
+  .modalContent {
+    height: calc(100vh - 80px);
+    max-height: 92vh;
+  }
+
+  .modalHeader {
+    padding: 16px;
+  }
+
+  .modalTitle {
+    font-size: 18px;
+  }
+
+  .modalBody {
+    padding: 16px;
+  }
+
+  .contentParagraph {
+    font-size: 13px;
+  }
+}

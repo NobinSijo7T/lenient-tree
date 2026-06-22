@@ -2513,7 +2513,7 @@
 
 .heroTitleLine {
   display: block;
-  width: 185%;
+  width: 100%;
   font-family: "Audiowide", var(--font-sector-034), "Sector 034", sans-serif !important;
   font-weight: 400 !important;
   font-style: normal !important;
@@ -2853,7 +2853,7 @@
   }
 
   .stacksprintHackathon {
-    font-size: clamp(52px, 17vw, 86px);
+    font-size: clamp(36px, 11vw, 64px);
     line-height: 0.88;
     text-align: center;
     white-space: normal;

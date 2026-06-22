@@ -320,6 +320,10 @@
   font-family: var(--font-orbitron);
   width: 140px;
   height: 140px;
+  min-width: 140px;
+  min-height: 140px;
+  max-width: 140px;
+  max-height: 140px;
   background: radial-gradient(circle, rgba(10, 15, 50, 0.95) 0%, rgba(20, 30, 70, 0.85) 100%);
   border-radius: 50%;
   border: 2px solid rgba(100, 180, 255, 0.3);
@@ -327,6 +331,8 @@
     0 0 30px rgba(0, 119, 255, 0.2),
     inset 0 0 20px rgba(0, 119, 255, 0.1);
   z-index: 8;
+  aspect-ratio: 1 / 1; /* Ensure perfect circle */
+  flex-shrink: 0;
 }
 
 .circleOverlay1 { top: 95px; left: 50%; transform: translateX(-50%); }
@@ -419,6 +425,10 @@
   transform: translate(-50%, -50%);
   width: 180px;
   height: 180px;
+  min-width: 180px;
+  min-height: 180px;
+  max-width: 180px;
+  max-height: 180px;
   border-radius: 50%;
   background: radial-gradient(circle, rgba(10, 15, 50, 0.98) 0%, rgba(20, 30, 70, 0.95) 100%);
   border: 3px solid rgba(100, 180, 255, 0.4);
@@ -431,6 +441,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  aspect-ratio: 1 / 1; /* Ensure perfect circle */
+  flex-shrink: 0;
 }
 
 .largeWeekCircle:hover {
@@ -761,6 +773,10 @@
   .largeWeekCircle {
     width: 140px;
     height: 140px;
+    min-width: 140px;
+    min-height: 140px;
+    max-width: 140px;
+    max-height: 140px;
   }
 
   .largeWeekNumber {
@@ -792,6 +808,10 @@
   .largeWeekCircle {
     width: 110px;
     height: 110px;
+    min-width: 110px;
+    min-height: 110px;
+    max-width: 110px;
+    max-height: 110px;
   }
 
   .largeWeekNumber {
@@ -813,31 +833,62 @@
 
 @media screen and (max-width: 450px) {
   .weekRow {
-    grid-template-columns: 110px 1fr;
+    grid-template-columns: 90px 1fr;
     gap: 8px;
   }
 
   .weekPathSegment {
-    width: 110px;
-    min-height: 260px;
+    width: 90px;
+    min-height: 240px;
     position: sticky;
     top: 50px;
   }
 
   .largeWeekCircle {
-    width: 90px;
-    height: 90px;
+    width: 70px; /* Reduced from 90px */
+    height: 70px;
+    min-width: 70px;
+    min-height: 70px;
+    max-width: 70px;
+    max-height: 70px;
+    border-width: 2.5px; /* Slightly thicker border for better definition */
+    border-radius: 50%; /* Ensure perfect circle */
   }
 
   .largeWeekNumber {
-    font-size: 32px;
+    font-size: 26px; /* Reduced from 32px */
   }
 
   .largeWeekLabel {
-    font-size: 8px;
+    font-size: 7px; /* Reduced from 8px */
   }
 
   .largeWeekDays {
+    font-size: 7px; /* Reduced from 8px */
+  }
+  
+  /* Also reduce other circle overlays on mobile */
+  .circleOverlay1,
+  .circleOverlay2,
+  .circleOverlay3,
+  .circleOverlay4 {
+    width: 90px; /* Reduced */
+    height: 90px;
+    min-width: 90px;
+    min-height: 90px;
+    max-width: 90px;
+    max-height: 90px;
+  }
+  
+  .weekNumber {
+    font-size: 32px; /* Reduced */
+  }
+  
+  .weekLabel {
     font-size: 8px;
+  }
+  
+  .daysText {
+    font-size: 9px;
   }
 }
