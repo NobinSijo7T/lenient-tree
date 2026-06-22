@@ -225,27 +225,10 @@
   z-index: 20;
 }
 .r {
-  z-index: 1;
-  font-family: var(--font-orbitron);
-}
-.stacksprintHackathon {
-  z-index: 0;
-  font-family: var(--font-orbitron);
-}
-.stacksprintHackathon {
-  width: 1303px;
-  position: relative;
-  font-size: 64px;
-  line-height: 1.15;
-  letter-spacing: 0.06em;
-  color: var(--color-gainsboro);
-  display: inline-block;
-}
-.r {
   margin: 0 !important;
   position: absolute;
-  right: 174px;
-  bottom: 32px;
+  top: 80px;
+  right: 220px;
   backdrop-filter: blur(28.1px);
   border-radius: var(--br-32);
   background-color: var(--color-royalblue-200);
@@ -256,6 +239,8 @@
   padding: 13px 38px;
   text-align: center;
   font-size: var(--fs-32);
+  z-index: 1;
+  font-family: var(--font-orbitron);
 }
 .reactjs {
   margin: 0;
@@ -273,8 +258,8 @@
 .e {
   margin: 0 !important;
   position: absolute;
-  top: 30px;
-  left: 365px;
+  top: 50px;
+  right: 450px;
   backdrop-filter: blur(28.1px);
   border-radius: var(--br-32);
   background-color: var(--color-royalblue-200);
@@ -304,8 +289,8 @@
 .m {
   margin: 0 !important;
   position: absolute;
-  bottom: 63px;
-  left: 82px;
+  bottom: 80px;
+  right: 120px;
   backdrop-filter: blur(28.1px);
   border-radius: var(--br-32);
   background-color: var(--color-royalblue-200);
@@ -313,17 +298,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 13px 38px;
+  padding: 10px 28px;
   white-space: nowrap;
   z-index: 3;
   text-align: center;
-  font-size: var(--fs-32);
+  font-size: var(--fs-24);
   font-family: var(--font-orbitron);
 }
 .mongoDb {
   margin: 0;
-  height: var(--height-26);
-  width: 185px;
+  height: auto;
+  width: auto;
   position: relative;
   font-size: inherit;
   letter-spacing: 0.02em;
@@ -358,14 +343,32 @@
   justify-content: center;
 }
 .html {
-  top: 113px;
-  right: 374px;
+  backdrop-filter: blur(7.1px);
+  border-radius: var(--br-32);
+  background-color: var(--color-royalblue-100);
+  border: var(--border-1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 !important;
+  position: absolute;
+  top: 20px;
+  right: 80px;
   padding: var(--padding-7) var(--padding-20);
   z-index: 5;
 }
 .tailwind {
-  right: 549px;
-  bottom: 103px;
+  backdrop-filter: blur(7.1px);
+  border-radius: var(--br-32);
+  background-color: var(--color-royalblue-100);
+  border: var(--border-1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 !important;
+  position: absolute;
+  bottom: 40px;
+  left: 180px;
   padding: var(--padding-7) var(--padding-22);
   z-index: 6;
 }
@@ -433,8 +436,8 @@
 .css {
   margin: 0 !important;
   position: absolute;
-  top: 164px;
-  left: 251px;
+  top: 120px;
+  left: 30px;
   backdrop-filter: blur(7.1px);
   border-radius: var(--br-32);
   background-color: var(--color-royalblue-100);
@@ -459,8 +462,8 @@
 .n {
   margin: 0 !important;
   position: absolute;
-  top: 40px;
-  left: -20px;
+  top: 180px;
+  left: 100px;
   backdrop-filter: blur(28.1px);
   border-radius: var(--br-32);
   background-color: var(--color-royalblue-200);
@@ -1856,27 +1859,27 @@
   .n {
     padding: 8px 14px;
     border-width: 1px;
-    font-size: 15px;
+    font-size: 14px;
+  }
+
+  .n {
+    top: -40px;
+    left: 0;
   }
 
   .e {
-    top: -52px;
+    top: -40px;
+    right: 0;
+  }
+
+  .m {
+    bottom: -70px;
     left: 0;
   }
 
   .r {
     right: 0;
-    bottom: -42px;
-  }
-
-  .m {
-    bottom: -86px;
-    left: 0;
-  }
-
-  .n {
-    top: -52px;
-    left: 130px;
+    bottom: -70px;
   }
 
   .lenientTreeParent {
@@ -2800,4 +2803,174 @@
     display: block !important;
   }
 }
+
+/* ── Mobile Hero Override ─────────────────────────────────────────── */
+@media screen and (max-width: 640px) {
+  /* Full-bleed hero with image */
+  .separatorParent,
+  .eventProgress {
+    height: 100svh;
+    min-height: 480px;
+    max-height: 760px;
+  }
+
+  .separatorIcon {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+  }
+
+  /* Title: large, centered, full-width overlay */
+  .stacksprintHackathonParent {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 20;
+  }
+
+  /* Show the container (was hidden by earlier rule) */
+  .heroContentContainer {
+    display: flex;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+    pointer-events: none;
+  }
+
+  /* Hide the scroll-down bar on mobile hero */
+  .heroBottomBar {
+    display: none;
+  }
+
+  .stacksprintHackathon {
+    font-size: clamp(52px, 17vw, 86px);
+    line-height: 0.88;
+    text-align: center;
+    white-space: normal;
+    width: 90vw;
+    letter-spacing: 0.02em;
+    color: rgba(242, 244, 250, 0.97);
+    text-shadow:
+      0 0 80px rgba(0, 100, 255, 0.35),
+      0 4px 32px rgba(0, 0, 0, 0.6);
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Show ALL pills on mobile hero */
+  .html,
+  .tailwind,
+  .js,
+  .python,
+  .css,
+  .dot {
+    display: flex;
+  }
+
+  /* Pill sizing — slightly smaller than desktop */
+  .r, .e, .m, .n {
+    padding: 7px 14px;
+    font-size: 13px;
+    border-width: 1px;
+  }
+
+  .html, .tailwind, .js, .python, .css {
+    padding: 6px 12px;
+    font-size: 11px;
+    border-width: 1px;
+  }
+
+  /* Pill positions — scattered to match screenshot layout */
+  /* NODE.JS — left-center */
+  .n {
+    top: 42%;
+    left: 4%;
+    right: auto;
+    bottom: auto;
+  }
+
+  /* EXPRESS.JS — upper-center */
+  .e {
+    top: 33%;
+    left: 34%;
+    right: auto;
+    bottom: auto;
+  }
+
+  /* PYTHON — upper-right */
+  .python {
+    top: 33%;
+    right: 4%;
+    left: auto;
+    bottom: auto;
+  }
+
+  /* HTML — center-right */
+  .html {
+    top: 47%;
+    right: 30%;
+    left: auto;
+    bottom: auto;
+  }
+
+  /* CSS — left of center */
+  .css {
+    top: 50%;
+    left: 24%;
+    right: auto;
+    bottom: auto;
+  }
+
+  /* TAILWIND — lower-center */
+  .tailwind {
+    top: 62%;
+    left: 42%;
+    right: auto;
+    bottom: auto;
+  }
+
+  /* MONGO DB — lower-left */
+  .m {
+    top: 64%;
+    left: 4%;
+    right: auto;
+    bottom: auto;
+  }
+
+  /* JAVASCRIPT — lower-center */
+  .js {
+    top: 72%;
+    left: 30%;
+    right: auto;
+    bottom: auto;
+  }
+
+  /* REACT.JS — lower-right */
+  .r {
+    top: 66%;
+    right: 6%;
+    left: auto;
+    bottom: auto;
+  }
+
+  /* Blue dot accent */
+  .dot {
+    display: block;
+    top: 66%;
+    right: 2%;
+    bottom: auto;
+    width: 20px;
+    height: 18px;
+  }
+
+  /* Hide lenient tree label — not shown in reference */
+  .lenientTreeParent {
+    display: none;
+  }
+}
+
 

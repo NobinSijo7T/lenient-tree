@@ -501,8 +501,8 @@
   .nav {
     position: fixed;
     top: 16px;
+    left: 16px;
     right: 16px;
-    left: auto;
     transform: none;
     width: auto;
     min-width: 0;
@@ -514,6 +514,9 @@
     border: 1px solid rgba(183, 190, 234, 0.15);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     z-index: 2147483647 !important;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 
   .navigationDataParent,
@@ -545,9 +548,9 @@
       box-shadow 0.35s ease,
       background 0.35s ease;
     height: 38px;
-    padding: 8px 20px;
+    padding: 8px 16px;
     border-radius: 20px;
-    gap: 10px;
+    gap: 8px;
     align-items: center;
     justify-content: center;
     z-index: 2;

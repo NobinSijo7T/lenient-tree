@@ -3,7 +3,7 @@ import { ReactNode } from "react";
 import SmoothScroll from "../components/smooth-scroll";
 
 export const metadata = {
-  title: `FutureStack AI Internship`,
+  title: `Future Stack AI Internship`,
   icons: {
     icon: [
       { url: '/favicon/favicon.ico' },

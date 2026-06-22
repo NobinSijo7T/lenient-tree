@@ -37,7 +37,8 @@ export default function HeroPills() {
     <div className={styles.stacksprintHackathonParent}>
       <div className={styles.heroContentContainer}>
         <div className={styles.stacksprintHackathon}>
-          <span className={styles.heroTitleLine}>FutureStack AI</span>
+          <span className={styles.heroTitleLine}>Future Stack AI</span>
+          <br />
           <span className={`${styles.heroTitleLine} ${styles.heroTitleSecondary}`}>
             Internship
           </span>
@@ -65,36 +66,36 @@ export default function HeroPills() {
         </section>
       </div>
 
-      {/* Large pills — React.js, Express.js, Mongo DB, Node.js */}
-      <div className={`${styles.r} ${styles.pillFloat1}`} style={p(-0.08)}>
+      {/* Large pills — React.js, Express.js, Mongo DB, Node.js - better distributed */}
+      <div className={`${styles.r} ${styles.pillFloat1}`} style={p(-0.10)}>
         <h2 className={styles.reactjs}>React.js</h2>
       </div>
-      <div className={`${styles.e} ${styles.pillFloat2}`} style={p(-0.12)}>
-        <h2 className={styles.expressjs}>express.js</h2>
-      </div>
-      <div className={`${styles.m} ${styles.pillFloat3}`} style={p(-0.06)}>
-        <h2 className={styles.mongoDb}>Mongo DB</h2>
-      </div>
-      <div className={`${styles.n} ${styles.pillFloat1}`} style={p(-0.10)}>
+      <div className={`${styles.n} ${styles.pillFloat2}`} style={p(-0.08)}>
         <h2 className={styles.nodejs}>Node.js</h2>
+      </div>
+      <div className={`${styles.e} ${styles.pillFloat3}`} style={p(-0.12)}>
+        <h2 className={styles.expressjs}>Express.js</h2>
+      </div>
+      <div className={`${styles.m} ${styles.pillFloat4}`} style={p(-0.06)}>
+        <h2 className={styles.mongoDb}>MongoDB</h2>
       </div>
 
 
       {/* Small pills — HTML, Tailwind, JavaScript, Python, CSS */}
-      <div className={`${styles.html} ${styles.pillFloat4}`} style={p(-0.14)}>
+      <div className={`${styles.html} ${styles.pillFloat5}`} style={p(-0.14)}>
         <h3 className={styles.javascript}>HTML</h3>
       </div>
-      <div className={`${styles.tailwind} ${styles.pillFloat5}`} style={p(-0.10)}>
-        <h3 className={styles.tailwind2}>tailwind</h3>
+      <div className={`${styles.tailwind} ${styles.pillFloat1}`} style={p(-0.10)}>
+        <h3 className={styles.tailwind2}>Tailwind</h3>
       </div>
       <div className={`${styles.js} ${styles.pillFloat2}`} style={p(-0.16)}>
-        <h3 className={styles.javascript}>javascript</h3>
+        <h3 className={styles.javascript}>JavaScript</h3>
       </div>
-      <div className={`${styles.python} ${styles.pillFloat1}`} style={p(-0.09)}>
-        <h3 className={styles.python2}>python</h3>
+      <div className={`${styles.python} ${styles.pillFloat3}`} style={p(-0.09)}>
+        <h3 className={styles.python2}>Python</h3>
       </div>
-      <div className={`${styles.css} ${styles.pillFloat3}`} style={p(-0.13)}>
-        <h3 className={styles.css2}>css</h3>
+      <div className={`${styles.css} ${styles.pillFloat4}`} style={p(-0.13)}>
+        <h3 className={styles.css2}>CSS</h3>
       </div>
     </div>
   );
