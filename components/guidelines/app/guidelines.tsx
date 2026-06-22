@@ -2,190 +2,60 @@
 
 import type { NextPage } from "next";
 import Image from "next/image";
-import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./guidelines.module.css";
 
-const pointerTrack = [
-  [40, 225],
-  [60, 249.8],
-  [80, 265],
-  [100, 275.2],
-  [120, 281.5],
-  [140, 284.5],
-  [160, 284.5],
-  [180, 281.2],
-  [200, 274.8],
-  [220, 264.8],
-  [240, 249],
-  [260, 224],
-  [280, 160],
-  [300, 103],
-  [320, 60.5],
-  [340, 41.2],
-  [360, 28.8],
-  [380, 20.8],
-  [400, 16.2],
-  [420, 14.8],
-  [440, 16.2],
-  [460, 20.8],
-  [480, 29.2],
-  [500, 41.8],
-  [520, 61],
-  [540, 109.5],
-  [560, 161.2],
-  [580, 225],
-  [600, 249.8],
-  [620, 265],
-  [640, 275.2],
-  [660, 281.5],
-  [680, 284.5],
-  [700, 284.5],
-  [720, 281.2],
-  [740, 274.8],
-  [760, 264.8],
-  [780, 249],
-  [800, 224],
-  [820, 160],
-  [840, 103],
-  [860, 60.5],
-  [880, 41.2],
-  [900, 28.8],
-  [920, 20.8],
-  [940, 16.2],
-  [960, 14.8],
-  [980, 16.2],
-  [1000, 20.8],
-  [1020, 29.2],
-  [1040, 41.8],
-  [1060, 61],
-] as const;
-
-const pointerEndTrack = [
-  [40, 252],
-  [60, 270],
-  [80, 282.5],
-  [100, 291.5],
-  [120, 297],
-  [140, 299.5],
-  [160, 299.5],
-  [180, 296.5],
-  [200, 291],
-  [220, 282.5],
-  [240, 269.5],
-  [260, 251.5],
-  [280, 224.5],
-  [300, 147],
-  [320, 83.5],
-  [340, 60],
-  [360, 45.5],
-  [380, 36.5],
-  [400, 31.5],
-  [420, 29.5],
-  [440, 31.5],
-  [460, 36.5],
-  [480, 46],
-  [500, 60.5],
-  [520, 84],
-  [540, 159],
-  [560, 225.5],
-  [580, 252],
-  [600, 270],
-  [620, 282.5],
-  [640, 291.5],
-  [660, 297],
-  [680, 299.5],
-  [700, 299.5],
-  [720, 296.5],
-  [740, 291],
-  [760, 282.5],
-  [780, 269.5],
-  [800, 251.5],
-  [820, 224.5],
-  [840, 147],
-  [860, 83.5],
-  [880, 60],
-  [900, 45.5],
-  [920, 36.5],
-  [940, 31.5],
-  [960, 29.5],
-  [980, 31.5],
-  [1000, 36.5],
-  [1020, 46],
-  [1040, 60.5],
-  [1060, 84],
-] as const;
-
-const pointerEndBias = 0.68;
-const pointerYOffset = 0;
-const timelineImageWidth = 300;
-const timelineImageHeight = 833;
-
-const getPointerXAtY = (
-  track: readonly (readonly [number, number])[],
-  targetY: number,
-) => {
-  if (targetY <= track[0][0]) {
-    return track[0][1];
-  }
-
-  for (let i = 1; i < track.length; i += 1) {
-    const [currentY, currentX] = track[i];
-    const [previousY, previousX] = track[i - 1];
-
-    if (targetY <= currentY) {
-      const progress = (targetY - previousY) / (currentY - previousY);
-      return previousX + (currentX - previousX) * progress;
-    }
-  }
-
-  return track[track.length - 1][1];
-};
-
 const Guidelines: NextPage = () => {
-  const [glowProgress, setGlowProgress] = useState(0);
-  const [pointerPosition, setPointerPosition] = useState({ x: 225, y: 40 });
-  const pathFrameRef = useRef<HTMLDivElement>(null);
+  const [activeWeek, setActiveWeek] = useState<number>(1);
+  const [scrollProgress, setScrollProgress] = useState<number>(0);
+  const [pathLength, setPathLength] = useState<number>(0);
   const animationFrame = useRef<number | null>(null);
+  const weekRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const pathRef = useRef<SVGPathElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  const svgRef = useRef<SVGSVGElement>(null);
+
+  const scrollToWeek = (weekNumber: number) => {
+    const weekElement = weekRefs.current[weekNumber - 1];
+    if (weekElement) {
+      weekElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  };
 
   useEffect(() => {
-    const updateGlowProgress = () => {
-      const pathFrame = pathFrameRef.current;
+    // Get the path length on mount
+    if (pathRef.current) {
+      const length = pathRef.current.getTotalLength();
+      setPathLength(length);
+    }
+  }, []);
 
-      if (!pathFrame) {
-        return;
-      }
+  useEffect(() => {
+    const updateActiveWeek = () => {
+      if (!sectionRef.current) return;
 
-      const rect = pathFrame.getBoundingClientRect();
-      const viewportHeight =
-        window.innerHeight || document.documentElement.clientHeight;
-      const startLine = viewportHeight * 0.78;
-      const endLine = viewportHeight * 0.22;
-      const travelDistance = rect.height + startLine - endLine;
-      const nextProgress =
-        travelDistance <= 0
-          ? 0
-          : (startLine - rect.top) / travelDistance;
-      const clampedProgress = Math.min(Math.max(nextProgress, 0), 1);
+      const sectionRect = sectionRef.current.getBoundingClientRect();
+      const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+      
+      // Calculate scroll progress (0 to 1) based on section position
+      const sectionTop = sectionRect.top;
+      const sectionHeight = sectionRect.height;
+      const scrollStart = viewportHeight * 0.8; // Start when section is 80% from top
+      const scrollEnd = -sectionHeight + viewportHeight * 0.2; // End when section is 20% from top
+      
+      const progress = Math.max(0, Math.min(1, (scrollStart - sectionTop) / (scrollStart - scrollEnd)));
+      setScrollProgress(progress);
 
-      setGlowProgress(clampedProgress);
-
-      if (rect.height > 0) {
-        const revealEndY = Math.min(
-          Math.max(clampedProgress * rect.height, pointerTrack[0][0]),
-          pointerTrack[pointerTrack.length - 1][0],
-        );
-        const pointerY = Math.min(
-          Math.max(revealEndY + pointerYOffset, pointerTrack[0][0]),
-          pointerTrack[pointerTrack.length - 1][0],
-        );
-        const centerX = getPointerXAtY(pointerTrack, revealEndY);
-        const endX = getPointerXAtY(pointerEndTrack, revealEndY);
-
-        setPointerPosition({
-          x: centerX + (endX - centerX) * pointerEndBias,
-          y: pointerY,
-        });
-      }
+      // Update active week based on scroll position
+      const viewportCenter = viewportHeight / 2;
+      weekRefs.current.forEach((weekEl, index) => {
+        if (weekEl) {
+          const weekRect = weekEl.getBoundingClientRect();
+          if (weekRect.top < viewportCenter && weekRect.bottom > viewportCenter) {
+            setActiveWeek(index + 1);
+          }
+        }
+      });
     };
 
     const scheduleUpdate = () => {
@@ -195,11 +65,11 @@ const Guidelines: NextPage = () => {
 
       animationFrame.current = window.requestAnimationFrame(() => {
         animationFrame.current = null;
-        updateGlowProgress();
+        updateActiveWeek();
       });
     };
 
-    updateGlowProgress();
+    updateActiveWeek();
     window.addEventListener("scroll", scheduleUpdate, { passive: true });
     window.addEventListener("resize", scheduleUpdate);
 
@@ -211,330 +81,412 @@ const Guidelines: NextPage = () => {
         window.cancelAnimationFrame(animationFrame.current);
       }
     };
-  }, []);
+  }, [pathLength]);
 
-  const glowProgressPercent = Math.round(glowProgress * 1000) / 10;
-  const pathFrameStyle = {
-    "--path-glow-progress": `${glowProgressPercent}%`,
-  } as CSSProperties;
+  // Get the position of the moving circle along the path
+  const getPointAtProgress = (progress: number) => {
+    if (!pathRef.current || pathLength === 0) {
+      return { x: 150, y: 0 };
+    }
+    
+    const point = pathRef.current.getPointAtLength(progress * pathLength);
+    return { x: point.x, y: point.y };
+  };
+
+  const circlePosition = getPointAtProgress(scrollProgress);
 
   return (
     <div className={styles.guidelines}>
       <h1 className={styles.guidelines2}>Guidelines</h1>
       <main className={styles.frameParent}>
-        <div
-          ref={pathFrameRef}
-          className={styles.pathFrame}
-          style={pathFrameStyle}
-        >
-          {/* SVG Path connecting 4 circles */}
+
+        <section className={styles.frameGroup} ref={sectionRef}>
+          {/* Master continuous path overlay */}
           <svg 
-            className={styles.timelinePath} 
-            width="300" 
-            height="1050" 
-            viewBox="0 0 300 1050"
-            xmlns="http://www.w3.org/2000/svg"
-            preserveAspectRatio="xMidYMid meet"
+            ref={svgRef}
+            className={styles.masterPath}
+            viewBox="0 0 300 1800"
+            preserveAspectRatio="none"
+            style={{
+              position: 'absolute',
+              left: '0',
+              top: '0',
+              width: '300px',
+              height: '100%',
+              pointerEvents: 'none',
+              zIndex: 5
+            }}
           >
             <defs>
-              <linearGradient id="pathGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="#2df5ff" stopOpacity="0.3" />
-                <stop offset="50%" stopColor="#8e52ff" stopOpacity="0.3" />
-                <stop offset="100%" stopColor="#3358ff" stopOpacity="0.3" />
+              <linearGradient id="masterGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stopColor="#2df5ff" stopOpacity="0.6" />
+                <stop offset="25%" stopColor="#8e52ff" stopOpacity="0.55" />
+                <stop offset="50%" stopColor="#5078ff" stopOpacity="0.5" />
+                <stop offset="75%" stopColor="#3358ff" stopOpacity="0.5" />
+                <stop offset="100%" stopColor="#2d40ff" stopOpacity="0.5" />
               </linearGradient>
-              <linearGradient id="glowGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="#2df5ff" />
-                <stop offset="50%" stopColor="#8e52ff" />
-                <stop offset="100%" stopColor="#3358ff" />
-              </linearGradient>
-              <filter id="glow">
+              <filter id="masterGlow">
+                <feGaussianBlur stdDeviation="10" result="coloredBlur"/>
+                <feMerge>
+                  <feMergeNode in="coloredBlur"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
+              <filter id="strongGlow">
+                <feGaussianBlur stdDeviation="15" result="coloredBlur"/>
+                <feMerge>
+                  <feMergeNode in="coloredBlur"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
+              <filter id="circleGlow">
                 <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
                 <feMerge>
                   <feMergeNode in="coloredBlur"/>
                   <feMergeNode in="SourceGraphic"/>
                 </feMerge>
               </filter>
+              <mask id="progressMask">
+                <rect x="0" y="0" width="300" height="1800" fill="white" opacity="0.3" />
+                <rect x="0" y="0" width="300" height={scrollProgress * 1800} fill="white" />
+              </mask>
             </defs>
             
-            {/* Flowing S-curve path through all 4 week circles */}
+            {/* Base path (dim) */}
             <path
-              className={styles.basePath}
-              d="M 150,40
-                 C 250,50 280,90 280,155
-                 C 280,220 250,260 150,270
-                 C 50,280 20,320 20,385
-                 C 20,450 50,490 150,500
-                 C 250,510 280,550 280,615
-                 C 280,680 250,720 150,730
-                 C 50,740 20,780 20,845
-                 C 20,910 50,950 150,1000"
-              stroke="url(#pathGradient)"
+              ref={pathRef}
+              d="M 150,0
+                 L 150,130
+                 A 95,95 0 0 1 150,320
+                 L 150,580
+                 A 95,95 0 0 0 150,770
+                 L 150,1030
+                 A 95,95 0 0 1 150,1220
+                 L 150,1480
+                 A 95,95 0 0 0 150,1670
+                 L 150,1800"
+              stroke="url(#masterGrad)"
+              strokeWidth="20"
+              fill="none"
+              strokeLinecap="round"
+              filter="url(#masterGlow)"
+            />
+            
+            {/* Glowing path behind the moving circle */}
+            <path
+              d="M 150,0
+                 L 150,130
+                 A 95,95 0 0 1 150,320
+                 L 150,580
+                 A 95,95 0 0 0 150,770
+                 L 150,1030
+                 A 95,95 0 0 1 150,1220
+                 L 150,1480
+                 A 95,95 0 0 0 150,1670
+                 L 150,1800"
+              stroke="url(#masterGrad)"
               strokeWidth="22"
               fill="none"
               strokeLinecap="round"
+              filter="url(#strongGlow)"
+              mask="url(#progressMask)"
+              opacity="0.9"
             />
             
-            {/* Animated glow overlay */}
-            <path
-              className={styles.glowPath}
-              d="M 150,40
-                 C 250,50 280,90 280,155
-                 C 280,220 250,260 150,270
-                 C 50,280 20,320 20,385
-                 C 20,450 50,490 150,500
-                 C 250,510 280,550 280,615
-                 C 280,680 250,720 150,730
-                 C 50,740 20,780 20,845
-                 C 20,910 50,950 150,1000"
-              stroke="url(#glowGradient)"
-              strokeWidth="10"
-              fill="none"
-              strokeLinecap="round"
-              filter="url(#glow)"
-            />
+            {/* Moving circle with glow */}
+            <g transform={`translate(${circlePosition.x}, ${circlePosition.y})`}>
+              <circle
+                cx="0"
+                cy="0"
+                r="33"
+                fill="#3537ad"
+                stroke="rgba(196, 206, 255, 0.62)"
+                strokeWidth="2"
+                filter="url(#circleGlow)"
+              />
+              <circle
+                cx="0"
+                cy="0"
+                r="38"
+                fill="none"
+                stroke="rgba(61, 84, 255, 0.2)"
+                strokeWidth="5"
+              />
+              {/* Logo centred inside the circle using foreignObject */}
+              <foreignObject x="-24" y="-24" width="48" height="48" style={{ overflow: 'visible' }}>
+                <Image
+                  src="/white.png"
+                  alt="LT"
+                  width={48}
+                  height={48}
+                  style={{ objectFit: 'contain', display: 'block' }}
+                />
+              </foreignObject>
+            </g>
           </svg>
 
-          <div
-            className={styles.timelinePointer}
-            style={{ left: `${pointerPosition.x}px`, top: `${pointerPosition.y}px` }}
-            aria-hidden="true"
-          >
-            <Image
-              className={styles.timelinePointerLabel}
-              src="/white.png"
-              alt="LT"
-              width={48}
-              height={48}
-              style={{ objectFit: "contain" }}
-            />
-          </div>
-          {/* Timeline circle date overlays */}
-          <div className={styles.circleOverlay1}>
-            <span className={styles.weekNumber}>1</span>
-            <span className={styles.weekLabel}>WEEK</span>
-            <span className={styles.daysText}>Day 1 – 4</span>
-          </div>
-          <div className={styles.circleOverlay2}>
-            <span className={styles.weekNumber}>2</span>
-            <span className={styles.weekLabel}>WEEK</span>
-            <span className={styles.daysText}>Day 5 – 8</span>
-          </div>
-          <div className={styles.circleOverlay3}>
-            <span className={styles.weekNumber}>3</span>
-            <span className={styles.weekLabel}>WEEK</span>
-            <span className={styles.daysText}>Day 9 – 12</span>
-          </div>
-          <div className={styles.circleOverlay4}>
-            <span className={styles.weekNumber}>4</span>
-            <span className={styles.weekLabel}>WEEK</span>
-            <span className={styles.daysText}>Day 13 – 16</span>
-          </div>
-        </div>
-        <section className={styles.frameGroup}>
-          <div className={styles.weekSection}>
-            <div className={styles.weekHeader}>
-              <h2 className={styles.weekTitle}>Week 1: Frontend Development</h2>
-            </div>
-            <div className={styles.daysList}>
-              <div className={styles.dayCard}>
-                <h3 className={styles.dayTitle}>Day 1: Web Basics, HTML5, Website Structure & Static Projects</h3>
-                <ul className={styles.topicsList}>
-                  <li>Introduction to the Web</li>
-                  <li>HTML5 Fundamentals</li>
-                  <li>Semantic HTML</li>
-                  <li>Website Structure</li>
-                  <li>Static Website Development</li>
-                  <li>Mini HTML Project</li>
-                </ul>
+
+
+          {/* Week 1 */}
+          <div className={styles.weekSection} ref={(el) => { weekRefs.current[0] = el; }}>
+            <div className={styles.weekRow}>
+              <div className={styles.weekPathSegment}>
+                <div 
+                  className={`${styles.largeWeekCircle} ${activeWeek === 1 ? styles.active : ''}`}
+                  onClick={() => scrollToWeek(1)}
+                >
+                  <div className={styles.circleContent}>
+                    <div className={styles.largeWeekNumber}>1</div>
+                    <div className={styles.largeWeekLabel}>WEEK</div>
+                    <div className={styles.largeWeekDays}>Day 1 – 4</div>
+                  </div>
+                  {activeWeek === 1 && <div className={styles.activeRing} />}
+                </div>
               </div>
-              <div className={styles.dayCard}>
-                <h3 className={styles.dayTitle}>Day 2: CSS, Responsive Design & Modern UI</h3>
-                <ul className={styles.topicsList}>
-                  <li>CSS Fundamentals</li>
-                  <li>Flexbox</li>
-                  <li>CSS Grid</li>
-                  <li>Responsive Design</li>
-                  <li>Media Queries</li>
-                  <li>Modern UI Components</li>
-                  <li>Animations & Transitions</li>
-                </ul>
-              </div>
-              <div className={styles.dayCard}>
-                <h3 className={styles.dayTitle}>Day 3: JavaScript Fundamentals & Interactive Apps</h3>
-                <ul className={styles.topicsList}>
-                  <li>Variables & Data Types</li>
-                  <li>Functions</li>
-                  <li>Arrays & Objects</li>
-                  <li>DOM Manipulation</li>
-                  <li>Events</li>
-                  <li>ES6 Features</li>
-                  <li>Interactive JavaScript Projects</li>
-                </ul>
-              </div>
-              <div className={styles.dayCard}>
-                <h3 className={styles.dayTitle}>Day 4: React Basics, Components & UI Development</h3>
-                <ul className={styles.topicsList}>
-                  <li>Introduction to React</li>
-                  <li>JSX</li>
-                  <li>Components</li>
-                  <li>Props</li>
-                  <li>State</li>
-                  <li>Event Handling</li>
-                  <li>Building Reusable UI Components</li>
-                </ul>
+              <div className={styles.weekContent}>
+                <div className={styles.weekHeader}>
+                  <h2 className={styles.weekTitle}>Week 1: Frontend Development</h2>
+                </div>
+                <div className={styles.bentoGrid}>
+                  <div className={styles.bentoCard}>
+                    <h3 className={styles.bentoDay}>Day 1</h3>
+                    <h4 className={styles.bentoTitle}>Web Basics & HTML5</h4>
+                    <ul className={styles.bentoList}>
+                      <li>Introduction to the Web</li>
+                      <li>HTML5 Fundamentals</li>
+                      <li>Semantic HTML</li>
+                      <li>Static Projects</li>
+                    </ul>
+                  </div>
+                  <div className={styles.bentoCard}>
+                    <h3 className={styles.bentoDay}>Day 2</h3>
+                    <h4 className={styles.bentoTitle}>CSS & Responsive Design</h4>
+                    <ul className={styles.bentoList}>
+                      <li>CSS Fundamentals</li>
+                      <li>Flexbox & Grid</li>
+                      <li>Responsive Design</li>
+                      <li>Animations</li>
+                    </ul>
+                  </div>
+                  <div className={styles.bentoCard}>
+                    <h3 className={styles.bentoDay}>Day 3</h3>
+                    <h4 className={styles.bentoTitle}>JavaScript Fundamentals</h4>
+                    <ul className={styles.bentoList}>
+                      <li>Variables & Functions</li>
+                      <li>DOM Manipulation</li>
+                      <li>Events & ES6</li>
+                      <li>Interactive Apps</li>
+                    </ul>
+                  </div>
+                  <div className={styles.bentoCard}>
+                    <h3 className={styles.bentoDay}>Day 4</h3>
+                    <h4 className={styles.bentoTitle}>React Basics</h4>
+                    <ul className={styles.bentoList}>
+                      <li>JSX & Components</li>
+                      <li>Props & State</li>
+                      <li>Event Handling</li>
+                      <li>Reusable UI</li>
+                    </ul>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
 
-          <div className={styles.weekSection}>
-            <div className={styles.weekHeader}>
-              <h2 className={styles.weekTitle}>Week 2: Full Stack Development</h2>
-            </div>
-            <div className={styles.daysList}>
-              <div className={styles.dayCard}>
-                <h3 className={styles.dayTitle}>Day 5: Advanced React, APIs & Forms</h3>
-                <ul className={styles.topicsList}>
-                  <li>React Hooks</li>
-                  <li>useEffect</li>
-                  <li>React Router</li>
-                  <li>API Integration</li>
-                  <li>Form Handling</li>
-                  <li>Validation</li>
-                  <li>State Management Basics</li>
-                </ul>
+          {/* Week 2 */}
+          <div className={styles.weekSection} ref={(el) => { weekRefs.current[1] = el; }}>
+            <div className={styles.weekRow}>
+              <div className={styles.weekPathSegment}>
+                <div 
+                  className={`${styles.largeWeekCircle} ${activeWeek === 2 ? styles.active : ''}`}
+                  onClick={() => scrollToWeek(2)}
+                >
+                  <div className={styles.circleContent}>
+                    <div className={styles.largeWeekNumber}>2</div>
+                    <div className={styles.largeWeekLabel}>WEEK</div>
+                    <div className={styles.largeWeekDays}>Day 5 – 8</div>
+                  </div>
+                  {activeWeek === 2 && <div className={styles.activeRing} />}
+                </div>
               </div>
-              <div className={styles.dayCard}>
-                <h3 className={styles.dayTitle}>Day 6: Node.js, Express & Backend APIs</h3>
-                <ul className={styles.topicsList}>
-                  <li>Node.js Fundamentals</li>
-                  <li>Express.js</li>
-                  <li>REST APIs</li>
-                  <li>Middleware</li>
-                  <li>CRUD Operations</li>
-                  <li>Environment Variables</li>
-                </ul>
-              </div>
-              <div className={styles.dayCard}>
-                <h3 className={styles.dayTitle}>Day 7: Database Design & PostgreSQL</h3>
-                <ul className={styles.topicsList}>
-                  <li>Relational Databases</li>
-                  <li>Database Design</li>
-                  <li>SQL Basics</li>
-                  <li>PostgreSQL</li>
-                  <li>Relationships</li>
-                  <li>CRUD with SQL</li>
-                </ul>
-              </div>
-              <div className={styles.dayCard}>
-                <h3 className={styles.dayTitle}>Day 8: Authentication & Security</h3>
-                <ul className={styles.topicsList}>
-                  <li>Authentication</li>
-                  <li>Authorization</li>
-                  <li>JWT</li>
-                  <li>Password Hashing</li>
-                  <li>Protected Routes</li>
-                  <li>Security Best Practices</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div className={styles.weekSection}>
-            <div className={styles.weekHeader}>
-              <h2 className={styles.weekTitle}>Week 3: Cloud & Production</h2>
-            </div>
-            <div className={styles.daysList}>
-              <div className={styles.dayCard}>
-                <h3 className={styles.dayTitle}>Day 9: Supabase Database & Backend Services</h3>
-                <ul className={styles.topicsList}>
-                  <li>Supabase Introduction</li>
-                  <li>Database Management</li>
-                  <li>Authentication</li>
-                  <li>Storage</li>
-                  <li>Realtime Features</li>
-                  <li>Backend Services</li>
-                </ul>
-              </div>
-              <div className={styles.dayCard}>
-                <h3 className={styles.dayTitle}>Day 10: Full Stack Integration</h3>
-                <ul className={styles.topicsList}>
-                  <li>Frontend-Backend Communication</li>
-                  <li>API Integration</li>
-                  <li>Authentication Flow</li>
-                  <li>Error Handling</li>
-                  <li>Project Integration</li>
-                </ul>
-              </div>
-              <div className={styles.dayCard}>
-                <h3 className={styles.dayTitle}>Day 11: Production Features & Optimization</h3>
-                <ul className={styles.topicsList}>
-                  <li>Performance Optimization</li>
-                  <li>Caching</li>
-                  <li>Code Splitting</li>
-                  <li>Lazy Loading</li>
-                  <li>SEO Basics</li>
-                  <li>Production Best Practices</li>
-                </ul>
-              </div>
-              <div className={styles.dayCard}>
-                <h3 className={styles.dayTitle}>Day 12: AWS Deployment & Hosting</h3>
-                <ul className={styles.topicsList}>
-                  <li>AWS Basics</li>
-                  <li>Deployment</li>
-                  <li>Hosting</li>
-                  <li>Domain Configuration</li>
-                  <li>SSL</li>
-                  <li>CI/CD Overview</li>
-                </ul>
+              <div className={styles.weekContent}>
+                <div className={styles.weekHeader}>
+                  <h2 className={styles.weekTitle}>Week 2: Full Stack Development</h2>
+                </div>
+                <div className={styles.bentoGrid}>
+                  <div className={styles.bentoCard}>
+                    <h3 className={styles.bentoDay}>Day 5</h3>
+                    <h4 className={styles.bentoTitle}>Advanced React</h4>
+                    <ul className={styles.bentoList}>
+                      <li>React Hooks</li>
+                      <li>React Router</li>
+                      <li>API Integration</li>
+                      <li>Form Handling</li>
+                    </ul>
+                  </div>
+                  <div className={styles.bentoCard}>
+                    <h3 className={styles.bentoDay}>Day 6</h3>
+                    <h4 className={styles.bentoTitle}>Node.js & Express</h4>
+                    <ul className={styles.bentoList}>
+                      <li>Node.js Fundamentals</li>
+                      <li>Express.js</li>
+                      <li>REST APIs</li>
+                      <li>Middleware</li>
+                    </ul>
+                  </div>
+                  <div className={styles.bentoCard}>
+                    <h3 className={styles.bentoDay}>Day 7</h3>
+                    <h4 className={styles.bentoTitle}>Database & PostgreSQL</h4>
+                    <ul className={styles.bentoList}>
+                      <li>Database Design</li>
+                      <li>SQL Basics</li>
+                      <li>PostgreSQL</li>
+                      <li>CRUD Operations</li>
+                    </ul>
+                  </div>
+                  <div className={styles.bentoCard}>
+                    <h3 className={styles.bentoDay}>Day 8</h3>
+                    <h4 className={styles.bentoTitle}>Authentication</h4>
+                    <ul className={styles.bentoList}>
+                      <li>Auth & Authorization</li>
+                      <li>JWT</li>
+                      <li>Password Hashing</li>
+                      <li>Security</li>
+                    </ul>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
 
-          <div className={styles.weekSection}>
-            <div className={styles.weekHeader}>
-              <h2 className={styles.weekTitle}>Week 4: AI Development</h2>
+          {/* Week 3 */}
+          <div className={styles.weekSection} ref={(el) => { weekRefs.current[2] = el; }}>
+            <div className={styles.weekRow}>
+              <div className={styles.weekPathSegment}>
+                <div 
+                  className={`${styles.largeWeekCircle} ${activeWeek === 3 ? styles.active : ''}`}
+                  onClick={() => scrollToWeek(3)}
+                >
+                  <div className={styles.circleContent}>
+                    <div className={styles.largeWeekNumber}>3</div>
+                    <div className={styles.largeWeekLabel}>WEEK</div>
+                    <div className={styles.largeWeekDays}>Day 9 – 12</div>
+                  </div>
+                  {activeWeek === 3 && <div className={styles.activeRing} />}
+                </div>
+              </div>
+              <div className={styles.weekContent}>
+                <div className={styles.weekHeader}>
+                  <h2 className={styles.weekTitle}>Week 3: Cloud & Production</h2>
+                </div>
+                <div className={styles.bentoGrid}>
+                  <div className={styles.bentoCard}>
+                    <h3 className={styles.bentoDay}>Day 9</h3>
+                    <h4 className={styles.bentoTitle}>Supabase</h4>
+                    <ul className={styles.bentoList}>
+                      <li>Supabase Intro</li>
+                      <li>Database Management</li>
+                      <li>Authentication</li>
+                      <li>Realtime Features</li>
+                    </ul>
+                  </div>
+                  <div className={styles.bentoCard}>
+                    <h3 className={styles.bentoDay}>Day 10</h3>
+                    <h4 className={styles.bentoTitle}>Full Stack Integration</h4>
+                    <ul className={styles.bentoList}>
+                      <li>Frontend-Backend</li>
+                      <li>API Integration</li>
+                      <li>Auth Flow</li>
+                      <li>Error Handling</li>
+                    </ul>
+                  </div>
+                  <div className={styles.bentoCard}>
+                    <h3 className={styles.bentoDay}>Day 11</h3>
+                    <h4 className={styles.bentoTitle}>Optimization</h4>
+                    <ul className={styles.bentoList}>
+                      <li>Performance</li>
+                      <li>Code Splitting</li>
+                      <li>Lazy Loading</li>
+                      <li>SEO Basics</li>
+                    </ul>
+                  </div>
+                  <div className={styles.bentoCard}>
+                    <h3 className={styles.bentoDay}>Day 12</h3>
+                    <h4 className={styles.bentoTitle}>AWS Deployment</h4>
+                    <ul className={styles.bentoList}>
+                      <li>AWS Basics</li>
+                      <li>Deployment</li>
+                      <li>Domain & SSL</li>
+                      <li>CI/CD</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div className={styles.daysList}>
-              <div className={styles.dayCard}>
-                <h3 className={styles.dayTitle}>Day 13: AI, LLMs & Prompt Engineering</h3>
-                <ul className={styles.topicsList}>
-                  <li>Artificial Intelligence Basics</li>
-                  <li>Large Language Models</li>
-                  <li>Prompt Engineering</li>
-                  <li>OpenAI APIs</li>
-                  <li>LLM Best Practices</li>
-                </ul>
+          </div>
+
+          {/* Week 4 */}
+          <div className={styles.weekSection} ref={(el) => { weekRefs.current[3] = el; }}>
+            <div className={styles.weekRow}>
+              <div className={styles.weekPathSegment}>
+                <div 
+                  className={`${styles.largeWeekCircle} ${activeWeek === 4 ? styles.active : ''}`}
+                  onClick={() => scrollToWeek(4)}
+                >
+                  <div className={styles.circleContent}>
+                    <div className={styles.largeWeekNumber}>4</div>
+                    <div className={styles.largeWeekLabel}>WEEK</div>
+                    <div className={styles.largeWeekDays}>Day 13 – 16</div>
+                  </div>
+                  {activeWeek === 4 && <div className={styles.activeRing} />}
+                </div>
               </div>
-              <div className={styles.dayCard}>
-                <h3 className={styles.dayTitle}>Day 14: AI Chatbot Development</h3>
-                <ul className={styles.topicsList}>
-                  <li>Chatbot Architecture</li>
-                  <li>Conversation Design</li>
-                  <li>LLM Integration</li>
-                  <li>Streaming Responses</li>
-                  <li>Context Management</li>
-                </ul>
-              </div>
-              <div className={styles.dayCard}>
-                <h3 className={styles.dayTitle}>Day 15: RAG & Vector Databases</h3>
-                <ul className={styles.topicsList}>
-                  <li>Retrieval-Augmented Generation</li>
-                  <li>Embeddings</li>
-                  <li>Vector Databases</li>
-                  <li>Semantic Search</li>
-                  <li>Document Retrieval</li>
-                </ul>
-              </div>
-              <div className={styles.dayCard}>
-                <h3 className={styles.dayTitle}>Day 16: AI Capstone Project Development</h3>
-                <ul className={styles.topicsList}>
-                  <li>Project Planning</li>
-                  <li>Full AI Application</li>
-                  <li>Frontend + Backend + AI Integration</li>
-                  <li>Testing</li>
-                  <li>Deployment</li>
-                  <li>Final Presentation</li>
-                </ul>
+              <div className={styles.weekContent}>
+                <div className={styles.weekHeader}>
+                  <h2 className={styles.weekTitle}>Week 4: AI Development</h2>
+                </div>
+                <div className={styles.bentoGrid}>
+                  <div className={styles.bentoCard}>
+                    <h3 className={styles.bentoDay}>Day 13</h3>
+                    <h4 className={styles.bentoTitle}>AI & LLMs</h4>
+                    <ul className={styles.bentoList}>
+                      <li>AI Basics</li>
+                      <li>Large Language Models</li>
+                      <li>Prompt Engineering</li>
+                      <li>OpenAI APIs</li>
+                    </ul>
+                  </div>
+                  <div className={styles.bentoCard}>
+                    <h3 className={styles.bentoDay}>Day 14</h3>
+                    <h4 className={styles.bentoTitle}>AI Chatbots</h4>
+                    <ul className={styles.bentoList}>
+                      <li>Chatbot Architecture</li>
+                      <li>Conversation Design</li>
+                      <li>LLM Integration</li>
+                      <li>Context Management</li>
+                    </ul>
+                  </div>
+                  <div className={styles.bentoCard}>
+                    <h3 className={styles.bentoDay}>Day 15</h3>
+                    <h4 className={styles.bentoTitle}>RAG & Vectors</h4>
+                    <ul className={styles.bentoList}>
+                      <li>RAG Systems</li>
+                      <li>Embeddings</li>
+                      <li>Vector Databases</li>
+                      <li>Semantic Search</li>
+                    </ul>
+                  </div>
+                  <div className={styles.bentoCard}>
+                    <h3 className={styles.bentoDay}>Day 16</h3>
+                    <h4 className={styles.bentoTitle}>Capstone Project</h4>
+                    <ul className={styles.bentoList}>
+                      <li>Project Planning</li>
+                      <li>Full AI App</li>
+                      <li>Testing</li>
+                      <li>Final Presentation</li>
+                    </ul>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

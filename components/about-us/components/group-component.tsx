@@ -18,10 +18,31 @@ const GroupComponent: NextPage<GroupComponentType> = ({ className = "" }) => {
   const [isTypingComplete, setIsTypingComplete] = useState(true);
   const containerRef = useRef<HTMLHeadingElement>(null);
 
+  // Generate particles once on mount to avoid hydration mismatch
+  const [particles, setParticles] = useState<Array<{
+    left: string;
+    top: string;
+    animationDelay: string;
+    animationDuration: string;
+    width: string;
+    height: string;
+  }>>([]);
+
   useEffect(() => {
     setMounted(true);
     setDisplayedText("");
     setIsTypingComplete(false);
+    
+    // Generate particle data on client side only
+    const particleData = [...Array(30)].map(() => ({
+      left: `${Math.random() * 100}%`,
+      top: `${20 + Math.random() * 80}%`,
+      animationDelay: `${Math.random() * 8}s`,
+      animationDuration: `${20 + Math.random() * 15}s`,
+      width: `${4 + Math.random() * 6}px`,
+      height: `${4 + Math.random() * 6}px`
+    }));
+    setParticles(particleData);
   }, []);
 
   useEffect(() => {
@@ -63,15 +84,8 @@ const GroupComponent: NextPage<GroupComponentType> = ({ className = "" }) => {
     <main className={[styles.bgParent, className].join(" ")}>
       {/* Animated floating particles */}
       <div className={styles.particles}>
-        {[...Array(30)].map((_, i) => (
-          <div key={i} className={styles.particle} style={{
-            left: `${Math.random() * 100}%`,
-            top: `${20 + Math.random() * 80}%`,
-            animationDelay: `${Math.random() * 8}s`,
-            animationDuration: `${20 + Math.random() * 15}s`,
-            width: `${4 + Math.random() * 6}px`,
-            height: `${4 + Math.random() * 6}px`
-          }} />
+        {particles.map((particle, i) => (
+          <div key={i} className={styles.particle} style={particle} />
         ))}
       </div>
 
