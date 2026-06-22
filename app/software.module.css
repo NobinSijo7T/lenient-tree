@@ -236,7 +236,8 @@
   width: 1303px;
   position: relative;
   font-size: 64px;
-  line-height: 103.49%;
+  line-height: 1.15;
+  letter-spacing: 0.06em;
   color: var(--color-gainsboro);
   display: inline-block;
 }
@@ -1471,7 +1472,8 @@
 .stacksprintHackathon {
   width: min(100%, 1303px);
   font-size: clamp(2rem, 5vw, 4rem);
-  line-height: 0.95;
+  line-height: 1.15;
+  letter-spacing: 0.06em;
   overflow-wrap: anywhere;
 }
 

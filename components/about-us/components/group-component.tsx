@@ -11,7 +11,7 @@ export type GroupComponentType = {
 };
 
 const GroupComponent: NextPage<GroupComponentType> = ({ className = "" }) => {
-  const fullText = "Residency Internship is a 3-week immersive program by lenienttree.com for developers, founders, and creators to build, collaborate, and innovate in a startup-driven environment.";
+  const fullText = "FutureStack AI Internship is a 3-week immersive program by Lenient Tree to build modern full-stack and AI-powered applications. Master React, Node.js, Databases, Cloud Deployment, and Generative AI through real-world projects.";
   
   const [mounted, setMounted] = useState(false);
   const [displayedText, setDisplayedText] = useState(fullText);

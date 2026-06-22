@@ -37,12 +37,9 @@ export default function HeroPills() {
     <div className={styles.stacksprintHackathonParent}>
       <div className={styles.heroContentContainer}>
         <div className={styles.stacksprintHackathon}>
-          <span className={styles.heroTitleLine}>RESIDENCY</span>
+          <span className={styles.heroTitleLine}>FutureStack AI</span>
           <span className={`${styles.heroTitleLine} ${styles.heroTitleSecondary}`}>
-            INTERNSHIP
-          </span>
-          <span className={`${styles.heroTitleLine} ${styles.heroTitleSecondary}`}>
-            PROGRAM
+            Internship
           </span>
         </div>
 
@@ -50,9 +47,6 @@ export default function HeroPills() {
           <div className={styles.frameInner} />
           <div className={styles.hoursParent}>
             <div className={styles.barLeft}>
-              <button className={styles.spotsButton}>
-                <span className={styles.spotsButtonText}>15 spots available</span>
-              </button>
             </div>
             <div className={styles.barCenter}>
               <button className={styles.scrollDownBtn}>
@@ -66,9 +60,7 @@ export default function HeroPills() {
                 />
               </button>
             </div>
-            <div className={styles.barRight}>
-              <h2 className={styles.june08}>JUNE 11TH - JUNE 30TH</h2>
-            </div>
+
           </div>
         </section>
       </div>

@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import styles from './Testimonials.module.css';
+import feedbackData from '../public/internship_feedback.json';
 
 interface Testimonial {
   name: string;
@@ -11,17 +12,7 @@ interface Testimonial {
 
 const Testimonials: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
-
-  React.useEffect(() => {
-    fetch('/internship_feedback.json')
-      .then(res => res.json())
-      .then(data => {
-        // Filter out empty feedbacks and limit to meaningful testimonials
-        const validTestimonials = data.filter((t: Testimonial) => t.feedback.trim() !== '');
-        setTestimonials(validTestimonials);
-      });
-  }, []);
+  const testimonials = feedbackData.filter((t: Testimonial) => t.feedback.trim() !== '');
 
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev + 3 >= testimonials.length ? 0 : prev + 3));
