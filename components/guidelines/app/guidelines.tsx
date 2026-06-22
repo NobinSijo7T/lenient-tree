@@ -234,35 +234,44 @@ const Guidelines: NextPage = () => {
             />
             
             {/* Moving circle with glow */}
-            <g transform={`translate(${circlePosition.x}, ${circlePosition.y})`}>
-              <circle
-                cx="0"
-                cy="0"
-                r="33"
-                fill="#3537ad"
-                stroke="rgba(196, 206, 255, 0.62)"
-                strokeWidth="2"
-                filter="url(#circleGlow)"
-              />
-              <circle
-                cx="0"
-                cy="0"
-                r="38"
-                fill="none"
-                stroke="rgba(61, 84, 255, 0.2)"
-                strokeWidth="5"
-              />
-              {/* Logo centred inside the circle using foreignObject */}
-              <foreignObject x="-24" y="-24" width="48" height="48" style={{ overflow: 'visible' }}>
-                <Image
-                  src="/white.png"
-                  alt="LT"
-                  width={48}
-                  height={48}
-                  style={{ objectFit: 'contain', display: 'block' }}
-                />
-              </foreignObject>
-            </g>
+            {(() => {
+              const scale = Math.min(1, svgWidth / 300);
+              const r1 = 33 * scale;
+              const r2 = 38 * scale;
+              const logoSize = Math.round(48 * scale);
+              const logoHalf = logoSize / 2;
+              return (
+                <g transform={`translate(${circlePosition.x}, ${circlePosition.y})`}>
+                  <circle
+                    cx="0"
+                    cy="0"
+                    r={r1}
+                    fill="#3537ad"
+                    stroke="rgba(196, 206, 255, 0.62)"
+                    strokeWidth="2"
+                    filter="url(#circleGlow)"
+                  />
+                  <circle
+                    cx="0"
+                    cy="0"
+                    r={r2}
+                    fill="none"
+                    stroke="rgba(61, 84, 255, 0.2)"
+                    strokeWidth="5"
+                  />
+                  {/* Logo centred inside the circle using foreignObject */}
+                  <foreignObject x={-logoHalf} y={-logoHalf} width={logoSize} height={logoSize} style={{ overflow: 'visible' }}>
+                    <Image
+                      src="/white.png"
+                      alt="LT"
+                      width={logoSize}
+                      height={logoSize}
+                      style={{ objectFit: 'contain', display: 'block' }}
+                    />
+                  </foreignObject>
+                </g>
+              );
+            })()}
           </svg>
 
 
