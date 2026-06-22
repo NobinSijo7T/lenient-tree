@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import styles from './Testimonials.module.css';
 import feedbackData from '../public/internship_feedback.json';
-import Lightfall from './Lightfall';
 
 interface Testimonial {
   name: string;
@@ -36,27 +35,8 @@ const Testimonials: React.FC = () => {
   };
 
   return (
-    <section className={styles.testimonialSection} style={{ position: 'relative' }}>
-      <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0, pointerEvents: 'none' }}>
-        <Lightfall
-          colors={['#FF9FFC', '#5227FF', '#A6C8FF']}
-          backgroundColor="#0A29FF"
-          speed={0.35}
-          streakCount={3}
-          streakWidth={0.9}
-          streakLength={1.1}
-          glow={0.9}
-          density={0.55}
-          twinkle={0.9}
-          zoom={3}
-          backgroundGlow={0.35}
-          opacity={0.38}
-          mouseInteraction
-          mouseStrength={0.35}
-          mouseRadius={1.1}
-        />
-      </div>
-      <div className={styles.container} style={{ position: 'relative', zIndex: 1 }}>
+    <section className={styles.testimonialSection}>
+      <div className={styles.container}>
         <h2 className={styles.title}>What Our Interns Say</h2>
         <p className={styles.subtitle}>Real feedback from our residency program participants</p>
 
