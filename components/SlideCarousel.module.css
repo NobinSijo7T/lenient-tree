@@ -40,7 +40,14 @@
 .imgWrap {
   position: relative;
   width: 100%;
-  padding-top: 66%;
+  padding-top: 66%; /* 3:2 aspect ratio */
+}
+
+/* Increase height on mobile for larger images */
+@media (max-width: 480px) {
+  .imgWrap {
+    padding-top: 75%; /* 4:3 aspect ratio - taller images */
+  }
 }
 
 .img {
@@ -235,5 +242,110 @@
   
   .img {
     border-radius: 0; /* No rounded corners on image */
+  }
+}
+
+/* ── Lightbox Styles ────────────────────────────────────── */
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(10px);
+  z-index: 100000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: fadeIn 0.3s ease;
+  cursor: pointer;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.lightboxClose {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 32px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 100001;
+  padding: 0;
+}
+
+.lightboxClose:hover {
+  background: rgba(255, 0, 0, 0.3);
+  border-color: rgba(255, 0, 0, 0.6);
+  transform: rotate(90deg);
+}
+
+.lightboxContent {
+  position: relative;
+  max-width: 90vw;
+  max-height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: default;
+  animation: zoomIn 0.3s ease;
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.lightboxImage {
+  max-width: 100%;
+  max-height: 85vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 10px 50px rgba(0, 0, 0, 0.8);
+}
+
+@media (max-width: 480px) {
+  .lightboxClose {
+    top: 10px;
+    right: 10px;
+    width: 44px;
+    height: 44px;
+    font-size: 28px;
+  }
+  
+  .lightboxContent {
+    max-width: 100vw;
+    max-height: 95vh;
+  }
+  
+  .lightbox {
+    padding: 10px;
   }
 }

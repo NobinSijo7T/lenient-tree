@@ -18,8 +18,34 @@ export default function SlideCarousel() {
   const [current, setCurrent] = useState(0);
   const [animating, setAnimating] = useState(false);
   const [direction, setDirection] = useState<"left" | "right">("right");
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [lightboxImage, setLightboxImage] = useState<string>("");
   const isPaused     = useRef(false);
   const timerRef     = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  /* ── lightbox handlers ─────────────────────────────────── */
+  const openLightbox = useCallback((imageSrc: string) => {
+    setLightboxImage(imageSrc);
+    setLightboxOpen(true);
+    document.body.style.overflow = 'hidden';
+  }, []);
+
+  const closeLightbox = useCallback(() => {
+    setLightboxOpen(false);
+    setLightboxImage("");
+    document.body.style.overflow = 'unset';
+  }, []);
+
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && lightboxOpen) {
+        closeLightbox();
+      }
+    };
+
+    document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, [lightboxOpen, closeLightbox]);
 
   /* ── transition helper ─────────────────────────────────── */
   const goTo = useCallback(
@@ -108,7 +134,7 @@ export default function SlideCarousel() {
         </div>
 
         {/* Center card */}
-        <div className={centerClass}>
+        <div className={centerClass} onClick={() => openLightbox(IMAGES[current].src)} style={{ cursor: 'pointer' }}>
           <div className={styles.imgWrap}>
             <Image
               src={IMAGES[current].src}
@@ -155,6 +181,22 @@ export default function SlideCarousel() {
           />
         ))}
       </div>
+
+      {/* Lightbox */}
+      {lightboxOpen && (
+        <div className={styles.lightbox} onClick={closeLightbox}>
+          <button className={styles.lightboxClose} onClick={closeLightbox} aria-label="Close lightbox">
+            ×
+          </button>
+          <div className={styles.lightboxContent} onClick={(e) => e.stopPropagation()}>
+            <img
+              src={lightboxImage}
+              alt="Full size image"
+              className={styles.lightboxImage}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 }
