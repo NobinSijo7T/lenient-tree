@@ -2909,32 +2909,32 @@
 
   /* PYTHON — upper-right */
   .python {
-    top: 33%;
-    right: 4%;
+    top: 28%;
+    right: 6%;
     left: auto;
     bottom: auto;
   }
 
   /* HTML — center-right */
   .html {
-    top: 47%;
-    right: 30%;
-    left: auto;
+    top: 30%;
+    right: auto;
+    left: 28%;
     bottom: auto;
   }
 
   /* CSS — left of center */
   .css {
-    top: 50%;
-    left: 24%;
+    top: 33%;
+    left: 8%;
     right: auto;
     bottom: auto;
   }
 
   /* TAILWIND — lower-center */
   .tailwind {
-    top: 62%;
-    left: 42%;
+    top: 67%;
+    left: 37%;
     right: auto;
     bottom: auto;
   }
@@ -2949,8 +2949,8 @@
 
   /* JAVASCRIPT — lower-center */
   .js {
-    top: 72%;
-    left: 30%;
+    top: 77%;
+    left: 27%;
     right: auto;
     bottom: auto;
   }
