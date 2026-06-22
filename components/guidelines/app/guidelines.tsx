@@ -227,60 +227,73 @@ const Guidelines: NextPage = () => {
           className={styles.pathFrame}
           style={pathFrameStyle}
         >
-          <Image
-            className={styles.frameChild}
-            loading="lazy"
-            width={timelineImageWidth}
-            height={timelineImageHeight}
-            sizes="100vw"
-            alt=""
-            src="/Frame-1731-trimmed@2x.png"
-          />
-          <div
-            className={`${styles.glowRevealLayer} ${styles.glowAura}`}
-            aria-hidden="true"
+          {/* SVG Path connecting 4 circles */}
+          <svg 
+            className={styles.timelinePath} 
+            width="300" 
+            height="1050" 
+            viewBox="0 0 300 1050"
+            xmlns="http://www.w3.org/2000/svg"
+            preserveAspectRatio="xMidYMid meet"
           >
-            <div className={styles.glowPathMask}>
-              <Image
-                className={styles.glowPath}
-                width={timelineImageWidth}
-                height={timelineImageHeight}
-                sizes="100vw"
-                alt=""
-                src="/Frame-1731-gradient-path-trimmed.png"
-              />
-            </div>
-          </div>
-          <div
-            className={`${styles.glowRevealLayer} ${styles.glowCore}`}
-            aria-hidden="true"
-          >
-            <div className={styles.glowPathMask}>
-              <Image
-                className={styles.glowPath}
-                width={timelineImageWidth}
-                height={timelineImageHeight}
-                sizes="100vw"
-                alt=""
-                src="/Frame-1731-gradient-path-trimmed.png"
-              />
-            </div>
-          </div>
-          <div
-            className={`${styles.glowRevealLayer} ${styles.glowHotline}`}
-            aria-hidden="true"
-          >
-            <div className={styles.glowPathMask}>
-              <Image
-                className={styles.glowPath}
-                width={timelineImageWidth}
-                height={timelineImageHeight}
-                sizes="100vw"
-                alt=""
-                src="/Frame-1731-glow-path-trimmed.png"
-              />
-            </div>
-          </div>
+            <defs>
+              <linearGradient id="pathGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stopColor="#2df5ff" stopOpacity="0.3" />
+                <stop offset="50%" stopColor="#8e52ff" stopOpacity="0.3" />
+                <stop offset="100%" stopColor="#3358ff" stopOpacity="0.3" />
+              </linearGradient>
+              <linearGradient id="glowGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stopColor="#2df5ff" />
+                <stop offset="50%" stopColor="#8e52ff" />
+                <stop offset="100%" stopColor="#3358ff" />
+              </linearGradient>
+              <filter id="glow">
+                <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+                <feMerge>
+                  <feMergeNode in="coloredBlur"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
+            </defs>
+            
+            {/* Flowing S-curve path through all 4 week circles */}
+            <path
+              className={styles.basePath}
+              d="M 150,40
+                 C 250,50 280,90 280,155
+                 C 280,220 250,260 150,270
+                 C 50,280 20,320 20,385
+                 C 20,450 50,490 150,500
+                 C 250,510 280,550 280,615
+                 C 280,680 250,720 150,730
+                 C 50,740 20,780 20,845
+                 C 20,910 50,950 150,1000"
+              stroke="url(#pathGradient)"
+              strokeWidth="22"
+              fill="none"
+              strokeLinecap="round"
+            />
+            
+            {/* Animated glow overlay */}
+            <path
+              className={styles.glowPath}
+              d="M 150,40
+                 C 250,50 280,90 280,155
+                 C 280,220 250,260 150,270
+                 C 50,280 20,320 20,385
+                 C 20,450 50,490 150,500
+                 C 250,510 280,550 280,615
+                 C 280,680 250,720 150,730
+                 C 50,740 20,780 20,845
+                 C 20,910 50,950 150,1000"
+              stroke="url(#glowGradient)"
+              strokeWidth="10"
+              fill="none"
+              strokeLinecap="round"
+              filter="url(#glow)"
+            />
+          </svg>
+
           <div
             className={styles.timelinePointer}
             style={{ left: `${pointerPosition.x}px`, top: `${pointerPosition.y}px` }}
@@ -297,35 +310,232 @@ const Guidelines: NextPage = () => {
           </div>
           {/* Timeline circle date overlays */}
           <div className={styles.circleOverlay1}>
-            <span className={styles.monthText}>June</span>
-            <span className={styles.daysText}>11<sup>th</sup> – 16<sup>th</sup></span>
+            <span className={styles.weekNumber}>1</span>
+            <span className={styles.weekLabel}>WEEK</span>
+            <span className={styles.daysText}>Day 1 – 4</span>
           </div>
           <div className={styles.circleOverlay2}>
-            <span className={styles.monthText}>June</span>
-            <span className={styles.daysText}>17<sup>th</sup> – 23<sup>rd</sup></span>
+            <span className={styles.weekNumber}>2</span>
+            <span className={styles.weekLabel}>WEEK</span>
+            <span className={styles.daysText}>Day 5 – 8</span>
           </div>
           <div className={styles.circleOverlay3}>
-            <span className={styles.monthText}>June</span>
-            <span className={styles.daysText}>24<sup>th</sup> – 30<sup>th</sup></span>
+            <span className={styles.weekNumber}>3</span>
+            <span className={styles.weekLabel}>WEEK</span>
+            <span className={styles.daysText}>Day 9 – 12</span>
+          </div>
+          <div className={styles.circleOverlay4}>
+            <span className={styles.weekNumber}>4</span>
+            <span className={styles.weekLabel}>WEEK</span>
+            <span className={styles.daysText}>Day 13 – 16</span>
           </div>
         </div>
         <section className={styles.frameGroup}>
-          <div className={styles.teamCollaborationParent}>
-            <h2 className={styles.teamCollaboration}> Talent Identification & Skill Evaluation</h2>
-            <div className={styles.workEffectivelyAs}>
-             Evaluating entrepreneurial mindset, technical capabilities, and growth potential
+          <div className={styles.weekSection}>
+            <div className={styles.weekHeader}>
+              <h2 className={styles.weekTitle}>Week 1: Frontend Development</h2>
+            </div>
+            <div className={styles.daysList}>
+              <div className={styles.dayCard}>
+                <h3 className={styles.dayTitle}>Day 1: Web Basics, HTML5, Website Structure & Static Projects</h3>
+                <ul className={styles.topicsList}>
+                  <li>Introduction to the Web</li>
+                  <li>HTML5 Fundamentals</li>
+                  <li>Semantic HTML</li>
+                  <li>Website Structure</li>
+                  <li>Static Website Development</li>
+                  <li>Mini HTML Project</li>
+                </ul>
+              </div>
+              <div className={styles.dayCard}>
+                <h3 className={styles.dayTitle}>Day 2: CSS, Responsive Design & Modern UI</h3>
+                <ul className={styles.topicsList}>
+                  <li>CSS Fundamentals</li>
+                  <li>Flexbox</li>
+                  <li>CSS Grid</li>
+                  <li>Responsive Design</li>
+                  <li>Media Queries</li>
+                  <li>Modern UI Components</li>
+                  <li>Animations & Transitions</li>
+                </ul>
+              </div>
+              <div className={styles.dayCard}>
+                <h3 className={styles.dayTitle}>Day 3: JavaScript Fundamentals & Interactive Apps</h3>
+                <ul className={styles.topicsList}>
+                  <li>Variables & Data Types</li>
+                  <li>Functions</li>
+                  <li>Arrays & Objects</li>
+                  <li>DOM Manipulation</li>
+                  <li>Events</li>
+                  <li>ES6 Features</li>
+                  <li>Interactive JavaScript Projects</li>
+                </ul>
+              </div>
+              <div className={styles.dayCard}>
+                <h3 className={styles.dayTitle}>Day 4: React Basics, Components & UI Development</h3>
+                <ul className={styles.topicsList}>
+                  <li>Introduction to React</li>
+                  <li>JSX</li>
+                  <li>Components</li>
+                  <li>Props</li>
+                  <li>State</li>
+                  <li>Event Handling</li>
+                  <li>Building Reusable UI Components</li>
+                </ul>
+              </div>
             </div>
           </div>
-          <div className={styles.teamCollaborationParent}>
-            <h2 className={styles.teamCollaboration}>Real-World Project Building</h2>
-            <div className={styles.workEffectivelyAs}>
-              Hands-on MVP development, product design, and implementation.
+
+          <div className={styles.weekSection}>
+            <div className={styles.weekHeader}>
+              <h2 className={styles.weekTitle}>Week 2: Full Stack Development</h2>
+            </div>
+            <div className={styles.daysList}>
+              <div className={styles.dayCard}>
+                <h3 className={styles.dayTitle}>Day 5: Advanced React, APIs & Forms</h3>
+                <ul className={styles.topicsList}>
+                  <li>React Hooks</li>
+                  <li>useEffect</li>
+                  <li>React Router</li>
+                  <li>API Integration</li>
+                  <li>Form Handling</li>
+                  <li>Validation</li>
+                  <li>State Management Basics</li>
+                </ul>
+              </div>
+              <div className={styles.dayCard}>
+                <h3 className={styles.dayTitle}>Day 6: Node.js, Express & Backend APIs</h3>
+                <ul className={styles.topicsList}>
+                  <li>Node.js Fundamentals</li>
+                  <li>Express.js</li>
+                  <li>REST APIs</li>
+                  <li>Middleware</li>
+                  <li>CRUD Operations</li>
+                  <li>Environment Variables</li>
+                </ul>
+              </div>
+              <div className={styles.dayCard}>
+                <h3 className={styles.dayTitle}>Day 7: Database Design & PostgreSQL</h3>
+                <ul className={styles.topicsList}>
+                  <li>Relational Databases</li>
+                  <li>Database Design</li>
+                  <li>SQL Basics</li>
+                  <li>PostgreSQL</li>
+                  <li>Relationships</li>
+                  <li>CRUD with SQL</li>
+                </ul>
+              </div>
+              <div className={styles.dayCard}>
+                <h3 className={styles.dayTitle}>Day 8: Authentication & Security</h3>
+                <ul className={styles.topicsList}>
+                  <li>Authentication</li>
+                  <li>Authorization</li>
+                  <li>JWT</li>
+                  <li>Password Hashing</li>
+                  <li>Protected Routes</li>
+                  <li>Security Best Practices</li>
+                </ul>
+              </div>
             </div>
           </div>
-          <div className={styles.teamCollaborationParent}>
-            <h2 className={styles.teamCollaboration}> Deployment & Professional Execution</h2>
-            <div className={styles.workEffectivelyAs}>
-              Production deployment, presentation, collaboration, and startup-level execution.
+
+          <div className={styles.weekSection}>
+            <div className={styles.weekHeader}>
+              <h2 className={styles.weekTitle}>Week 3: Cloud & Production</h2>
+            </div>
+            <div className={styles.daysList}>
+              <div className={styles.dayCard}>
+                <h3 className={styles.dayTitle}>Day 9: Supabase Database & Backend Services</h3>
+                <ul className={styles.topicsList}>
+                  <li>Supabase Introduction</li>
+                  <li>Database Management</li>
+                  <li>Authentication</li>
+                  <li>Storage</li>
+                  <li>Realtime Features</li>
+                  <li>Backend Services</li>
+                </ul>
+              </div>
+              <div className={styles.dayCard}>
+                <h3 className={styles.dayTitle}>Day 10: Full Stack Integration</h3>
+                <ul className={styles.topicsList}>
+                  <li>Frontend-Backend Communication</li>
+                  <li>API Integration</li>
+                  <li>Authentication Flow</li>
+                  <li>Error Handling</li>
+                  <li>Project Integration</li>
+                </ul>
+              </div>
+              <div className={styles.dayCard}>
+                <h3 className={styles.dayTitle}>Day 11: Production Features & Optimization</h3>
+                <ul className={styles.topicsList}>
+                  <li>Performance Optimization</li>
+                  <li>Caching</li>
+                  <li>Code Splitting</li>
+                  <li>Lazy Loading</li>
+                  <li>SEO Basics</li>
+                  <li>Production Best Practices</li>
+                </ul>
+              </div>
+              <div className={styles.dayCard}>
+                <h3 className={styles.dayTitle}>Day 12: AWS Deployment & Hosting</h3>
+                <ul className={styles.topicsList}>
+                  <li>AWS Basics</li>
+                  <li>Deployment</li>
+                  <li>Hosting</li>
+                  <li>Domain Configuration</li>
+                  <li>SSL</li>
+                  <li>CI/CD Overview</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div className={styles.weekSection}>
+            <div className={styles.weekHeader}>
+              <h2 className={styles.weekTitle}>Week 4: AI Development</h2>
+            </div>
+            <div className={styles.daysList}>
+              <div className={styles.dayCard}>
+                <h3 className={styles.dayTitle}>Day 13: AI, LLMs & Prompt Engineering</h3>
+                <ul className={styles.topicsList}>
+                  <li>Artificial Intelligence Basics</li>
+                  <li>Large Language Models</li>
+                  <li>Prompt Engineering</li>
+                  <li>OpenAI APIs</li>
+                  <li>LLM Best Practices</li>
+                </ul>
+              </div>
+              <div className={styles.dayCard}>
+                <h3 className={styles.dayTitle}>Day 14: AI Chatbot Development</h3>
+                <ul className={styles.topicsList}>
+                  <li>Chatbot Architecture</li>
+                  <li>Conversation Design</li>
+                  <li>LLM Integration</li>
+                  <li>Streaming Responses</li>
+                  <li>Context Management</li>
+                </ul>
+              </div>
+              <div className={styles.dayCard}>
+                <h3 className={styles.dayTitle}>Day 15: RAG & Vector Databases</h3>
+                <ul className={styles.topicsList}>
+                  <li>Retrieval-Augmented Generation</li>
+                  <li>Embeddings</li>
+                  <li>Vector Databases</li>
+                  <li>Semantic Search</li>
+                  <li>Document Retrieval</li>
+                </ul>
+              </div>
+              <div className={styles.dayCard}>
+                <h3 className={styles.dayTitle}>Day 16: AI Capstone Project Development</h3>
+                <ul className={styles.topicsList}>
+                  <li>Project Planning</li>
+                  <li>Full AI Application</li>
+                  <li>Frontend + Backend + AI Integration</li>
+                  <li>Testing</li>
+                  <li>Deployment</li>
+                  <li>Final Presentation</li>
+                </ul>
+              </div>
             </div>
           </div>
         </section>
