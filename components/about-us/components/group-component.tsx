@@ -61,6 +61,23 @@ const GroupComponent: NextPage<GroupComponentType> = ({ className = "" }) => {
 
   return (
     <main className={[styles.bgParent, className].join(" ")}>
+      {/* Animated floating particles */}
+      <div className={styles.particles}>
+        {[...Array(30)].map((_, i) => (
+          <div key={i} className={styles.particle} style={{
+            left: `${Math.random() * 100}%`,
+            top: `${20 + Math.random() * 80}%`,
+            animationDelay: `${Math.random() * 8}s`,
+            animationDuration: `${20 + Math.random() * 15}s`,
+            width: `${4 + Math.random() * 6}px`,
+            height: `${4 + Math.random() * 6}px`
+          }} />
+        ))}
+      </div>
+
+      {/* Animated grid overlay */}
+      <div className={styles.gridOverlay} />
+
       <Image
         className={styles.bgIcon}
         width={1440}
@@ -106,25 +123,31 @@ const GroupComponent: NextPage<GroupComponentType> = ({ className = "" }) => {
         src="/robot@2x.png"
       />
       <h3 className={styles.about}>About</h3>
+      <h2 className={styles.whatYouLearn}>What You Learn</h2>
       <section className={styles.box}>
         <FrameComponent
-          hoursOfInnovation={`Stipend-Based
-Internship
-Opportunities`}
-          workshopsMentorship={`1: 1
-MENTORSHIP`}
+          hoursOfInnovation={`Frontend Development:
+HTML, CSS, JavaScript, React`}
+          workshopsMentorship={`Backend Development:
+Node.js, Express, APIs`}
         />
         <FrameComponent
           frameDivTop="202px"
-          hoursOfInnovation={`Production-Grade
-MVP
-Development`}
-          workshopsMentorship={`& much more...`}
+          hoursOfInnovation={`Database & Cloud:
+PostgreSQL, Supabase, AWS`}
+          workshopsMentorship={`AI Development:
+LLMs, Chatbots, RAG, AI Apps`}
           workshopsMentorshipTop="60.5px"
           workshopsMentorshipMargin="0"
           workshopsMentorshipFontWeight="400"
         />
       </section>
+      <div className={styles.finalOutcome}>
+        <h3 className={styles.finalOutcomeTitle}>Final Outcome</h3>
+        <p className={styles.finalOutcomeText}>
+          Build and deploy an AI-powered full stack application ready for your portfolio.
+        </p>
+      </div>
     </main>
   );
 };
