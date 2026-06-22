@@ -2,7 +2,7 @@
 
 import type { NextPage } from "next";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, memo } from "react";
 import styles from "./nav.module.css";
 
 const REGISTER_URL = "https://forms.gle/yGqLcHcexxrzBDxD8";
@@ -14,31 +14,39 @@ export type NavType = {
   state?: "Hero";
 };
 
+const navItems = [
+  { name: "Home", id: "home" },
+  { name: "About", id: "about" },
+  { name: "Guidelines", id: "guidelines" },
+  { name: "Timeline", id: "timeline" }
+];
+
 const Nav: NextPage<NavType> = ({ className = "", state = "Hero" }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
 
-  const navItems = [
-    { name: "Home", id: "home" },
-    { name: "About", id: "about" },
-    { name: "Guidelines", id: "guidelines" },
-    { name: "Timeline", id: "timeline" }
-  ];
-
   useEffect(() => {
+    let ticking = false;
+    
     const handleScroll = () => {
-      const scrollPosition = window.scrollY + window.innerHeight / 3;
-      
-      for (const item of navItems) {
-        const el = document.getElementById(item.id);
-        if (el) {
-          const top = el.offsetTop;
-          const height = el.offsetHeight;
-          if (scrollPosition >= top && scrollPosition < top + height) {
-            setActiveSection(item.id);
-            break;
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrollPosition = window.scrollY + window.innerHeight / 3;
+          
+          for (const item of navItems) {
+            const el = document.getElementById(item.id);
+            if (el) {
+              const top = el.offsetTop;
+              const height = el.offsetHeight;
+              if (scrollPosition >= top && scrollPosition < top + height) {
+                setActiveSection(item.id);
+                break;
+              }
+            }
           }
-        }
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 
@@ -49,14 +57,14 @@ const Nav: NextPage<NavType> = ({ className = "", state = "Hero" }) => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleNavClick = (sectionId: string) => {
+  const handleNavClick = useCallback((sectionId: string) => {
     const el = document.getElementById(sectionId);
     if (el) {
       el.scrollIntoView({ behavior: "smooth" });
     }
-  };
+  }, []);
 
-  const handleRegisterClick = () => {
+  const handleRegisterClick = useCallback(() => {
     const newWindow = window.open(
       REGISTER_URL,
       "_blank",
@@ -66,14 +74,17 @@ const Nav: NextPage<NavType> = ({ className = "", state = "Hero" }) => {
     if (!newWindow) {
       window.location.href = REGISTER_URL;
     }
-  };
+  }, []);
+
+  const toggleMenu = useCallback(() => setMenuOpen((open) => !open), []);
+  const closeMenu = useCallback(() => setMenuOpen(false), []);
 
   return (
     <>
       {menuOpen && (
         <div 
           className={styles.menuOverlay}
-          onClick={() => setMenuOpen(false)}
+          onClick={closeMenu}
           aria-hidden="true"
         />
       )}
@@ -111,7 +122,7 @@ const Nav: NextPage<NavType> = ({ className = "", state = "Hero" }) => {
           className={styles.unionIcon}
           width={35}
           height={20}
-          sizes="100vw"
+          sizes="35px"
           alt=""
           src="/Union.svg"
         />
@@ -119,7 +130,7 @@ const Nav: NextPage<NavType> = ({ className = "", state = "Hero" }) => {
           className={styles.unionIcon2}
           width={20}
           height={19.5}
-          sizes="100vw"
+          sizes="20px"
           alt=""
           src="/Union2.svg"
         />
@@ -134,7 +145,7 @@ const Nav: NextPage<NavType> = ({ className = "", state = "Hero" }) => {
           className={styles.unionIcon2}
           width={20}
           height={19.5}
-          sizes="100vw"
+          sizes="20px"
           alt=""
           src="/Union2.svg"
         />
@@ -143,7 +154,7 @@ const Nav: NextPage<NavType> = ({ className = "", state = "Hero" }) => {
         aria-label={menuOpen ? "Close menu" : "Open menu"}
         aria-expanded={menuOpen}
         className={styles.hamburger}
-        onClick={() => setMenuOpen((open) => !open)}
+        onClick={toggleMenu}
         type="button"
       >
         <span />
@@ -158,7 +169,7 @@ const Nav: NextPage<NavType> = ({ className = "", state = "Hero" }) => {
               key={`${item.id}-mobile`} 
               onClick={() => {
                 handleNavClick(item.id);
-                setMenuOpen(false);
+                closeMenu();
               }}
               style={isActive ? { backgroundColor: "rgba(255, 255, 255, 0.15)", fontWeight: "bold" } : {}}
               type="button"
@@ -170,7 +181,7 @@ const Nav: NextPage<NavType> = ({ className = "", state = "Hero" }) => {
         <button
           className={styles.mobileRegister}
           onClick={() => {
-            setMenuOpen(false);
+            closeMenu();
             handleRegisterClick();
           }}
           type="button"
@@ -180,7 +191,7 @@ const Nav: NextPage<NavType> = ({ className = "", state = "Hero" }) => {
             className={styles.unionIcon2}
             width={20}
             height={19.5}
-            sizes="100vw"
+            sizes="20px"
             alt=""
             src="/Union2.svg"
           />
@@ -191,4 +202,4 @@ const Nav: NextPage<NavType> = ({ className = "", state = "Hero" }) => {
   );
 };
 
-export default Nav;
+export default memo(Nav);

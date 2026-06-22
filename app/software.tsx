@@ -2,19 +2,24 @@
 
 import type { NextPage } from "next";
 import Image from "next/image";
-import Moving from "../components/moving";
+import dynamic from "next/dynamic";
 import Nav from "../components/nav";
 import HeroPills from "../components/HeroPills";
 import GroupComponent from "../components/about-us/components/group-component";
-import Guidelines from "../components/guidelines/app/guidelines";
-import SlideCarousel from "../components/SlideCarousel";
-import Testimonials from "../components/Testimonials";
-import Cta from "../components/cta/cta";
-import Grid from "../components/grid";
-import Container from "../components/container";
-import AppLoader from "../components/AppLoader";
-import Lightfall from "../components/Lightfall";
 import styles from "./software.module.css";
+
+// Lazy load the AppLoader to not block initial render
+const AppLoader = dynamic(() => import("../components/AppLoader"), { ssr: false });
+
+// Lazy load heavy components that are below the fold
+const Moving = dynamic(() => import("../components/moving"), { ssr: false });
+const Guidelines = dynamic(() => import("../components/guidelines/app/guidelines"));
+const SlideCarousel = dynamic(() => import("../components/SlideCarousel"));
+const Testimonials = dynamic(() => import("../components/Testimonials"));
+const Cta = dynamic(() => import("../components/cta/cta"));
+const Grid = dynamic(() => import("../components/grid"));
+const Container = dynamic(() => import("../components/container"));
+const Lightfall = dynamic(() => import("../components/Lightfall"), { ssr: false });
 
 const Software: NextPage = () => {
   return (
@@ -28,16 +33,20 @@ const Software: NextPage = () => {
           width={1440}
           height={1105}
           sizes="100vw"
-          alt=""
-          src="/Separator@2x.png"
+          alt="Hero background"
+          src="/Separator@2x.webp"
+          priority
+          fetchPriority="high"
         />
         <Image
           className={`${styles.separatorIcon} ${styles.mobileOnly}`}
           width={1440}
           height={1105}
           sizes="100vw"
-          alt=""
-          src="/mobile-bg.png"
+          alt="Mobile hero background"
+          src="/mobile-bg.webp"
+          priority
+          fetchPriority="high"
         />
         <div className={styles.frameChild} />
       </section>
@@ -50,6 +59,7 @@ const Software: NextPage = () => {
         sizes="100vw"
         alt=""
         src="/Group-15.svg"
+        loading="lazy"
       />
       <section className={styles.frameParent}>
         <Image
@@ -59,15 +69,16 @@ const Software: NextPage = () => {
           sizes="100vw"
           alt=""
           src="/Group-17.svg"
+          loading="lazy"
         />
         <Image
           className={styles.robotIcon}
           loading="lazy"
           width={583}
           height={903.5}
-          sizes="100vw"
-          alt=""
-          src="/robot@2x.png"
+          sizes="(max-width: 768px) 50vw, 583px"
+          alt="Robot mascot"
+          src="/robot@2x.webp"
         />
       </section>
       <main className={styles.softwareInner}>
@@ -140,7 +151,7 @@ const Software: NextPage = () => {
                     color: '#ffffff',
                     marginBottom: '40px',
                     textShadow: '0 2px 10px rgba(0,0,0,0.3)',
-                    fontFamily: 'Orbitron, sans-serif'
+                    fontFamily: 'var(--font-orbitron), sans-serif'
                   }}>
                     How's The Journey So Far
                   </h2>

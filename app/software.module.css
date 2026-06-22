@@ -23,28 +23,23 @@
 /* Float + parallax — applied on top of existing pill position styles */
 .pillFloat1 {
   animation: floatA 4s ease-in-out infinite;
-  will-change: transform;
-  transition: box-shadow 0.3s ease;
+  transition: filter 0.3s ease;
 }
 .pillFloat2 {
   animation: floatB 5.2s ease-in-out infinite;
-  will-change: transform;
-  transition: box-shadow 0.3s ease;
+  transition: filter 0.3s ease;
 }
 .pillFloat3 {
   animation: floatC 3.8s ease-in-out infinite;
-  will-change: transform;
-  transition: box-shadow 0.3s ease;
+  transition: filter 0.3s ease;
 }
 .pillFloat4 {
   animation: floatD 4.7s ease-in-out infinite;
-  will-change: transform;
-  transition: box-shadow 0.3s ease;
+  transition: filter 0.3s ease;
 }
 .pillFloat5 {
   animation: floatE 6.1s ease-in-out infinite;
-  will-change: transform;
-  transition: box-shadow 0.3s ease;
+  transition: filter 0.3s ease;
 }
 
 /* Parallax displaces the CSS animation baseline — combine with inline translateY */
@@ -61,6 +56,16 @@
 .pillFloat3:hover,
 .pillFloat4:hover,
 .pillFloat5:hover {
+  filter: drop-shadow(0 12px 28px rgba(80, 120, 255, 0.55));
+}
+
+/* Apply floating to MongoDB and React pills */
+.m,
+.r {
+  transition: box-shadow 0.3s ease;
+}
+.m:hover,
+.r:hover {
   filter: drop-shadow(0 12px 28px rgba(80, 120, 255, 0.55));
 }
 
@@ -317,6 +322,29 @@
   font-family: inherit;
   display: inline-block;
   flex-shrink: 0;
+}
+.m {
+  margin: 0 !important;
+  position: absolute;
+  display: none;
+}
+.reactjs {
+  margin: 0;
+  height: var(--height-26);
+  width: 149px;
+  position: relative;
+  font-size: inherit;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  font-weight: 400;
+  font-family: inherit;
+  display: inline-block;
+  flex-shrink: 0;
+}
+.r {
+  margin: 0 !important;
+  position: absolute;
+  display: none;
 }
 .dot,
 .html,
@@ -2213,9 +2241,7 @@
   .e,
   .m,
   .n {
-    display: flex;
-    padding: 8px 14px;
-    font-size: 15px;
+    display: none;
   }
 
   .html,
@@ -2225,26 +2251,6 @@
   .css,
   .dot {
     display: none;
-  }
-
-  .e {
-    top: 205px;
-    left: 42%;
-  }
-
-  .n {
-    top: 60px;
-    left: -2%;
-  }
-
-  .m {
-    top: 398px;
-    left: 7%;
-  }
-
-  .r {
-    top: 374px;
-    right: 5%;
   }
 
   .rectangleParent {
@@ -2284,23 +2290,6 @@
 
   .stacksprintHackathon {
     font-size: clamp(36px, 11.2vw, 44px);
-  }
-
-  .e {
-    top: 214px;
-    left: 38%;
-  }
-
-  .n {
-    top: 65px;
-  }
-
-  .m {
-    top: 388px;
-  }
-
-  .r {
-    top: 366px;
   }
 
   .hoursParent {
@@ -2391,31 +2380,6 @@
 
   .heroTitleLine {
     overflow-wrap: anywhere;
-  }
-
-  .r,
-  .e,
-  .m,
-  .n {
-    order: 2;
-    position: static;
-    width: max-content;
-    max-width: 100%;
-    margin: 0 !important;
-    padding: 8px 14px;
-    transform: none !important;
-    animation: none;
-    font-size: clamp(14px, 4vw, 16px);
-  }
-
-  .reactjs,
-  .expressjs,
-  .mongoDb,
-  .nodejs {
-    height: auto;
-    width: auto;
-    max-width: 100%;
-    white-space: nowrap;
   }
 
   .html,

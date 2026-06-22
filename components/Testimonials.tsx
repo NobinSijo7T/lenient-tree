@@ -14,6 +14,18 @@ const Testimonials: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const testimonials = feedbackData.filter((t: Testimonial) => t.feedback.trim() !== '');
 
+  // Auto-play functionality
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => {
+        const next = prev + 3;
+        return next >= testimonials.length ? 0 : next;
+      });
+    }, 5000); // Change every 5 seconds
+
+    return () => clearInterval(interval);
+  }, [testimonials.length]);
+
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev + 3 >= testimonials.length ? 0 : prev + 3));
   };

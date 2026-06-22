@@ -98,24 +98,26 @@ const GroupComponent: NextPage<GroupComponentType> = ({ className = "" }) => {
         height={2048}
         sizes="100vw"
         alt=""
-        src="/bg@2x.png"
+        src="/bg@2x.webp"
+        loading="lazy"
       />
       <Image
         className={styles.frameChild}
         width={982}
         height={982}
-        sizes="100vw"
+        sizes="(max-width: 768px) 70vw, 982px"
         alt=""
-        src="/Group-161@2x.png"
+        src="/Group-161@2x.webp"
+        loading="lazy"
       />
       <Image
         className={styles.frameItem}
         loading="lazy"
         width={1462.5}
         height={1462.5}
-        sizes="100vw"
+        sizes="(max-width: 768px) 90vw, 1462px"
         alt=""
-        src="/Group-151@2x.png"
+        src="/Group-151@2x.webp"
       />
       <div className={styles.dot} />
       <h1 ref={containerRef} className={styles.stacksprintIsAContainer}>
@@ -132,9 +134,9 @@ const GroupComponent: NextPage<GroupComponentType> = ({ className = "" }) => {
         loading="lazy"
         width={583}
         height={903.5}
-        sizes="100vw"
-        alt=""
-        src="/robot@2x.png"
+        sizes="(max-width: 768px) 50vw, 583px"
+        alt="Robot mascot"
+        src="/robot@2x.webp"
       />
       <h3 className={styles.about}>About</h3>
       <h2 className={styles.whatYouLearn}>What You Learn</h2>

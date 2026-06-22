@@ -1,0 +1,84 @@
+/* Critical CSS - Inlined for faster FCP */
+/* Only includes above-the-fold styles */
+
+body {
+  margin: 0;
+  line-height: normal;
+  font-family: var(--font-poppins), system-ui, -apple-system, sans-serif;
+  background-color: #050419;
+  color: #fff;
+}
+
+html {
+  width: 100%;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Hero section critical styles */
+.software {
+  width: 100%;
+  position: relative;
+  background-color: #050419;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  min-height: 100vh;
+}
+
+/* Prevent layout shift for hero image */
+.separatorParent {
+  width: 100%;
+  height: min(1105px, 95vh);
+  position: absolute;
+  top: 120px;
+  left: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.separatorIcon {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* Hide mobile/desktop variants */
+@media (max-width: 768px) {
+  .desktopOnly {
+    display: none !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .mobileOnly {
+    display: none !important;
+  }
+}
+
+/* Navigation critical styles */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+}
+
+/* Prevent font flash */
+.stacksprintHackathon {
+  font-family: var(--font-donkey), system-ui, sans-serif;
+  font-size: clamp(50px, 8vw, 100px);
+  line-height: 1.2;
+  color: #fff;
+}

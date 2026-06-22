@@ -7,30 +7,40 @@ import './AppLoader.css';
 
 export default function AppLoader() {
   const [isVisible, setIsVisible] = useState(true);
+  const [shouldRender, setShouldRender] = useState(true);
 
   useEffect(() => {
-    // Prevent scrolling
+    // Allow content to render immediately, don't block scroll
     document.body.style.overflow = 'hidden';
     
+    // Much shorter duration - just enough for brand impression
     const timer = setTimeout(() => {
       setIsVisible(false);
+    }, 800);
+
+    // Remove from DOM after animation completes
+    const removeTimer = setTimeout(() => {
+      setShouldRender(false);
       document.body.style.overflow = 'unset';
-    }, 2500);
+    }, 1100);
 
     return () => {
       clearTimeout(timer);
+      clearTimeout(removeTimer);
       document.body.style.overflow = 'unset';
     };
   }, []);
 
+  if (!shouldRender) return null;
+
   return (
-    <AnimatePresence>
+    <AnimatePresence mode="wait">
       {isVisible && (
         <motion.div
           className="app-loader"
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.3 }}
         >
           {/* Background */}
           <div className="loader-bg" />
@@ -38,15 +48,15 @@ export default function AppLoader() {
           {/* Main content container */}
           <div className="loader-content">
             
-            {/* Logo */}
+            {/* Logo - faster animation */}
             <motion.div
               className="logo-wrapper"
-              initial={{ scale: 0.8, opacity: 0 }}
+              initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              transition={{ duration: 0.3 }}
             >
               <Image
-                src="/white.png"
+                src="/white.webp"
                 alt="Lenient Tree"
                 width={100}
                 height={100}
@@ -55,49 +65,19 @@ export default function AppLoader() {
               />
             </motion.div>
             
-            {/* Progress bar */}
+            {/* Simplified progress bar */}
             <motion.div
               className="progress-container"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.4 }}
+              transition={{ delay: 0.1 }}
             >
               <motion.div
                 className="progress-bar"
                 initial={{ width: "0%" }}
                 animate={{ width: "100%" }}
-                transition={{ duration: 2.2, ease: "easeInOut" }}
+                transition={{ duration: 0.7, ease: "easeOut" }}
               />
-            </motion.div>
-            
-            {/* Loading text */}
-            <motion.div
-              className="loading-text"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }}
-            >
-              <span>Loading</span>
-              <div className="dots">
-                <motion.span
-                  animate={{ opacity: [0.3, 1, 0.3] }}
-                  transition={{ duration: 1, repeat: Infinity, delay: 0 }}
-                >
-                  .
-                </motion.span>
-                <motion.span
-                  animate={{ opacity: [0.3, 1, 0.3] }}
-                  transition={{ duration: 1, repeat: Infinity, delay: 0.2 }}
-                >
-                  .
-                </motion.span>
-                <motion.span
-                  animate={{ opacity: [0.3, 1, 0.3] }}
-                  transition={{ duration: 1, repeat: Infinity, delay: 0.4 }}
-                >
-                  .
-                </motion.span>
-              </div>
             </motion.div>
             
           </div>
