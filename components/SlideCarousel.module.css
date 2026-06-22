@@ -189,15 +189,15 @@
     display: none; 
   }
   .cardCenter { 
-    width: 100vw; /* Full viewport width */
-    max-width: 100vw; /* Absolutely full width */
-    border-radius: 0; /* No border radius for true full screen */
-    margin: 0 calc(-50vw + 50%); /* Break out of container */
+    width: calc(100vw - 32px); /* Add padding on sides */
+    max-width: calc(100vw - 32px);
+    border-radius: 12px; /* Add rounded corners */
+    margin: 0; /* Remove negative margin */
   }
   .wrapper { 
-    padding: 0; /* Zero padding */
-    max-width: none; /* Remove all constraints */
-    width: 100vw; /* Full viewport */
+    padding: 0 16px; /* Add padding */
+    max-width: none;
+    width: 100%;
     overflow: visible;
     position: relative;
   }
@@ -221,10 +221,10 @@
   }
   
   .arrowLeft  { 
-    left: 12px; /* Position over the image */
+    left: 20px; /* Position over image with spacing */
   }
   .arrowRight { 
-    right: 12px; /* Position over the image */
+    right: 20px; /* Position over image with spacing */
   }
   
   .arrow:hover {
@@ -237,11 +237,25 @@
   }
   
   .card {
-    border-radius: 0; /* No rounded corners */
+    border-radius: 12px; /* Rounded corners */
   }
   
   .img {
-    border-radius: 0; /* No rounded corners on image */
+    border-radius: 12px; /* Rounded corners on image */
+  }
+}
+
+/* Inner image wrapper — gives card a 3:2 aspect ratio */
+.imgWrap {
+  position: relative;
+  width: 100%;
+  padding-top: 66%; /* 3:2 aspect ratio */
+}
+
+/* Adjust height on mobile */
+@media (max-width: 480px) {
+  .imgWrap {
+    padding-top: 68%; /* Slightly shorter than before */
   }
 }
 
