@@ -3,6 +3,7 @@
 import type { NextPage } from "next";
 import Image from "next/image";
 import dynamic from "next/dynamic";
+import { useState, useEffect } from "react";
 import Nav from "../components/nav";
 import HeroPills from "../components/HeroPills";
 import GroupComponent from "../components/about-us/components/group-component";
@@ -20,8 +21,23 @@ const Cta = dynamic(() => import("../components/cta/cta"));
 const Grid = dynamic(() => import("../components/grid"));
 const Container = dynamic(() => import("../components/container"));
 const Lightfall = dynamic(() => import("../components/Lightfall"), { ssr: false });
+const MobileBackground = dynamic(() => import("../components/MobileBackground"), { ssr: false });
+
+/** Returns true when the viewport is mobile-sized (≤768px). Safe on SSR — starts as false. */
+function useIsMobile(): boolean {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 768px)');
+    setIsMobile(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mq.addEventListener('change', handler);
+    return () => mq.removeEventListener('change', handler);
+  }, []);
+  return isMobile;
+}
 
 const Software: NextPage = () => {
+  const isMobile = useIsMobile();
   return (
     <>
       <AppLoader />
@@ -108,23 +124,27 @@ const Software: NextPage = () => {
                 pointerEvents: 'none',
                 overflow: 'hidden'
               }}>
-                <Lightfall
-                  colors={['#A6C8FF', '#5227FF', '#FF9FFC']}
-                  backgroundColor="#0A29FF"
-                  speed={0.4}
-                  streakCount={3}
-                  streakWidth={0.8}
-                  streakLength={1}
-                  glow={0.6}
-                  density={0.4}
-                  twinkle={0.8}
-                  zoom={3}
-                  backgroundGlow={0.2}
-                  opacity={0.25}
-                  mouseInteraction
-                  mouseStrength={0.3}
-                  mouseRadius={1}
-                />
+                {isMobile ? (
+                  <MobileBackground />
+                ) : (
+                  <Lightfall
+                    colors={['#A6C8FF', '#5227FF', '#FF9FFC']}
+                    backgroundColor="#0A29FF"
+                    speed={0.4}
+                    streakCount={3}
+                    streakWidth={0.8}
+                    streakLength={1}
+                    glow={0.6}
+                    density={0.4}
+                    twinkle={0.8}
+                    zoom={3}
+                    backgroundGlow={0.2}
+                    opacity={0.25}
+                    mouseInteraction
+                    mouseStrength={0.3}
+                    mouseRadius={1}
+                  />
+                )}
               </div>
               
               <div style={{ position: 'relative', zIndex: 1, width: '100%', maxWidth: '100%', margin: '0 auto', padding: '0 clamp(16px, 4vw, 60px)' }}>
