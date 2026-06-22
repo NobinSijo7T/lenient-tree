@@ -109,6 +109,38 @@
     0 1px 2px rgba(0, 0, 0, 0.45),
     0 0 10px rgba(255, 255, 255, 0.3);
 }
+
+.desktopCircleGlow {
+  display: inline;
+}
+
+.mobileMovingCircle {
+  display: none;
+  position: absolute;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #3537ad;
+  border: 2px solid rgba(196, 206, 255, 0.62);
+  transform: translate(-50%, -50%);
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  pointer-events: none;
+  will-change: top, left;
+  transition:
+    top 0.08s linear,
+    left 0.08s linear;
+}
+
+.mobileMovingCircleRing {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 4px solid rgba(61, 84, 255, 0.2);
+  pointer-events: none;
+}
+
 .frameGroup,
 .teamCollaborationParent {
   display: flex;
@@ -252,6 +284,21 @@
   .timelinePointerLabel {
     width: 40px;
     height: 40px;
+  }
+
+  .desktopCircleGlow {
+    display: none;
+  }
+
+  .mobileMovingCircle {
+    display: flex;
+    width: 56px;
+    height: 56px;
+    box-shadow:
+      0 0 18px rgba(61, 84, 255, 0.55),
+      0 0 40px rgba(61, 84, 255, 0.25),
+      0 8px 18px rgba(12, 16, 104, 0.38),
+      inset 0 0 12px rgba(100, 140, 255, 0.15);
   }
 
   .frameGroup {
@@ -832,6 +879,21 @@
 }
 
 @media screen and (max-width: 450px) {
+  .mobileMovingCircle {
+    width: 48px;
+    height: 48px;
+  }
+
+  .mobileMovingCircle img {
+    width: 24px !important;
+    height: 24px !important;
+  }
+
+  .mobileMovingCircleRing {
+    inset: -4px;
+    border-width: 3px;
+  }
+
   .weekRow {
     grid-template-columns: 90px 1fr;
     gap: 8px;

@@ -241,7 +241,7 @@ const Guidelines: NextPage = () => {
               const logoSize = Math.round(48 * scale);
               const logoHalf = logoSize / 2;
               return (
-                <g transform={`translate(${circlePosition.x}, ${circlePosition.y})`}>
+                <g transform={`translate(${circlePosition.x}, ${circlePosition.y})`} className={styles.desktopCircleGlow}>
                   <circle
                     cx="0"
                     cy="0"
@@ -273,6 +273,24 @@ const Guidelines: NextPage = () => {
               );
             })()}
           </svg>
+
+          {/* Moving circle with logo — rendered as DOM element for mobile (perfect roundness) */}
+          <div
+            className={styles.mobileMovingCircle}
+            style={{
+              left: `${circlePosition.x}px`,
+              top: `${(circlePosition.y / 1800) * 100}%`,
+            }}
+          >
+            <div className={styles.mobileMovingCircleRing} />
+            <Image
+              src="/white.png"
+              alt="LT"
+              width={30}
+              height={30}
+              style={{ objectFit: 'contain', display: 'block', position: 'relative', zIndex: 2 }}
+            />
+          </div>
 
 
 
