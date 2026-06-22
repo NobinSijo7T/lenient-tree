@@ -78,7 +78,7 @@ const Guidelines: NextPage = () => {
       clearTimeout(timer);
       window.removeEventListener('resize', init);
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Re-measure path length after pathData updates cause a re-render
@@ -94,13 +94,13 @@ const Guidelines: NextPage = () => {
 
       const sectionRect = sectionRef.current.getBoundingClientRect();
       const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-      
+
       // Calculate scroll progress (0 to 1) based on section position
       const sectionTop = sectionRect.top;
       const sectionHeight = sectionRect.height;
       const scrollStart = viewportHeight * 0.8; // Start when section is 80% from top
       const scrollEnd = -sectionHeight + viewportHeight * 0.2; // End when section is 20% from top
-      
+
       const progress = Math.max(0, Math.min(1, (scrollStart - sectionTop) / (scrollStart - scrollEnd)));
       setScrollProgress(progress);
 
@@ -146,7 +146,7 @@ const Guidelines: NextPage = () => {
     if (!pathRef.current || pathLength === 0) {
       return { x: svgWidth / 2, y: 0 };
     }
-    
+
     const point = pathRef.current.getPointAtLength(progress * pathLength);
     return { x: point.x, y: point.y };
   };
@@ -155,12 +155,20 @@ const Guidelines: NextPage = () => {
 
   return (
     <div className={styles.guidelines}>
-      <h1 className={styles.guidelines2}>Timeline</h1>
+      <div className={styles.timelineImageContainer}>
+        <Image
+          src="/timeline-white.png"
+          alt="Timeline"
+          width={600}
+          height={150}
+          style={{ width: '100%', height: 'auto', maxWidth: '600px', objectFit: 'contain' }}
+        />
+      </div>
       <main className={styles.frameParent}>
 
         <section className={styles.frameGroup} ref={sectionRef}>
           {/* Master continuous path overlay */}
-          <svg 
+          <svg
             ref={svgRef}
             className={styles.masterPath}
             viewBox={`0 0 ${svgWidth} 1800`}
@@ -184,24 +192,24 @@ const Guidelines: NextPage = () => {
                 <stop offset="100%" stopColor="#2d40ff" stopOpacity="0.5" />
               </linearGradient>
               <filter id="masterGlow">
-                <feGaussianBlur stdDeviation="10" result="coloredBlur"/>
+                <feGaussianBlur stdDeviation="10" result="coloredBlur" />
                 <feMerge>
-                  <feMergeNode in="coloredBlur"/>
-                  <feMergeNode in="SourceGraphic"/>
+                  <feMergeNode in="coloredBlur" />
+                  <feMergeNode in="SourceGraphic" />
                 </feMerge>
               </filter>
               <filter id="strongGlow">
-                <feGaussianBlur stdDeviation="15" result="coloredBlur"/>
+                <feGaussianBlur stdDeviation="15" result="coloredBlur" />
                 <feMerge>
-                  <feMergeNode in="coloredBlur"/>
-                  <feMergeNode in="SourceGraphic"/>
+                  <feMergeNode in="coloredBlur" />
+                  <feMergeNode in="SourceGraphic" />
                 </feMerge>
               </filter>
               <filter id="circleGlow">
-                <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+                <feGaussianBlur stdDeviation="8" result="coloredBlur" />
                 <feMerge>
-                  <feMergeNode in="coloredBlur"/>
-                  <feMergeNode in="SourceGraphic"/>
+                  <feMergeNode in="coloredBlur" />
+                  <feMergeNode in="SourceGraphic" />
                 </feMerge>
               </filter>
               <mask id="progressMask">
@@ -209,7 +217,7 @@ const Guidelines: NextPage = () => {
                 <rect x="0" y="0" width={svgWidth} height={scrollProgress * 1800} fill="white" />
               </mask>
             </defs>
-            
+
             {/* Base path (dim) */}
             <path
               ref={pathRef}
@@ -220,7 +228,7 @@ const Guidelines: NextPage = () => {
               strokeLinecap="round"
               filter="url(#masterGlow)"
             />
-            
+
             {/* Glowing path behind the moving circle */}
             <path
               d={pathData}
@@ -232,7 +240,7 @@ const Guidelines: NextPage = () => {
               mask="url(#progressMask)"
               opacity="0.9"
             />
-            
+
             {/* Moving circle with glow */}
             {(() => {
               const scale = Math.min(1, svgWidth / 300);
@@ -298,7 +306,7 @@ const Guidelines: NextPage = () => {
           <div className={styles.weekSection} ref={(el) => { weekRefs.current[0] = el; }}>
             <div className={styles.weekRow}>
               <div className={styles.weekPathSegment} ref={(el) => { weekSegmentRefs.current[0] = el; }}>
-                <div 
+                <div
                   className={`${styles.largeWeekCircle} ${activeWeek === 1 ? styles.active : ''}`}
                   onClick={() => scrollToWeek(1)}
                   ref={(el) => { circleElRefs.current[0] = el; }}
@@ -365,7 +373,7 @@ const Guidelines: NextPage = () => {
           <div className={styles.weekSection} ref={(el) => { weekRefs.current[1] = el; }}>
             <div className={styles.weekRow}>
               <div className={styles.weekPathSegment} ref={(el) => { weekSegmentRefs.current[1] = el; }}>
-                <div 
+                <div
                   className={`${styles.largeWeekCircle} ${activeWeek === 2 ? styles.active : ''}`}
                   onClick={() => scrollToWeek(2)}
                   ref={(el) => { circleElRefs.current[1] = el; }}
@@ -432,7 +440,7 @@ const Guidelines: NextPage = () => {
           <div className={styles.weekSection} ref={(el) => { weekRefs.current[2] = el; }}>
             <div className={styles.weekRow}>
               <div className={styles.weekPathSegment} ref={(el) => { weekSegmentRefs.current[2] = el; }}>
-                <div 
+                <div
                   className={`${styles.largeWeekCircle} ${activeWeek === 3 ? styles.active : ''}`}
                   onClick={() => scrollToWeek(3)}
                   ref={(el) => { circleElRefs.current[2] = el; }}
@@ -499,7 +507,7 @@ const Guidelines: NextPage = () => {
           <div className={styles.weekSection} ref={(el) => { weekRefs.current[3] = el; }}>
             <div className={styles.weekRow}>
               <div className={styles.weekPathSegment} ref={(el) => { weekSegmentRefs.current[3] = el; }}>
-                <div 
+                <div
                   className={`${styles.largeWeekCircle} ${activeWeek === 4 ? styles.active : ''}`}
                   onClick={() => scrollToWeek(4)}
                   ref={(el) => { circleElRefs.current[3] = el; }}
