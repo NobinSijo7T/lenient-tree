@@ -66,7 +66,7 @@ export default function HeroPills() {
         </section>
       </div>
 
-      {/* Large pills — React.js, Express.js, Mongo DB, Node.js - better distributed */}
+      {/* Large pills — React.js, Express.js, Node.js - better distributed */}
       <div className={`${styles.r} ${styles.pillFloat1}`} style={p(-0.10)}>
         <h2 className={styles.reactjs}>React.js</h2>
       </div>
@@ -75,9 +75,6 @@ export default function HeroPills() {
       </div>
       <div className={`${styles.e} ${styles.pillFloat3}`} style={p(-0.12)}>
         <h2 className={styles.expressjs}>Express.js</h2>
-      </div>
-      <div className={`${styles.m} ${styles.pillFloat4}`} style={p(-0.06)}>
-        <h2 className={styles.mongoDb}>MongoDB</h2>
       </div>
 
 
