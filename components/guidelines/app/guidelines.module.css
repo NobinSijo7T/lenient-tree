@@ -674,7 +674,7 @@
   }
 
   .bentoGrid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
     gap: 10px;
   }
 
@@ -745,15 +745,15 @@
 
 @media screen and (max-width: 1024px) {
   .weekRow {
-    grid-template-columns: 1fr;
-    gap: 24px;
+    grid-template-columns: 200px 1fr;
+    gap: 20px;
   }
 
   .weekPathSegment {
-    width: 100%;
-    min-height: 200px;
-    position: relative;
-    top: 0;
+    width: 200px;
+    min-height: 350px;
+    position: sticky;
+    top: 80px;
   }
 
   .largeWeekCircle {
@@ -771,5 +771,71 @@
 
   .largeWeekDays {
     font-size: 11px;
+  }
+}
+
+@media screen and (max-width: 760px) {
+  .weekRow {
+    grid-template-columns: 140px 1fr;
+    gap: 12px;
+  }
+
+  .weekPathSegment {
+    width: 140px;
+    min-height: 300px;
+    position: sticky;
+    top: 60px;
+  }
+
+  .largeWeekCircle {
+    width: 110px;
+    height: 110px;
+  }
+
+  .largeWeekNumber {
+    font-size: 42px;
+  }
+
+  .largeWeekLabel {
+    font-size: 10px;
+  }
+
+  .largeWeekDays {
+    font-size: 9px;
+  }
+
+  .bentoGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .weekRow {
+    grid-template-columns: 110px 1fr;
+    gap: 8px;
+  }
+
+  .weekPathSegment {
+    width: 110px;
+    min-height: 260px;
+    position: sticky;
+    top: 50px;
+  }
+
+  .largeWeekCircle {
+    width: 90px;
+    height: 90px;
+  }
+
+  .largeWeekNumber {
+    font-size: 32px;
+  }
+
+  .largeWeekLabel {
+    font-size: 8px;
+  }
+
+  .largeWeekDays {
+    font-size: 8px;
   }
 }

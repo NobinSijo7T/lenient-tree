@@ -10,6 +10,7 @@ const Guidelines: NextPage = () => {
   const [scrollProgress, setScrollProgress] = useState<number>(0);
   const [pathLength, setPathLength] = useState<number>(0);
   const [pathData, setPathData] = useState<string>('M 150,0 L 150,1800');
+  const [svgWidth, setSvgWidth] = useState<number>(300);
   const animationFrame = useRef<number | null>(null);
   const weekRefs = useRef<(HTMLDivElement | null)[]>([]);
   const weekSegmentRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -32,27 +33,34 @@ const Guidelines: NextPage = () => {
     const totalHeight = sectionRect.height;
     if (totalHeight === 0) return;
 
+    // Measure column width from the first weekPathSegment
+    const colEl = weekSegmentRefs.current[0];
+    const colWidth = colEl ? colEl.getBoundingClientRect().width : 300;
+    setSvgWidth(colWidth);
+
+    const viewBoxW = colWidth; // viewBox matches DOM width 1:1 on X
     const viewBoxH = 1800;
+    const cx = viewBoxW / 2;   // center X of the path column
     const scaleY = viewBoxH / totalHeight;
     const sectionAbsTop = sectionRect.top + window.scrollY;
 
-    // Circle radius in DOM px (fallback 90 = 180px/2 desktop, 70 = 140px/2 mobile)
+    // Circle radius in DOM px
     const circleEl = circleElRefs.current[0];
-    const rDom = circleEl ? circleEl.getBoundingClientRect().width / 2 : 90;
-    const rxArc = rDom;              // X is 1:1 (300px DOM = 300 viewBox)
+    const rDom = circleEl ? circleEl.getBoundingClientRect().width / 2 : colWidth * 0.3;
+    const rxArc = rDom;              // X is 1:1
     const ryArc = rDom * scaleY;     // Y is scaled
 
-    const parts: string[] = ['M 150,0'];
+    const parts: string[] = [`M ${cx.toFixed(1)},0`];
     weekSegmentRefs.current.forEach((el, i) => {
       if (!el) return;
       const r = el.getBoundingClientRect();
       const domCY = r.top + window.scrollY - sectionAbsTop + r.height / 2;
       const cy = domCY * scaleY;
       const sweep = i % 2 === 0 ? 1 : 0; // 1=right (W1,W3), 0=left (W2,W4)
-      parts.push(`L 150,${(cy - ryArc).toFixed(1)}`);
-      parts.push(`A ${rxArc.toFixed(1)},${ryArc.toFixed(1)} 0 0 ${sweep} 150,${(cy + ryArc).toFixed(1)}`);
+      parts.push(`L ${cx.toFixed(1)},${(cy - ryArc).toFixed(1)}`);
+      parts.push(`A ${rxArc.toFixed(1)},${ryArc.toFixed(1)} 0 0 ${sweep} ${cx.toFixed(1)},${(cy + ryArc).toFixed(1)}`);
     });
-    parts.push('L 150,1800');
+    parts.push(`L ${cx.toFixed(1)},1800`);
     setPathData(parts.join(' '));
   };
 
@@ -136,7 +144,7 @@ const Guidelines: NextPage = () => {
   // Get the position of the moving circle along the path
   const getPointAtProgress = (progress: number) => {
     if (!pathRef.current || pathLength === 0) {
-      return { x: 150, y: 0 };
+      return { x: svgWidth / 2, y: 0 };
     }
     
     const point = pathRef.current.getPointAtLength(progress * pathLength);
@@ -155,13 +163,13 @@ const Guidelines: NextPage = () => {
           <svg 
             ref={svgRef}
             className={styles.masterPath}
-            viewBox="0 0 300 1800"
+            viewBox={`0 0 ${svgWidth} 1800`}
             preserveAspectRatio="none"
             style={{
               position: 'absolute',
               left: '0',
               top: '0',
-              width: '300px',
+              width: `${svgWidth}px`,
               height: '100%',
               pointerEvents: 'none',
               zIndex: 5
@@ -197,8 +205,8 @@ const Guidelines: NextPage = () => {
                 </feMerge>
               </filter>
               <mask id="progressMask">
-                <rect x="0" y="0" width="300" height="1800" fill="white" opacity="0.3" />
-                <rect x="0" y="0" width="300" height={scrollProgress * 1800} fill="white" />
+                <rect x="0" y="0" width={svgWidth} height="1800" fill="white" opacity="0.3" />
+                <rect x="0" y="0" width={svgWidth} height={scrollProgress * 1800} fill="white" />
               </mask>
             </defs>
             
