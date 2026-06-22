@@ -77,7 +77,9 @@ nav {
 
 /* Prevent font flash */
 .stacksprintHackathon {
-  font-family: var(--font-donkey), system-ui, sans-serif;
+  font-family: "Audiowide", var(--font-sector-034), "Sector 034", system-ui, sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
   font-size: clamp(50px, 8vw, 100px);
   line-height: 1.2;
   color: #fff;

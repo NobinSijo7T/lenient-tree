@@ -19,7 +19,7 @@
 @font-face {
   font-family: "Sector 034";
   src: url("/fonts/sector_034.ttf") format("truetype");
-  font-weight: normal;
+  font-weight: 400;
   font-style: normal;
   font-display: swap;
 }

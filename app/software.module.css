@@ -226,7 +226,6 @@
   top: 275px;
   left: 12px;
   font-size: var(--fs-24);
-  font-family: var(--font-lufga);
   z-index: 20;
 }
 .r {
@@ -1493,19 +1492,26 @@
 
 .stacksprintHackathonParent {
   top: clamp(116px, 24vh, 275px);
-  right: clamp(16px, 4vw, 48px);
-  left: clamp(8px, 2vw, 12px);
-  width: auto;
+  left: clamp(16px, 4vw, 60px);
+  transform: none;
+  right: auto;
+  width: 190%;
+  max-width: none;
   font-size: clamp(14px, 1.8vw, 24px);
   z-index: 20;
+  display: flex;
+  justify-content: center;
 }
 
 .stacksprintHackathon {
-  width: min(100%, 1303px);
-  font-size: clamp(2rem, 5vw, 4rem);
-  line-height: 1.15;
-  letter-spacing: 0.06em;
-  overflow-wrap: anywhere;
+  width: 100%;
+  max-width: none;
+  font-size: clamp(2.5rem, 5vw, 5rem);
+  line-height: 1;
+  letter-spacing: 0.08em;
+  overflow-wrap: normal;
+  text-align: center;
+  word-break: normal;
 }
 
 .r,
@@ -2026,9 +2032,7 @@
   max-width: 1344px;
   font-size: clamp(72px, 13.4vw, 190px);
   line-height: 0.72;
-  font-family: var(--font-orbitron);
-  font-weight: 500;
-  letter-spacing: 0;
+  letter-spacing: 0.04em;
   color: rgba(242, 244, 250, 0.94);
   text-shadow: 0 10px 44px rgba(0, 0, 0, 0.4);
   white-space: nowrap;
@@ -2218,6 +2222,7 @@
     right: 14px;
     left: 14px;
     z-index: 20;
+    transform: none;
   }
 
   .stacksprintHackathon {
@@ -2363,6 +2368,7 @@
     flex-direction: column;
     align-items: center;
     gap: 14px;
+    transform: none;
   }
 
   .heroContentContainer {
@@ -2496,17 +2502,53 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  margin-inline: auto;
+  margin-inline: 0;
+  font-family: "Audiowide", var(--font-sector-034), "Sector 034", sans-serif !important;
+  font-weight: 400 !important;
+  font-style: normal !important;
+  text-transform: uppercase;
+  width: 100%;
+  gap: 0.2em;
 }
 
 .heroTitleLine {
   display: block;
-  width: 100%;
+  width: 185%;
+  font-family: "Audiowide", var(--font-sector-034), "Sector 034", sans-serif !important;
+  font-weight: 400 !important;
+  font-style: normal !important;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+@media (max-width: 1400px) {
+  .heroTitleLine {
+    white-space: normal;
+  }
 }
 
 .heroTitleSecondary {
-  font-size: 0.76em;
-  line-height: 0.8;
+  font-size: 0.85em;
+  line-height: 1;
+  margin-top: 0.1em;
+}
+
+@media screen and (min-width: 769px) {
+  .stacksprintHackathonParent {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    width: min(calc(100% - 48px), 1344px);
+    align-items: center;
+  }
+
+  .heroContentContainer {
+    align-items: center;
+  }
+
+  .stacksprintHackathon {
+    text-align: center;
+  }
 }
 
 /* About section composition */

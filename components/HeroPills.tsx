@@ -10,8 +10,12 @@ function HeroPills() {
   const scrollRef = useRef(0);
   const tickingRef = useRef(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    // Mark component as mounted
+    setMounted(true);
+    
     // Check if mobile
     const mobile = window.matchMedia("(max-width: 768px)").matches;
     setIsMobile(mobile);
@@ -44,21 +48,21 @@ function HeroPills() {
 
   // Memoize parallax calculation
   const getParallaxStyle = useCallback((factor: number) => {
-    if (isMobile) return {}; // No parallax on mobile
+    if (!mounted || isMobile) return {}; // No parallax on mobile or before mount
     return {
       transform: `translateY(${scrollY * factor}px)`,
     };
-  }, [scrollY, isMobile]);
+  }, [scrollY, isMobile, mounted]);
 
   return (
     <div className={styles.stacksprintHackathonParent}>
+      <style jsx>{`
+        @import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
+      `}</style>
       <div className={styles.heroContentContainer}>
         <div className={styles.stacksprintHackathon}>
-          <span className={styles.heroTitleLine}>Future Stack AI</span>
-          <br />
-          <span className={`${styles.heroTitleLine} ${styles.heroTitleSecondary}`}>
-            Internship
-          </span>
+          <span className={styles.heroTitleLine}>Future Stack</span>
+          <span className={`${styles.heroTitleLine} ${styles.heroTitleSecondary}`}>Internship</span>
         </div>
 
         <section className={styles.heroBottomBar}>

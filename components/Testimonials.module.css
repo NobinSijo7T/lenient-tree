@@ -208,6 +208,18 @@
   color: #0077ff;
 }
 
+.avatarImage {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  right: 3px;
+  bottom: 3px;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  object-fit: cover;
+  width: calc(100% - 6px);
+  height: calc(100% - 6px);
+}
+
 .quoteIcon {
   font-size: 56px;
   font-family: Georgia, serif;
@@ -244,6 +256,14 @@
 .authorInfo {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   padding-top: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.authorDetails {
+  flex: 1;
 }
 
 .authorName {
@@ -259,6 +279,34 @@
   font-size: 13px;
   margin: 0;
   font-weight: 400;
+}
+
+.linkedinButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(0, 119, 181, 0.2) 0%, rgba(0, 119, 181, 0.4) 100%);
+  border: 1px solid rgba(0, 119, 181, 0.4);
+  color: #0077b5;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.linkedinButton:hover {
+  background: linear-gradient(135deg, rgba(0, 119, 181, 0.4) 0%, rgba(0, 119, 181, 0.6) 100%);
+  border-color: rgba(0, 119, 181, 0.8);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 119, 181, 0.3);
+}
+
+.linkedinButton svg {
+  width: 20px;
+  height: 20px;
 }
 
 .pagination {
@@ -337,7 +385,8 @@
     height: 64px;
   }
 
-  .avatarPlaceholder {
+  .avatarPlaceholder,
+  .avatarImage {
     font-size: 18px;
   }
 
@@ -351,6 +400,16 @@
 
   .authorRole {
     font-size: 12px;
+  }
+
+  .linkedinButton {
+    width: 36px;
+    height: 36px;
+  }
+
+  .linkedinButton svg {
+    width: 18px;
+    height: 18px;
   }
 
   .pagination {
