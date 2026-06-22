@@ -389,6 +389,10 @@
     box-shadow 0.12s ease;
 }
 
+.mobileSd {
+  display: none;
+}
+
 .unionIcon2 {
   filter: brightness(0) invert(1);
 }
@@ -515,6 +519,94 @@
   .navigationDataParent,
   .sd {
     display: none;
+  }
+
+  .mobileSd {
+    display: flex;
+    cursor: pointer;
+    position: relative;
+    border: 1px solid rgba(183, 190, 234, 0.52);
+    background:
+      linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.16),
+        rgba(255, 255, 255, 0.04) 45%,
+        rgba(28, 29, 88, 0.42)
+      ),
+      rgba(8, 7, 28, 0.34);
+    box-shadow:
+      inset 1px 1px 0 rgba(255, 255, 255, 0.34),
+      inset -1px -1px 0 rgba(255, 255, 255, 0.12),
+      0 8px 24px rgba(0, 0, 0, 0.24);
+    overflow: hidden;
+    transition:
+      transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+      border-color 0.35s ease,
+      box-shadow 0.35s ease,
+      background 0.35s ease;
+    height: 38px;
+    padding: 8px 20px;
+    border-radius: 20px;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+  }
+
+  .mobileSd::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(
+      110deg,
+      transparent 20%,
+      rgba(255, 255, 255, 0.18) 50%,
+      transparent 80%
+    );
+    transform: translateX(-100%);
+    transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .mobileSd:hover::before {
+    transform: translateX(100%);
+  }
+
+  .mobileSd:hover {
+    transform: scale(1.055) translateY(-1px);
+    border-color: rgba(183, 190, 234, 0.85);
+    background:
+      linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.28),
+        rgba(130, 140, 220, 0.18) 45%,
+        rgba(42, 43, 198, 0.55)
+      ),
+      rgba(14, 13, 50, 0.52);
+    box-shadow:
+      inset 1px 1px 0 rgba(255, 255, 255, 0.52),
+      inset -1px -1px 0 rgba(255, 255, 255, 0.18),
+      0 0 0 1px rgba(130, 140, 230, 0.35),
+      0 8px 32px rgba(42, 43, 198, 0.45),
+      0 16px 48px rgba(0, 0, 0, 0.28);
+  }
+
+  .mobileSd:hover .unionIcon2 {
+    transform: translateX(3px);
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .mobileSd .unionIcon2 {
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .mobileSd:active {
+    transform: scale(0.97) translateY(0px);
+    transition:
+      transform 0.12s ease,
+      box-shadow 0.12s ease;
   }
 
   .hamburger {

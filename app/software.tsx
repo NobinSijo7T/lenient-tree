@@ -23,12 +23,20 @@ const Software: NextPage = () => {
       <Nav state="Hero" />
       <section className={styles.separatorParent}>
         <Image
-          className={styles.separatorIcon}
+          className={`${styles.separatorIcon} ${styles.desktopOnly}`}
           width={1440}
           height={1105}
           sizes="100vw"
           alt=""
           src="/Separator@2x.png"
+        />
+        <Image
+          className={`${styles.separatorIcon} ${styles.mobileOnly}`}
+          width={1440}
+          height={1105}
+          sizes="100vw"
+          alt=""
+          src="/mobile-bg.png"
         />
         <div className={styles.frameChild} />
       </section>

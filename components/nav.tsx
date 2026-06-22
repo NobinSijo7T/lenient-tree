@@ -125,6 +125,21 @@ const Nav: NextPage<NavType> = ({ className = "", state = "Hero" }) => {
         />
       </button>
       <button
+        className={styles.mobileSd}
+        onClick={handleRegisterClick}
+        type="button"
+      >
+        <div className={styles.register}>Register</div>
+        <Image
+          className={styles.unionIcon2}
+          width={20}
+          height={19.5}
+          sizes="100vw"
+          alt=""
+          src="/Union2.svg"
+        />
+      </button>
+      <button
         aria-label={menuOpen ? "Close menu" : "Open menu"}
         aria-expanded={menuOpen}
         className={styles.hamburger}
