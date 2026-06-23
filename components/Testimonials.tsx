@@ -78,6 +78,8 @@ const Testimonials: React.FC = () => {
       'Angelina Mary George': '/testimonials/Angelina Mary George.webp',
       'AMAN ZAHI': '/testimonials/AMAN ZAHI.webp',
       'Aleena M Siju': '/testimonials/aleena.jpeg',
+      'Malavika Gopi': '/testimonials/malavika.jpeg',
+      'Meera Surendran': '/testimonials/meera.jpeg',
     };
     
     // Try exact match first
