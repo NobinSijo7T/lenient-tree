@@ -61,8 +61,8 @@ function HeroPills() {
       `}</style>
       <div className={styles.heroContentContainer}>
         <div className={styles.stacksprintHackathon}>
-          <span className={styles.heroTitleLine}>Future</span>
-          <span className={styles.heroTitleLine}>Stack</span>
+          <span className={`${styles.heroTitleLine} ${styles.heroTitleFutureStack}`}>Future Stack</span>
+          <span className={`${styles.heroTitleLine} ${styles.heroTitleAI}`}>AI</span>
           <span className={`${styles.heroTitleLine} ${styles.heroTitleSecondary}`}>Internship</span>
         </div>
 
