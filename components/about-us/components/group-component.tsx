@@ -129,15 +129,40 @@ const GroupComponent: NextPage<GroupComponentType> = ({ className = "" }) => {
           </span>
         </span>
       </h1>
-      <Image
-        className={styles.robotIcon}
-        loading="lazy"
-        width={583}
-        height={903.5}
-        sizes="(max-width: 768px) 50vw, 583px"
-        alt="Robot mascot"
-        src="/robot@2x.webp"
-      />
+      {/* Marquee section for mobile only */}
+      <div className={styles.robotWrapper}>
+        <Image
+          className={styles.robotIcon}
+          loading="lazy"
+          width={583}
+          height={903.5}
+          sizes="(max-width: 768px) 50vw, 583px"
+          alt="Robot mascot"
+          src="/robot@2x.webp"
+        />
+        <div className={styles.marqueeContainer}>
+          <div className={styles.marqueeTrack}>
+            {[...Array(10)].map((_, i) => (
+              <div key={i} className={styles.marqueeItem}>
+                <Image
+                  src="/1-mar.png"
+                  alt="Register Now"
+                  width={200}
+                  height={50}
+                  className={styles.marqueeText}
+                />
+                <Image
+                  src="/mar-dot.png"
+                  alt="separator"
+                  width={20}
+                  height={20}
+                  className={styles.marqueeDot}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
       <h3 className={styles.about}>About</h3>
       <h2 className={styles.whatYouLearn}>Why Choose Us</h2>
       <section className={styles.box}>
