@@ -2045,6 +2045,15 @@
   letter-spacing: 0.05em;
 }
 
+@media (max-width: 600px) {
+  .heroTitleFutureStack {
+    white-space: normal;
+    word-break: break-word;
+    font-size: clamp(28px, 9vw, 44px);
+    text-align: center;
+  }
+}
+
 .r,
 .e,
 .m,
@@ -2541,6 +2550,17 @@
 @media (max-width: 1400px) {
   .heroTitleLine {
     white-space: normal;
+  }
+
+  .heroTitleFutureStack {
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 600px) {
+  .heroTitleFutureStack {
+    white-space: normal;
+    word-break: break-word;
   }
 }
 
