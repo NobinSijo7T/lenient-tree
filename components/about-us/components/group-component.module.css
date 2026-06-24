@@ -779,27 +779,35 @@
   .marqueeTrack {
     display: flex;
     align-items: center;
+    gap: clamp(16px, 4vw, 24px);
     animation: marqueeScroll 20s linear infinite;
     white-space: nowrap;
+    padding: 0 clamp(8px, 2vw, 16px);
   }
 
   .marqueeItem {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: clamp(16px, 4vw, 24px);
     flex-shrink: 0;
   }
 
   .marqueeText {
     height: auto;
     width: auto;
-    max-height: clamp(30px, 8vw, 45px);
+    max-height: clamp(60px, 15vw, 90px);
+    min-height: 50px;
+    object-fit: contain;
+    display: block;
   }
 
   .marqueeDot {
     height: auto;
     width: auto;
-    max-height: clamp(15px, 4vw, 25px);
+    max-height: clamp(28px, 7vw, 42px);
+    min-height: 24px;
+    object-fit: contain;
+    display: block;
   }
 
   @keyframes marqueeScroll {
