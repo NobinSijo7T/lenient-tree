@@ -567,12 +567,12 @@ const Guidelines: NextPage = () => {
         <div className={styles.finalProjectSection}>
           <div className={styles.finalProjectBox}>
             <div className={styles.projectIconWrapper}>
-              <div className={styles.projectIcon}>🚀</div>
+              <div className={styles.projectIcon}>🛠️</div>
             </div>
-            <h3 className={styles.projectDay}>Day 17</h3>
-            <h2 className={styles.projectTitle}>Final Project Showcase</h2>
+            <h3 className={styles.projectDay}>Day 17 — Month-End</h3>
+            <h2 className={styles.projectTitle}>Production-Grade MVP Development</h2>
             <p className={styles.projectDescription}>
-              Present your complete capstone project and demonstrate everything you've learned throughout the internship
+              Turning ideas into real products through feature building, testing, and improvements — preparing student projects for real-world impact.
             </p>
           </div>
         </div>

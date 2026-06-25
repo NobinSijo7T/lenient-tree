@@ -1041,7 +1041,7 @@
 .finalProjectSection {
   width: 100%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   padding-right: 0;
   margin-top: 60px;
   margin-bottom: 80px;
@@ -1053,7 +1053,7 @@
 
 .finalProjectBox {
   width: 100%;
-  max-width: 600px;
+  max-width: 860px;
   background: linear-gradient(135deg, rgba(45, 245, 255, 0.1) 0%, rgba(142, 82, 255, 0.15) 50%, rgba(80, 120, 255, 0.1) 100%);
   border: 2px solid rgba(45, 245, 255, 0.4);
   border-radius: 20px;

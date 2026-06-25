@@ -2598,18 +2598,21 @@
   .stacksprintHackathon {
     order: 1;
     width: 100%;
-    max-width: 420px;
+    max-width: 100%;
     font-size: clamp(28px, 9vw, 44px);
     line-height: 0.92;
     white-space: normal;
+    padding: 0 8px;
+    box-sizing: border-box;
   }
 
   .heroTitleLine {
     overflow-wrap: anywhere;
+    word-break: break-word;
   }
 
   .heroTitleFutureStack {
-    white-space: normal;
+    white-space: normal !important;
     word-break: break-word;
     overflow-wrap: anywhere;
   }
