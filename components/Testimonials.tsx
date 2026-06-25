@@ -152,7 +152,7 @@ const Testimonials: React.FC = () => {
                     </div>
 
                     <div className={styles.rating}>
-                      {[...Array(5)].map((_, i) => (
+                      {[...Array(testimonial.name === 'Aleena M Siju' || testimonial.name === 'Angelina Mary George' ? 4 : 5)].map((_, i) => (
                         <span key={i} className={styles.star}>★</span>
                       ))}
                     </div>
