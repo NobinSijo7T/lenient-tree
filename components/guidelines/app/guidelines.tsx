@@ -562,6 +562,20 @@ const Guidelines: NextPage = () => {
             </div>
           </div>
         </section>
+
+        {/* Day 17 Project - Outside the frameGroup section */}
+        <div className={styles.finalProjectSection}>
+          <div className={styles.finalProjectBox}>
+            <div className={styles.projectIconWrapper}>
+              <div className={styles.projectIcon}>🚀</div>
+            </div>
+            <h3 className={styles.projectDay}>Day 17</h3>
+            <h2 className={styles.projectTitle}>Final Project Showcase</h2>
+            <p className={styles.projectDescription}>
+              Present your complete capstone project and demonstrate everything you've learned throughout the internship
+            </p>
+          </div>
+        </div>
       </main>
     </div>
   );

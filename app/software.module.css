@@ -2608,6 +2608,12 @@
     overflow-wrap: anywhere;
   }
 
+  .heroTitleFutureStack {
+    white-space: normal;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+  }
+
   .heroTitleAI {
     font-size: 1em;
     letter-spacing: 0.16em;
