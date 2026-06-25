@@ -312,8 +312,6 @@ const Guidelines: NextPage = () => {
                   ref={(el) => { circleElRefs.current[0] = el; }}
                 >
                   <div className={styles.circleContent}>
-                    <div className={styles.largeWeekNumber}>1</div>
-                    <div className={styles.largeWeekLabel}>WEEK</div>
                     <div className={styles.largeWeekDays}>Day 1 – 4</div>
                   </div>
                   {activeWeek === 1 && <div className={styles.activeRing} />}
@@ -321,7 +319,7 @@ const Guidelines: NextPage = () => {
               </div>
               <div className={styles.weekContent}>
                 <div className={styles.weekHeader}>
-                  <h2 className={styles.weekTitle}>Week 1: Frontend Development</h2>
+                  <h2 className={styles.weekTitle}>Frontend Development</h2>
                 </div>
                 <div className={styles.bentoGrid}>
                   <div className={styles.bentoCard}>
@@ -379,8 +377,6 @@ const Guidelines: NextPage = () => {
                   ref={(el) => { circleElRefs.current[1] = el; }}
                 >
                   <div className={styles.circleContent}>
-                    <div className={styles.largeWeekNumber}>2</div>
-                    <div className={styles.largeWeekLabel}>WEEK</div>
                     <div className={styles.largeWeekDays}>Day 5 – 8</div>
                   </div>
                   {activeWeek === 2 && <div className={styles.activeRing} />}
@@ -388,7 +384,7 @@ const Guidelines: NextPage = () => {
               </div>
               <div className={styles.weekContent}>
                 <div className={styles.weekHeader}>
-                  <h2 className={styles.weekTitle}>Week 2: Full Stack Development</h2>
+                  <h2 className={styles.weekTitle}>Full Stack Development</h2>
                 </div>
                 <div className={styles.bentoGrid}>
                   <div className={styles.bentoCard}>
@@ -446,8 +442,6 @@ const Guidelines: NextPage = () => {
                   ref={(el) => { circleElRefs.current[2] = el; }}
                 >
                   <div className={styles.circleContent}>
-                    <div className={styles.largeWeekNumber}>3</div>
-                    <div className={styles.largeWeekLabel}>WEEK</div>
                     <div className={styles.largeWeekDays}>Day 9 – 12</div>
                   </div>
                   {activeWeek === 3 && <div className={styles.activeRing} />}
@@ -455,7 +449,7 @@ const Guidelines: NextPage = () => {
               </div>
               <div className={styles.weekContent}>
                 <div className={styles.weekHeader}>
-                  <h2 className={styles.weekTitle}>Week 3: Cloud & Production</h2>
+                  <h2 className={styles.weekTitle}>Cloud & Production</h2>
                 </div>
                 <div className={styles.bentoGrid}>
                   <div className={styles.bentoCard}>
@@ -513,8 +507,6 @@ const Guidelines: NextPage = () => {
                   ref={(el) => { circleElRefs.current[3] = el; }}
                 >
                   <div className={styles.circleContent}>
-                    <div className={styles.largeWeekNumber}>4</div>
-                    <div className={styles.largeWeekLabel}>WEEK</div>
                     <div className={styles.largeWeekDays}>Day 13 – 16</div>
                   </div>
                   {activeWeek === 4 && <div className={styles.activeRing} />}
@@ -522,7 +514,7 @@ const Guidelines: NextPage = () => {
               </div>
               <div className={styles.weekContent}>
                 <div className={styles.weekHeader}>
-                  <h2 className={styles.weekTitle}>Week 4: AI Development</h2>
+                  <h2 className={styles.weekTitle}>AI Development</h2>
                 </div>
                 <div className={styles.bentoGrid}>
                   <div className={styles.bentoCard}>
