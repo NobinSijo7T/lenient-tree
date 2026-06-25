@@ -2254,6 +2254,7 @@
 .heroTitleFutureStack {
   white-space: nowrap;
   letter-spacing: 0.05em;
+  font-size: clamp(42px, 6vw, 80px);
 }
 
 .r,
