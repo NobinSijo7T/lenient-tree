@@ -324,7 +324,7 @@ const Guidelines: NextPage = () => {
                 <div className={styles.bentoGrid}>
                   <div className={styles.bentoCard}>
                     <h3 className={styles.bentoDay}>Day 1</h3>
-                    <h4 className={styles.bentoTitle}>Web Basics & HTML5</h4>
+                    <h4 className={styles.bentoTitle}>Web Basics and HTML5</h4>
                     <ul className={styles.bentoList}>
                       <li>Introduction to the Web</li>
                       <li>HTML5 Fundamentals</li>
@@ -334,10 +334,10 @@ const Guidelines: NextPage = () => {
                   </div>
                   <div className={styles.bentoCard}>
                     <h3 className={styles.bentoDay}>Day 2</h3>
-                    <h4 className={styles.bentoTitle}>CSS & Responsive Design</h4>
+                    <h4 className={styles.bentoTitle}>CSS and Responsive Design</h4>
                     <ul className={styles.bentoList}>
                       <li>CSS Fundamentals</li>
-                      <li>Flexbox & Grid</li>
+                      <li>Flexbox and Grid</li>
                       <li>Responsive Design</li>
                       <li>Animations</li>
                     </ul>
@@ -346,9 +346,9 @@ const Guidelines: NextPage = () => {
                     <h3 className={styles.bentoDay}>Day 3</h3>
                     <h4 className={styles.bentoTitle}>JavaScript Fundamentals</h4>
                     <ul className={styles.bentoList}>
-                      <li>Variables & Functions</li>
+                      <li>Variables and Functions</li>
                       <li>DOM Manipulation</li>
-                      <li>Events & ES6</li>
+                      <li>Events and ES6</li>
                       <li>Interactive Apps</li>
                     </ul>
                   </div>
@@ -356,8 +356,8 @@ const Guidelines: NextPage = () => {
                     <h3 className={styles.bentoDay}>Day 4</h3>
                     <h4 className={styles.bentoTitle}>React Basics</h4>
                     <ul className={styles.bentoList}>
-                      <li>JSX & Components</li>
-                      <li>Props & State</li>
+                      <li>JSX and Components</li>
+                      <li>Props and State</li>
                       <li>Event Handling</li>
                       <li>Reusable UI</li>
                     </ul>
@@ -399,7 +399,7 @@ const Guidelines: NextPage = () => {
                   </div>
                   <div className={styles.bentoCard}>
                     <h3 className={styles.bentoDay}>Day 6</h3>
-                    <h4 className={styles.bentoTitle}>Node.js & Express</h4>
+                    <h4 className={styles.bentoTitle}>Node.js and Express</h4>
                     <ul className={styles.bentoList}>
                       <li>Node.js Fundamentals</li>
                       <li>Express.js</li>
@@ -409,7 +409,7 @@ const Guidelines: NextPage = () => {
                   </div>
                   <div className={styles.bentoCard}>
                     <h3 className={styles.bentoDay}>Day 7</h3>
-                    <h4 className={styles.bentoTitle}>Database & PostgreSQL</h4>
+                    <h4 className={styles.bentoTitle}>Database and PostgreSQL</h4>
                     <ul className={styles.bentoList}>
                       <li>Database Design</li>
                       <li>SQL Basics</li>
@@ -421,7 +421,7 @@ const Guidelines: NextPage = () => {
                     <h3 className={styles.bentoDay}>Day 8</h3>
                     <h4 className={styles.bentoTitle}>Authentication</h4>
                     <ul className={styles.bentoList}>
-                      <li>Auth & Authorization</li>
+                      <li>Auth and Authorization</li>
                       <li>JWT</li>
                       <li>Password Hashing</li>
                       <li>Security</li>
@@ -449,7 +449,7 @@ const Guidelines: NextPage = () => {
               </div>
               <div className={styles.weekContent}>
                 <div className={styles.weekHeader}>
-                  <h2 className={styles.weekTitle}>Cloud & Production</h2>
+                  <h2 className={styles.weekTitle}>Cloud and Production</h2>
                 </div>
                 <div className={styles.bentoGrid}>
                   <div className={styles.bentoCard}>
@@ -488,7 +488,7 @@ const Guidelines: NextPage = () => {
                     <ul className={styles.bentoList}>
                       <li>AWS Basics</li>
                       <li>Deployment</li>
-                      <li>Domain & SSL</li>
+                      <li>Domain and SSL</li>
                       <li>CI/CD</li>
                     </ul>
                   </div>
@@ -519,7 +519,7 @@ const Guidelines: NextPage = () => {
                 <div className={styles.bentoGrid}>
                   <div className={styles.bentoCard}>
                     <h3 className={styles.bentoDay}>Day 13</h3>
-                    <h4 className={styles.bentoTitle}>AI & LLMs</h4>
+                    <h4 className={styles.bentoTitle}>AI and LLMs</h4>
                     <ul className={styles.bentoList}>
                       <li>AI Basics</li>
                       <li>Large Language Models</li>
@@ -539,7 +539,7 @@ const Guidelines: NextPage = () => {
                   </div>
                   <div className={styles.bentoCard}>
                     <h3 className={styles.bentoDay}>Day 15</h3>
-                    <h4 className={styles.bentoTitle}>RAG & Vectors</h4>
+                    <h4 className={styles.bentoTitle}>RAG and Vectors</h4>
                     <ul className={styles.bentoList}>
                       <li>RAG Systems</li>
                       <li>Embeddings</li>
